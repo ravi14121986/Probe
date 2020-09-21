@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script src="script/jquery-3.5.1.min.js"></script>
+	<script src="json/noOfamps.js"></script>
+	<script src="json/concurrentusers.js"></script>
+	<script src="json/CPUutilization.js"></script>
+	<script src="script/json.js"></script>
+	<script src="script/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
+
+	<meta name="viewport" content="widht=device-width, initial-scale=1" >
+</head>
+<body>
+
+<div class="popUpCartBg"></div>
+<div class="mainCover">
+<div id="mySidepanel" class="sidepanel adminMenu">
+  <a href="#" class="clkBtn" data-next="userSetupPage">Create User Profile</a>
+  <a href="#">Upload Files</a>
+  <a href="#">Subscription</a>
+  <a href="#" class="clkBtn" data-next="adminDashboard">Dashboard</a>
+</div>	
+<button class="openbtn adminMenu">☰</button>
+
+<div id="mySidepanel2" class="sidepanel memMenu">
+  <a href="#">DB Assessment</a>
+  <a href="#">ETL Assessment</a>
+  <a href="#">Recommended cloud options</a>
+  <a href="#">Migration path</a>
+  <a href="#">ROI Calculate</a>
+</div>
+<button class="openbtn2 memMenu">☰</button>
+
+<div class="adminPage pageCover" data-next="adminDashboard">	
+	<div class="jumpText">Jump start your Cloud Migration Journey with us!!</div>
+		<div class="loginBox" >
+			<h5>Admin Login</h5>
+			<form action="" method="post" id="loginform">
+			<span class="err errorAdmin">Username or Password was incorrect</span>	
+			<input type="email" data-error="err" name="EMail" id="emailLogin" class="emailLogin form-control" placeholder="Enter email">	
+			<span class="err invalid_email">Email-id is invalid</span>	
+			<span class="err errorEmail">Enter your email-id here</span>			
+			<input type="password" name="Password"id="passwordLogin" class="form-control mrgT10 passwordLogin" placeholder="Password">
+			
+			<button type="button" id="submitMemLogin" class="btn btn-primary btn-block mrgT10">Submit</button>	
+			<div id="correct" style="color:gray;"></div>
+			</form>
+		</div>
+		<div id="correct" style="color:gray;"></div>
+	</div>
+<div id="adminDashboard" class="adminDashboard bg pageCover">
+		<h5><!--Please select the action you want to perform--></h5>
+		<div class="datatableCover">
+		<table id="example" class="display select" cellspacing="0" width="100%">
+   <thead>
+            <tr>
+                <th></th>
+                <th>Assessment name</th>
+                <th>Client</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td><a href="#" class="clkBtn" data-next="dashboardScreen" >Netezaa Takeout For EDW</a></td>
+                <td>Apple Inc</td>
+                <td>02/09/2020</td>
+                <td>09/30/2020</td>
+     
+            </tr>
+             <tr>
+                <td></td>
+                <td>Assessment 2</td>
+                <td>Apple Inc</td>
+                <td>02/09/2020</td>
+                <td>09/30/2020</td>
+     
+            </tr>
+			 <tr><td></td><td>Assessment 3</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>Assessment 4</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>Assessment 5</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>Assessment 6</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>Assessment 7</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>Assessment 8</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>Assessment 9</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>Assessment 10</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>Assessment 11</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			</tbody>
+</table></div>
+
+		<!--<div class="userSetupCover">
+		<h1>Please setup objectives for assessment</h1>
+		<div class="userSetupmenu">
+			<a href="#">On-Premise DW platform to AWS Redshift</a>
+			<a href="#">On-Premise DW platform to Snowflake on AWS</a>
+			<a href="#">On-Premise DW platform to Snowflake on Azure</a>
+			<a href="#">On-Premise DW platform to Google BigQuer</a>
+			<a href="#">On-Premise DW platform to Azure SQL Data Warehouse</a>
+			
+		</div>
+		<div class="tabBtn"><button type="button" data-next="memLoginPage" class="btn clkBtn btn-primary btn-block mrgT10">Submit</button></div>
+		</div>-->
+</div>
+		<div id="dashboardScreen" class="dashboardScreen bg pageCover">
+		<h5>Assesment Report</h5>
+		<div class="heatMapDropDown">
+		<select name="Heat Map" id="heatMapMenu" class="form-control wd300">
+		<option value="NUMBER OF AMPS">NUMBER OF AMPS</option>
+<option value="CONCURRENT USERS">CONCURRENT USERS</option>
+<option value="AMP AND DISK">AMP AND DISK</option>
+</select>
+		</div>
+		<div class="roiCalculatorBtn">
+		<button type="button" data-next="roiCalculator" class="btn clkBtn btn-primary btn-block mrgT10">Roi Calculator</button>
+		</div>
+		<div class="assessmentBubble bigChartCover bsh">
+		<figure class="highcharts-figure">
+  <div id="container"></div>
+</figure>
+</div>
+<div class="assessmentHeatmap bigChartCover bsh">
+<figure class="highcharts-figure">
+    <div id="container2" ></div>
+</figure>
+</div>
+<div class="assessmentBar bigChartCover bsh">
+
+</div>
+<div class="assessmentCircle bigChartCover bsh">
+<figure class="highcharts-figure"><div id="assessmentCircle"></div></figure>
+</div>
+</div>
+<div id="roiCalculator" class="roiCalculator bg pageCover">
+		<h5><span>ROI Calculator</span></h5>
+		<div class="roiCalculatorCover bsh">
+		<form action="" method="post" id="dashboardform">
+			<table align="center" cellpadding = "6" class="mrgT20"> 
+				<tr>
+				<td width="40%">Migration Pattern</td>
+				<td>
+				<select name="MigrationPattern" class="form-control wd300">
+					<option value="Shift">Shift</option>
+					<option value="Re Platform">Re Platform</option>
+					<option value="Snowflake on Azure">Re engineer</option>
+				</select>
+				</td>
+				</tr>
+				<tr>
+				<td>Legacy Cost</td>
+				<td class="parnt">
+				<input type="text" name="Legacy Cost" maxlength="30" value="500" class="legacyCost form-control wd300" />
+				<div class="costIcon legacyIcon"></div>
+				</td>
+				</tr>
+				<tr>
+				<td>Years to Sunset</td>
+				<td>
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				</tr>
+				<tr>
+				<td>Yearly Target</td>
+				<td>
+				<p><span id="slideVal" class="slideVal"></span>%</p>
+				<script>
+var slider = document.getElementById("myRange");
+var output = document.getElementById("slideVal");
+slider.value = 20;
+output.innerHTML = slider.value;
+
+ output.innerHTML = 20;
+slider.oninput = function() {
+var d = 100/this.value;
+if(this.value == 3){output.innerHTML = 30;}
+else{output.innerHTML = d;} 
+}
+</script>
+				</td>
+				</tr>
+				<tr>
+				<td>Estimated Migration Cost</td>
+				<td class="parnt">
+				<input type="text" name="EstimatedMigrationCost" maxlength="30" value="20000" class="estimatedMigrationCost form-control wd300" />
+				<div class="costIcon migrationIcon"></div>
+				</td>
+				</tr>
+				<tr>
+				<td>Estimated Cloud Cost</td>
+				<td class="parnt">
+				<input type="text" name="EstimatedCloudCost" maxlength="30" value="500" class="estimatedCloudCost form-control wd300" />
+				<div class="costIcon cloudIcon"></div>
+				</td>
+				</tr>
+				<tr>
+				<td colspan="2">
+				<div class="tabs tabs50">			
+			<div class="tabBtn"><button type="button" class="btn totalROI btn-primary btn-block mrgT10 active">Calculate</button></div>	
+		</div>
+				</td>
+				</tr>
+				</table>
+				</form>
+				</div>
+				<figure class="highcharts-figure legacyFigure bsh hgCover">
+				<h2>Legacy Cost</h2>
+    <div id="container3"></div>
+</figure>
+<figure class="highcharts-figure estimateFigure bsh hgCover">
+<h2>Estimated Cloud Cost</h2>
+    <div id="container4"></div>
+</figure>
+<figure class="highcharts-figure yearonyear bsh hgCover">
+<h2>Year on Year</h2>
+    <div id="container5"></div>
+</figure>
+<div class="bsh roiModelCover hgCover">
+<figure class="highcharts-figure roiModel">
+    <div id="container6"></div>
+</figure>
+	</div>	
+</div>
+
+	<div id="userSetupPage" class="userSetupPage bg pageCover">
+	<h5>Create User Profile</h5>
+			<form action="" method="post" id="dashboardform">
+			<table align="center" cellpadding = "6" class="mrgT20"> 
+				<tr>
+				<td width="40%">Name of Assessment</td>
+				<td>
+				<input type="text" name="UserID" maxlength="30" class="form-control wd300" />
+				</td>
+				</tr>
+				<tr>
+				<td>Client Name</td>
+				<td>
+				<input type="text" name="GroupID" maxlength="30" class="form-control wd300" />
+				</td>
+				</tr>
+				<tr>
+				<td>Client Contact</td>
+				<td>
+				<input type="text" name="fname" maxlength="30" class="form-control wd300" />
+				</td>
+				</tr>
+				<tr>
+				<td>User Name</td>
+				<td>
+				<input type="text" name="mname" maxlength="30" class="form-control wd300" />
+				</td>
+				</tr>
+				<tr>
+				<td>Password</td>
+				<td>
+				<input type="text" name="lname" maxlength="30" class="form-control wd300" />
+				</td>
+				</tr>
+				<tr>
+				<td>Re enter Password</td>
+				<td>
+				<input type="text" name="dob" maxlength="30" class="form-control wd300" />
+				</td>
+				</tr>
+				<tr>
+				<td>Target Platform</td>
+				<td>
+				<select name="Assessment Platform" class="form-control wd300">
+					<option value="AWS Redshift">AWS Redshift</option>
+					<option value="Snowflake on AWS">Snowflake on AWS</option>
+					<option value="Snowflake on Azure">Snowflake on Azure</option>
+					<option value="Google BigQuery">Google BigQuery</option>
+					<option value="Azure SQL Data Warehouse">Azure SQL Data Warehouse</option>
+				</select>
+				</td>
+				</tr>
+				
+				<tr>
+				<td colspan="200">
+				<div class="tabs tabs50">
+			
+			<div class="tabBtn"><button type="button" class="btn btn-primary btn-block mrgT10 active">Submit</button></div>	
+		</div>
+				</td>
+				</tr>
+			</table>
+			</form>
+		
+	</div>
+	
+
+<div class="searchContainer wd180">
+	<div class="searchCover">
+      <input type="text" placeholder="Search.." name="search" class="form-control searchControl">
+      <button type="submit" class="searchBtn"></button>
+	</div>
+</div>
+</div>
+
+<div class="displayJson">
+<div class="jsoncover">
+<a href="#" class="jsonClose">Close</a>
+<h3>JSON Values</h3>
+<h5>Admin Login</h5>
+<div class="box1"></div>
+<h5>Member Login</h5>
+<div class="box2"></div>
+<h5>Member Input Page1</h5>
+<div class="box3"></div>
+<h5>Member Input Page2</h5>
+<div class="box4"></div>
+<h5>Member Input Page3</h5>
+<div class="box5"></div>
+</div>
+</div>
+<pre id="csv1" style="display: none"></pre>
+<pre id="csv2" style="display: none"></pre>
+<pre id="csv3" style="display: none"></pre>
+<pre id="csv4" style="display: none"></pre>
+<pre id="csv5" style="display: none"></pre>
+<pre id="csv6" style="display: none"></pre>
+<pre id="csv7" style="display: none"></pre>
+<pre id="csv8" style="display: none"></pre>
+<pre id="csv9" style="display: none"></pre>
+<pre id="csv10" style="display: none"></pre>
+<pre id="csv11" style="display: none"></pre>
+<pre id="csv12" style="display: none"></pre>
+<script>
+var bubbleVal = [
+            [4, 11, 14],
+            [6, 9, 10],
+            [8, 10, 10],
+			[3, 6, 11],
+			[4, 3, 9],
+			[10, 9, 13],
+			[14, 3, 3],
+			[7, 3, 8],
+			[11, 12, 11],
+			[5, 5, 5]
+        ];
+Highcharts.chart('container', {
+
+    chart: {
+        type: 'bubble',
+        plotBorderWidth: 1,
+        zoomType: 'xy'
+    },
+
+    title: {
+        text: 'Assessment Report'
+    },
+
+    xAxis: {
+        gridLineWidth: 1,
+		title: {
+        text: 'Business Value'
+    },
+        accessibility: {
+            rangeDescription: 'Range: 0 to 200.'
+        }
+    },
+
+    yAxis: {
+        startOnTick: false,
+		title: {
+        text: 'Complexity Score'
+    },
+        endOnTick: false,
+        accessibility: {
+            rangeDescription: 'Range: 0 to 100.'
+        }
+    },
+
+    series: [{
+        data: bubbleVal,
+		tooltip: {
+            headerFormat: '',
+            pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
+        },
+        marker: {
+            fillColor: {
+                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, 'rgba(255,255,255,0.5)'],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0.5).get('rgba')]
+                ]
+            }
+        }
+    }]
+
+});
+
+
+
+</script>
+<script>
+heatmapCSVtext("#csv1",0,15,24,ampsData);
+heatmapCSVtext("#csv2",15,30,24,ampsData);
+heatmapCSVtext("#csv3",30,45,24,ampsData);
+heatmapCSVtext("#csv4",45,60,24,ampsData);
+
+heatmapCSVtext("#csv5",0,15,18,concurrentdata);
+heatmapCSVtext("#csv6",15,30,18,concurrentdata);
+heatmapCSVtext("#csv7",30,45,18,concurrentdata);
+heatmapCSVtext("#csv8",45,60,18,concurrentdata);
+
+heatmapCSVtext("#csv9",0,15,24,cpudata);
+heatmapCSVtext("#csv10",15,30,24,cpudata);
+heatmapCSVtext("#csv11",30,45,24,cpudata);
+heatmapCSVtext("#csv12",45,60,24,cpudata);
+</script>
+<script>
+legacyCostChart();
+		yearonyearCost();		
+		estimateCostChart();
+		roimodelChart();
+</script>
+</body>
+</html>
