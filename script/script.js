@@ -120,7 +120,6 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
  var qa = [2994, 231, 3, 1578, 15,674,100,312];
  var sit = [3312, 197, 1, 1497, 9,554,43124,401];
  var prod =  [3197, 274, 4, 1254, 10,395,43634,361];
- assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 
   
   $(document).on("click",".highcharts-bubble-series path:nth-child(2)",function() {	  
@@ -130,8 +129,8 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1');
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV','csv5');
-	}else if($("#heatMapMenu").val() == "AMP AND DISK"){
-		assessmentHeatmap('AMP AND DISK - TD_BIM_FR_TRNG_DB_DEV','csv9');
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_DEV','csv9');
 	}
   });
    $(document).on("click",".highcharts-bubble-series path:nth-child(3)",function() {	  
@@ -141,8 +140,8 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_QA','csv2');
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_QA','csv6');
-	}else if($("#heatMapMenu").val() == "AMP AND DISK"){
-		assessmentHeatmap('AMP AND DISK - TD_BIM_FR_TRNG_DB_QA','csv10');
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_QA','csv10');
 	}
   });
    $(document).on("click",".highcharts-bubble-series path:nth-child(4)",function() {	  
@@ -152,8 +151,8 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_SIT','csv3');
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_SIT','csv7');
-	}else if($("#heatMapMenu").val() == "AMP AND DISK"){
-		assessmentHeatmap('AMP AND DISK - TD_BIM_FR_TRNG_DB_SIT','csv11');
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_SIT','csv11');
 	}
   });
    $(document).on("click",".highcharts-bubble-series path:nth-child(5)",function() {	  
@@ -163,8 +162,8 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_PROD','csv4');
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_PROD','csv8');
-	}else if($("#heatMapMenu").val() == "AMP AND DISK"){
-		assessmentHeatmap('AMP AND DISK - TD_BIM_FR_TRNG_DB_PROD','csv12');
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_PROD','csv12');
 	}
   });
   
@@ -173,8 +172,8 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1');
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV','csv5');
-	}else if($("#heatMapMenu").val() == "AMP AND DISK"){
-		assessmentHeatmap('AMP AND DISK - TD_BIM_FR_TRNG_DB_DEV','csv9');
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_DEV','csv9');
 	}
   });
   
@@ -193,7 +192,7 @@ z=z+1;
 for(j=0;j<days;j++)
 {
 
- $(id).append('2020-'+stringMonth+'-'+z+','+j+','+csvData[i][j]+'\n');
+ $(id).append('\n'+'2020-'+stringMonth+'-'+z+','+j+','+csvData[i][j]);
  }
  }  
 $(id).html($(id).text());
