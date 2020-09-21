@@ -1,0 +1,26 @@
+[
+  {
+    "DATABASE_NAME": "TD_BIM_FR_TRNG_DB_DEV",
+    "Sum of Total Migration Score": 14,
+    "Sum of Complexity Score": 11,
+    "Sum of Future Business Value": 4
+  },
+  {
+    "DATABASE_NAME": "TD_BIM_FR_TRNG_DB_QA",
+    "Sum of Total Migration Score": 10,
+    "Sum of Complexity Score": 9,
+    "Sum of Future Business Value": 6
+  },
+  {
+    "DATABASE_NAME": "TD_BIM_FR_TRNG_DB_SIT",
+    "Sum of Total Migration Score": 10,
+    "Sum of Complexity Score": 10,
+    "Sum of Future Business Value": 8
+  },
+  {
+    "DATABASE_NAME": "TD_BIM_FR_TRNG_DB_PROD",
+    "Sum of Total Migration Score": 11,
+    "Sum of Complexity Score": 6,
+    "Sum of Future Business Value": 3
+  }
+]
