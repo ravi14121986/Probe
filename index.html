@@ -149,6 +149,9 @@
 <div class="assessmentCircle bigChartCover bsh">
 <figure class="highcharts-figure"><div id="assessmentCircle"></div></figure>
 </div>
+<div class="assessmentEnvelope bigChartCover bsh">
+<figure class="highcharts-figure"><div id="assessmentEnvelope"></div></figure>
+</div>
 </div>
 <div id="roiCalculator" class="roiCalculator bg pageCover">
 		<h5><span>ROI Calculator</span></h5>
@@ -436,5 +439,71 @@ legacyCostChart();
 		estimateCostChart();
 		roimodelChart();
 </script>
+<script>
+
+var arr = [14,19,23,26,69,58,96,43,21,13,30,26,44,81,29,11,91,16,26,57,87,15,84,48];
+var ArrMax = Math.max.apply(Math, arr);
+var ArrMin = Math.min.apply(Math, arr);
+var total = 0;
+for(var i = 0; i < arr.length; i++) {
+    total += arr[i];
+}
+var avg = Math.round(total / arr.length);
+var avgMin = Math.round((ArrMin+avg)/2);
+var avgMax = Math.round((ArrMax+avg)/2);
+
+Highcharts.chart('assessmentEnvelope', {
+
+    chart: {
+        type: 'boxplot'
+    },
+
+    title: {
+        text: envelopeTitle
+    },
+
+    legend: {
+        enabled: false
+    },
+
+    xAxis: {
+        categories: ['1', '2', '3', '4', '5'],
+        title: {
+            text: 'Month 9'
+        }
+    },
+
+    yAxis: {
+        title: {
+            text: 'Hours'
+        },
+        plotLines: [{
+            value: 55,
+            color: 'red',
+            width: 1,
+            label: {
+                text: 'Mean value: 55',
+                align: 'center',
+                style: {
+                    color: 'gray'
+                }
+            }
+        }]
+    },
+
+    series: [{
+        name: 'Dev',
+        data: [
+            [ArrMin, avgMin, avg, avgMax, ArrMax],
+            [5,29,53,75,98]
+        ],
+        tooltip: {
+            headerFormat: '<em>9th Month, Day {point.key}</em><br/>'
+        }
+    }]
+
+});
+
+</script>
 </body>
-</html>
+</html>...
