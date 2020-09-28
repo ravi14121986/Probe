@@ -43,7 +43,7 @@ body{background:#042b3b!important;}
     width: 1024px;
 vertical-align: middle;
 border-radius:20px 20px 0 0;
-font-size: 16px;
+font-size: 24px;
     padding: 0 200px 0 80px;
     text-align: left;} 
 .bg table td{vertical-align: top;}
@@ -434,9 +434,24 @@ border-radius: 12px 12px 0 0;}
     margin: 30px 28px 0 0;
     float: right;
 }
+.pdfGenerateBtn button{
+        width: 150px;
+    margin: 10px 28px 20px 0;
+    float: left;
+}
+.pdfGenerateBtn{ margin: -14px auto;
+    width: 200px;}
 .roiCalculatorBtn{	
     height: 70px;
+    margin: 0 0 0 0;
+    position: absolute;
+    left: 20px;
 }
+.roiCover{position: relative;
+    float: left;
+    width: 100%;
+    height: 20px;
+    top: -17px;}
 .roiCalculatorCover{  background: #fff;
     
     width: 986px;
@@ -445,6 +460,8 @@ border-radius: 12px 12px 0 0;}
     
     
 }
+.cumulativeCover .highcharts-point{fill: rgb(0, 223, 16);} 
+.cumulativeCover .highcharts-point.highcharts-negative{fill: rgb(255, 0, 0);}
 .bsh{border: 2px solid #009aff;border-radius: 15px;box-shadow: 0px 0px 14px #b4b4b4;padding:10px;}
 .legacyFigure,.estimateFigure,.yearonyear{
 	        margin: 0 0 16px 16px;
@@ -453,7 +470,13 @@ border-radius: 12px 12px 0 0;}
 .highcharts-credits{display:none;}
 #container6,#container2,#container3,#container4,#container5{width:460px!important;height:340px!important;}
 #container2{width:460px!important;height:380px!important;}
-#assessmentEnvelope{width:460px!important;height:380px!important;}
+#assessmentEnvelope{width:960px!important;height:360px!important;}
+.cumulativeCover{display: block;
+    float: left;
+    margin: 0 0 16px 18px;
+    width: 980px;
+	background:#fff;}
+	#cumulativeR{width:960px;}
 .roiModelCover{
 	height: 396px;
     width: 484px;
@@ -467,13 +490,40 @@ border-radius: 12px 12px 0 0;}
     margin: 0 auto 20px auto;
     padding: 5px;
     background: #fff;}
-.bigChartCover{margin: 10px 0 20px 20px;float:left;overflow:hidden;}
+.bigChartCover{margin: 12px 0 10px 20px;float:left;overflow:hidden;}
 .highcharts-legend-item{float:left;}
+#roots{float:left;margin:0;}
+#roots h2{     margin: 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;}
+.assessmentBubble .highcharts-legend-item{display:none;}
 .highcharts-legend{width:autio;}
 .popUpCartBg{position:fixed;top:0;bottom:0;left:0;right:0;z-index:998;background:#000;opacity:0.5;}
 .popUpCart{position:fixed;width:700px;height:400px;top:50%;left:50%;margin-left:-350px;margin-top:-200px;background:#fff;border:1px solid #ccc;z-index:999;
 border-radius:15px;border:2px solid #027cff;}
 #assessmentBar,#assessmentCircle{width:460px;height:350px;}
+.assessmentEnvelope{width:980px;}
+.assessmentCircle{position:relative;}
+.assessmentCircle ul{    position: absolute;
+    font-size: 11px;
+    font-weight: bold;
+    bottom: 10px;
+    left: 0;
+    margin: 0;
+    padding: 0;}
+.assessmentCircle ul li{float:left;list-style: none;
+    margin: 0;
+    padding: 0;}
+.assessmentCircle ul li span{width: 12px;
+    height: 12px;
+    float: left;
+    margin: 3px 4px 0 16px;
+    border-radius: 6px;}
+	.assessmentCircle ul li:nth-child(1) span{background:#7cb5ec;}
+	.assessmentCircle ul li:nth-child(2) span{background:#f15c80;}
+	.assessmentCircle ul li:nth-child(3) span{background:#f7a35c;}
+	.assessmentCircle ul li:nth-child(4) span{background:#90ed7d;}
 .popUpCart a.close{    position: absolute;
     top: 4px;
     right: 5px;
@@ -524,3 +574,7 @@ border-radius:15px;border:2px solid #027cff;}
 	 .rangeNum span:nth-child(4){width:75px;}
 	 .hgCover{display:none;}
 	 #csv1{white-space: pre-wrap;}
+	 .dbTitleClr{font-size:14px;color:#007bff}
+	 
+	 
+	.assessmentEnvelope .highcharts-series-group .highcharts-series g.highcharts-point:nth-child(odd) path{stroke: rgb(0, 223, 16);}
