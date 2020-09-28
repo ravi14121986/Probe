@@ -26,7 +26,7 @@ ampsData = [
     "23": 48,
     "": 0,
     "DATABASE_NAME": "TD_BIM_FR_TRNG_DB_DEV",
-    "DATE": "09/1/2020"
+    "DATE": "09/01/2020"
   },
   {
     "0": 19,
