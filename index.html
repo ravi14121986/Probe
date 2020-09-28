@@ -25,11 +25,13 @@
 <script src="plugin/highchart/solid-gauge.js"></script>
 <script src="plugin/highchart/data.js"></script>
 <script src="plugin/highchart/offline-exporting.js"></script>
+   <script src="script/html2pdf.bundle.js"></script>
+
 
 	<meta name="viewport" content="widht=device-width, initial-scale=1" >
 </head>
 <body>
-
+   
 <div class="popUpCartBg"></div>
 <div class="mainCover">
 <div id="mySidepanel" class="sidepanel adminMenu">
@@ -67,7 +69,7 @@
 		<div id="correct" style="color:gray;"></div>
 	</div>
 <div id="adminDashboard" class="adminDashboard bg pageCover">
-		<h5><!--Please select the action you want to perform--></h5>
+		<h5>Probtool Assessment Report</h5>
 		<div class="datatableCover">
 		<table id="example" class="display select" cellspacing="0" width="100%">
    <thead>
@@ -82,29 +84,24 @@
         <tbody>
             <tr>
                 <td></td>
-                <td><a href="#" class="clkBtn" data-next="dashboardScreen" >Netezaa Takeout For EDW</a></td>
-                <td>Apple Inc</td>
+                <td><a href="#" class="clkBtn" data-next="dashboardScreen" >Exadata to Snowflake</a></td>
+                <td>Client A</td>
                 <td>02/09/2020</td>
                 <td>09/30/2020</td>
      
             </tr>
              <tr>
                 <td></td>
-                <td>Assessment 2</td>
-                <td>Apple Inc</td>
+                <td>Google BigQuery</td>
+                <td>Client B</td>
                 <td>02/09/2020</td>
                 <td>09/30/2020</td>
      
             </tr>
-			 <tr><td></td><td>Assessment 3</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
-			 <tr><td></td><td>Assessment 4</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
-			 <tr><td></td><td>Assessment 5</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
-			 <tr><td></td><td>Assessment 6</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
-			 <tr><td></td><td>Assessment 7</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
-			 <tr><td></td><td>Assessment 8</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
-			 <tr><td></td><td>Assessment 9</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
-			 <tr><td></td><td>Assessment 10</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
-			 <tr><td></td><td>Assessment 11</td><td>Apple Inc</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>Snowflake on Azure</td><td>Client C</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>Snowflake on AWS</td><td>Client D</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 <tr><td></td><td>AWS Redshift</td><td>Client E</td><td>02/09/2020</td><td>09/30/2020</td></tr>
+			 
 			</tbody>
 </table></div>
 
@@ -122,7 +119,8 @@
 		</div>-->
 </div>
 		<div id="dashboardScreen" class="dashboardScreen bg pageCover">
-		<h5>Assesment Report</h5>
+		<h5><!-- Current Data Landscape --></h5>
+		<div class="roiCover">
 		<div class="heatMapDropDown">
 		<select name="Heat Map" id="heatMapMenu" class="form-control wd300">
 		<option value="NUMBER OF AMPS">NUMBER OF AMPS</option>
@@ -133,7 +131,10 @@
 		<div class="roiCalculatorBtn">
 		<button type="button" data-next="roiCalculator" class="btn clkBtn btn-primary btn-block mrgT10">Roi Calculator</button>
 		</div>
-		<div class="assessmentBubble bigChartCover bsh">
+		</div>
+		<div id="roots">
+		<h2>Current Data Landscape</h2>
+		<div id="contentw" class="assessmentBubble bigChartCover bsh">
 		<figure class="highcharts-figure">
   <div id="container"></div>
 </figure>
@@ -148,10 +149,16 @@
 </div>
 <div class="assessmentCircle bigChartCover bsh">
 <figure class="highcharts-figure"><div id="assessmentCircle"></div></figure>
+<ul><li><span></span>Updates Per Day</li><li><span></span>Delets Per Day</li><li><span></span>Inserts Per Day</li><li><span></span>Selects Per Day</li></ul>
 </div>
+<br><br>
 <div class="assessmentEnvelope bigChartCover bsh">
 <figure class="highcharts-figure"><div id="assessmentEnvelope"></div></figure>
 </div>
+</div>
+<div class="pdfGenerateBtn">
+		<button type="button" onclick="test()" class="btn btn-primary btn-block mrgT10">Export PDF</button>
+		</div>
 </div>
 <div id="roiCalculator" class="roiCalculator bg pageCover">
 		<h5><span>ROI Calculator</span></h5>
@@ -206,7 +213,7 @@ else{output.innerHTML = d;}
 				<tr>
 				<td>Estimated Migration Cost</td>
 				<td class="parnt">
-				<input type="text" name="EstimatedMigrationCost" maxlength="30" value="20000" class="estimatedMigrationCost form-control wd300" />
+				<input type="text" name="EstimatedMigrationCost" maxlength="30" value="500" class="estimatedMigrationCost form-control wd300" />
 				<div class="costIcon migrationIcon"></div>
 				</td>
 				</tr>
@@ -243,7 +250,13 @@ else{output.innerHTML = d;}
 <figure class="highcharts-figure roiModel">
     <div id="container6"></div>
 </figure>
-	</div>	
+	</div>
+	<div class="bsh cumulativeCover hgCover">
+<figure class="highcharts-figure cumulativeReturns">
+    <div id="cumulativeR"></div>
+</figure>
+	</div>
+	
 </div>
 
 	<div id="userSetupPage" class="userSetupPage bg pageCover">
@@ -350,18 +363,38 @@ else{output.innerHTML = d;}
 <pre id="csv11" style="display: none">Date,Time,Temperature</pre>
 <pre id="csv12" style="display: none">Date,Time,Temperature</pre>
 <script>
-var bubbleVal = [
-            [4, 11, 14],
-            [6, 9, 10],
-            [8, 10, 10],
-			[3, 6, 11],
-			[4, 3, 9],
-			[10, 9, 13],
-			[14, 3, 3],
-			[7, 3, 8],
-			[11, 12, 11],
+var bubbleVal1 = [
+            [4, 11, 14]
+        ];
+		var bubbleVal2 = [
+            
+            [6, 9, 10]
+        ];
+		var bubbleVal3 = [
+            [8, 10, 10]
+        ];
+		var bubbleVal4 = [
+			[3, 6, 11]
+        ];
+		var bubbleVal5 = [
+			[4, 3, 9]
+        ];
+		var bubbleVal6 = [
+			[10, 9, 13]
+        ];
+		var bubbleVal7 = [
+			[14, 3, 3]
+        ];
+		var bubbleVal8 = [
+			[7, 3, 8]
+        ];
+		var bubbleVal9 = [
+			[11, 12, 11]
+        ];
+		var bubbleVal10 = [
 			[5, 5, 5]
         ];
+		
 Highcharts.chart('container', {
 
     chart: {
@@ -371,7 +404,7 @@ Highcharts.chart('container', {
     },
 
     title: {
-        text: 'Assessment Report'
+        text: 'Smart Data Decisioning for Cloud Migration'
     },
 
     xAxis: {
@@ -396,7 +429,72 @@ Highcharts.chart('container', {
     },
 
     series: [{
-        data: bubbleVal,
+        data: bubbleVal1,
+		title:'',
+		tooltip: {
+            headerFormat: 'TD_BIM_FR_TRNG_DB_DEV<br>',
+            pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
+        },
+        marker: {
+            fillColor: {
+                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, 'rgba(255,255,255,0.5)'],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0.5).get('rgba')]
+                ]
+            }
+        }
+    },
+	{
+        data: bubbleVal2,
+		tooltip: {
+            headerFormat: 'TD_BIM_FR_TRNG_DB_QA<br>',
+            pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
+        },
+        marker: {
+            fillColor: {
+                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, 'rgba(255,255,255,0.5)'],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[1]).setOpacity(0.5).get('rgba')]
+                ]
+            }
+        }
+    },
+	{
+        data: bubbleVal3,
+		tooltip: {
+            headerFormat: 'TD_BIM_FR_TRNG_DB_SIT<br>',
+            pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
+        },
+        marker: {
+            fillColor: {
+                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, 'rgba(255,255,255,0.5)'],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[2]).setOpacity(0.5).get('rgba')]
+                ]
+            }
+        }
+    },
+	{
+        data: bubbleVal4,
+		tooltip: {
+            headerFormat: 'TD_BIM_FR_TRNG_DB_PROD<br>',
+            pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
+        },
+        marker: {
+            fillColor: {
+                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, 'rgba(255,255,255,0.5)'],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[3]).setOpacity(0.5).get('rgba')]
+                ]
+            }
+        }
+    },
+	{
+        data: bubbleVal5,
 		tooltip: {
             headerFormat: '',
             pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
@@ -406,7 +504,89 @@ Highcharts.chart('container', {
                 radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
                 stops: [
                     [0, 'rgba(255,255,255,0.5)'],
-                    [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0.5).get('rgba')]
+                    [1, Highcharts.color(Highcharts.getOptions().colors[4]).setOpacity(0.5).get('rgba')]
+                ]
+            }
+        }
+    },
+	{
+        data: bubbleVal6,
+		tooltip: {
+            headerFormat: '',
+            pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
+        },
+        marker: {
+            fillColor: {
+                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, 'rgba(255,255,255,0.5)'],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[5]).setOpacity(0.5).get('rgba')]
+                ]
+            }
+        }
+    },
+	{
+        data: bubbleVal7,
+		tooltip: {
+            headerFormat: '',
+            pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
+        },
+        marker: {
+            fillColor: {
+                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, 'rgba(255,255,255,0.5)'],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[6]).setOpacity(0.5).get('rgba')]
+                ]
+            }
+        }
+    },
+	{
+        data: bubbleVal8,
+		tooltip: {
+            headerFormat: '',
+            pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
+        },
+        marker: {
+            fillColor: {
+                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, 'rgba(255,255,255,0.5)'],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[7]).setOpacity(0.5).get('rgba')]
+                ]
+            }
+        }
+    },
+	{
+        data: bubbleVal9,
+		name:'name',
+		tooltip: {
+            headerFormat: '',
+            pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
+        },
+        marker: {
+            fillColor: {
+                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, 'rgba(255,255,255,0.5)'],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[8]).setOpacity(0.5).get('rgba')]
+                ]
+            }
+        }
+    },
+	{
+        data: bubbleVal10,
+		name:'name',
+		tooltip: {
+            headerFormat: '',
+            pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
+        },
+        marker: {
+            fillColor: {
+                radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, 'rgba(255,255,255,0.5)'],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[8]).setOpacity(0.5).get('rgba')]
                 ]
             }
         }
@@ -434,23 +614,43 @@ heatmapCSVtext("#csv11",30,45,24,cpudata);
 heatmapCSVtext("#csv12",45,60,24,cpudata);
 </script>
 <script>
-legacyCostChart();
-		yearonyearCost();		
+legacyCostChart();				
 		estimateCostChart();
+		yearonyearCost();
 		roimodelChart();
+		cumulativeRfn();
 </script>
 <script>
 
-var arr = [14,19,23,26,69,58,96,43,21,13,30,26,44,81,29,11,91,16,26,57,87,15,84,48];
-var ArrMax = Math.max.apply(Math, arr);
+
+function envelopeChartfn(startMonth,endMonth,hrsPerday,jsonVal,envelopeTitle){
+var finalAr = [];
+for(i=startMonth;i<endMonth;i++)
+{
+
+var arr = [];
+for(j=0;j<hrsPerday;j++)
+{
+ arr.push(jsonVal[i][j]);
+ }
+ 
+ var ArrMax = Math.max.apply(Math, arr);
 var ArrMin = Math.min.apply(Math, arr);
 var total = 0;
-for(var i = 0; i < arr.length; i++) {
-    total += arr[i];
+for(var x = 0; x < arr.length; x++) {
+    total += arr[x];
 }
 var avg = Math.round(total / arr.length);
 var avgMin = Math.round((ArrMin+avg)/2);
 var avgMax = Math.round((ArrMax+avg)/2);
+var ggg = [];
+ggg[0]=ArrMin;
+ggg[1]=avgMin;
+ggg[2]=avg;
+ggg[3]=avgMax;
+ggg[4]=ArrMax;
+finalAr.push(ggg);
+ }  
 
 Highcharts.chart('assessmentEnvelope', {
 
@@ -467,7 +667,7 @@ Highcharts.chart('assessmentEnvelope', {
     },
 
     xAxis: {
-        categories: ['1', '2', '3', '4', '5'],
+        categories: ['1', '2', '3', '4', '5','6','7','8','9','10','11','12','13','14','15'],
         title: {
             text: 'Month 9'
         }
@@ -493,17 +693,30 @@ Highcharts.chart('assessmentEnvelope', {
 
     series: [{
         name: 'Dev',
-        data: [
-            [ArrMin, avgMin, avg, avgMax, ArrMax],
-            [5,29,53,75,98]
-        ],
+        data: finalAr,
         tooltip: {
             headerFormat: '<em>9th Month, Day {point.key}</em><br/>'
         }
     }]
 
 });
+}
+
 
 </script>
+<script>
+      function test() {
+        // Get the element.
+        var element = document.getElementById('roots');
+
+        // Generate the PDF.
+        html2pdf().from(element).set({
+          margin: 0,
+          filename: 'test.pdf',
+          html2canvas: { scale: 1 },
+          jsPDF: {orientation: 'landscape', unit: 'in', format: 'letter', compressPDF: true}
+        }).save();
+      }
+    </script>
 </body>
-</html>...
+</html>
