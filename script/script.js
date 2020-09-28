@@ -11,7 +11,12 @@ var yearL2;
 var yearL3;
 var yearL4;
 var yearL5;
-var envelopeTitle ="NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV";
+var year1line;
+var year2line;
+var year3line;
+var year4line;
+var year5line;
+
 $(document).ready(function() {
 	$(".popUpCart").hide();
 	  $(".popUpCartBg").hide();															
@@ -78,9 +83,10 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
   $(document).on("click",".totalROI",function() {
 	  $(".hgCover").show();	  
         legacyCostChart();
-		yearonyearCost();		
 		estimateCostChart();
+		yearonyearCost();		
 		roimodelChart();
+		cumulativeRfn();
 		
     });
   
@@ -122,74 +128,75 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
  var sit = [3312, 197, 1, 1497, 9,554,43124,401];
  var prod =  [3197, 274, 4, 1254, 10,395,43634,361];
 
-  
-  $(document).on("click",".highcharts-bubble-series path:nth-child(2)",function() {	  
+  $(document).on("click",".highcharts-series-0",function() {	  
    assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_DEV',2442,379,3586,8126);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1');
-	envelopeTitle = "NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV";
+	envelopeChartfn(0,15,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_DEV");
+	
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV','csv5');
-		envelopeTitle = "CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV";
+		envelopeChartfn(0,15,24,concurrentdata,"Concurrent Users - TD_BIM_FR_TRNG_DB_DEV");
 	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
 		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_DEV','csv9');
-		envelopeTitle = "CPU UTILIZATION - TD_BIM_FR_TRNG_DB_DEV";
+		envelopeChartfn(0,15,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_DEV");
 	}
   });
-   $(document).on("click",".highcharts-bubble-series path:nth-child(3)",function() {	  
+   $(document).on("click",".highcharts-series-1",function() {	  
    assessmentBarFn(qa,'TD_BIM_FR_TRNG_DB_QA');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_QA',2641,345,3614,9874);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_QA','csv2');
-	envelopeTitle = "NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_QA";
+	envelopeChartfn(15,30,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_QA");
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_QA','csv6');
-		envelopeTitle = "CONCURRENT USERS - TD_BIM_FR_TRNG_DB_QA";
+		envelopeChartfn(15,30,24,concurrentdata,"Concurrent Users - TD_BIM_FR_TRNG_DB_QA");
 	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
 		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_QA','csv10');
-		envelopeTitle = "CPU UTILIZATION - TD_BIM_FR_TRNG_DB_QA";
+		envelopeChartfn(15,30,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_QA");
 	}
   });
-   $(document).on("click",".highcharts-bubble-series path:nth-child(4)",function() {	  
+   $(document).on("click",".highcharts-series-2",function() {	  
    assessmentBarFn(sit,'TD_BIM_FR_TRNG_DB_SIT');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_SIT',2800,224,3796,9564);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_SIT','csv3');
-	envelopeTitle = "NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_SIT";
+	envelopeChartfn(30,45,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_SIT");
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_SIT','csv7');
-		envelopeTitle = "CONCURRENT USERS - TD_BIM_FR_TRNG_DB_SIT";
+		envelopeChartfn(30,45,24,concurrentdata,"Concurrent Users - TD_BIM_FR_TRNG_DB_SIT");
 	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
 		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_SIT','csv11');
-		envelopeTitle = "CPU UTILIZATION - TD_BIM_FR_TRNG_DB_SIT";
+		envelopeChartfn(30,45,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_SIT");
 	}
   });
-   $(document).on("click",".highcharts-bubble-series path:nth-child(5)",function() {	  
+   $(document).on("click",".highcharts-series-3",function() {	  
    assessmentBarFn(prod,'TD_BIM_FR_TRNG_DB_PROD');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_PROD',3421,401,4214,12465);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_PROD','csv4');
-	envelopeTitle = "NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_PROD";
+	envelopeChartfn(45,60,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_PROD");
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_PROD','csv8');
-		envelopeTitle = "CONCURRENT USERS - TD_BIM_FR_TRNG_DB_PROD";
+		envelopeChartfn(45,60,24,concurrentdata,"Concurrent Users - TD_BIM_FR_TRNG_DB_PROD");
 	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
 		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_PROD','csv12');
-		envelopeTitle = "CPU UTILIZATION - TD_BIM_FR_TRNG_DB_PROD";
+		envelopeChartfn(45,60,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_PROD");
 	}
   });
   
   $("#heatMapMenu").change(function(){
     if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1');
-	envelopeTitle = "NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV";
+	envelopeChartfn(0,16,24,cpudata,"NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV");
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV','csv5');
 		envelopeTitle = "CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV";
+		envelopeChartfn(0,16,24,cpudata,"CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV");
 	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
 		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_DEV','csv9');
-		envelopeTitle = "CPU UTILIZATION - TD_BIM_FR_TRNG_DB_DEV";
+		envelopeChartfn(0,16,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_DEV");
 	}
   });
   
@@ -226,7 +233,7 @@ $(id).html($(id).text());
     },
 
     title: {
-        text: hdTitle,
+        text: '<span class="dbTitleClr" style="color:#007bff">'+hdTitle+'</span>',
         align: 'left'
     },
 
@@ -291,7 +298,7 @@ $(id).html($(id).text());
     },
 
     title: {
-        text: hdTitle,
+        text: 'Activities<span class="dbTitleClr" style="color:#007bff"> - '+hdTitle+'</span>',
         style: {
             fontSize: '18px'
         }
@@ -383,7 +390,7 @@ $(id).html($(id).text());
         }]
     }, {
         name: 'Inserts per Day',
-        data: [{
+        data: ['Inserts',{
             color: Highcharts.getOptions().colors[3],
             radius: '72%',
             innerRadius: '56%',
@@ -411,10 +418,10 @@ Highcharts.chart('assessmentBar', {
         type: 'bar'
     },
     title: {
-        text: hdTitle
+        text: 'Volumetrics'+'<span class="dbTitleClr" style="color:#007bff"> - '+hdTitle+'</span>'
     },
     xAxis: {
-        categories: ['MACRO', 'PROCEDURE', 'TRIGGER', 'VIEW', 'HASH INDEX','No PRIMARY INDEX<br>NO PARTITIONING','PRIMARY INDEX<br>PARTITIONING<br>BOTH','JOIN INDEX']
+        categories: ['MACRO', 'PROCEDURE', 'TRIGGER', 'VIEW', 'HASH INDEX','No PRIMARY INDEX','PRIMARY INDEX','JOIN INDEX']
     },
     yAxis: {
         min: 0,
@@ -432,7 +439,7 @@ Highcharts.chart('assessmentBar', {
         }
     },
     series: [{
-        name: 'KPI Value',
+        name: 'Values',
         data: bubblePopupdata,
     }]
  });
@@ -553,12 +560,20 @@ function legacyCostChart()
 var txtVal = $(".legacyCost").val();
 var legacycostVal = $(".legacyCost").val();	  
 var caseVal = $('#myRange').val();
+var caseVal2 = $('#myRange').val();
 var lineDerived = legacycostVal;
-yearL1 = lineDerived * (100-1);
-yearL2 = lineDerived * (50-1);
-yearL3 = lineDerived * (30-1);
-yearL4 = lineDerived * (25-1);
-yearL5 = lineDerived * (20-1);
+var yearTrgt = $("#slideVal").html()/100;
+var arrs = []
+for(i=0;i<$('#myRange').val();i++)
+{
+	caseVal2 = caseVal2 - 1;
+	arrs.push(caseVal2);
+}
+yearL1 = arrs[0] * (legacycostVal*yearTrgt);
+yearL2 = arrs[1] * (legacycostVal*yearTrgt);
+yearL3 = arrs[2] * (legacycostVal*yearTrgt);
+yearL4 = arrs[3] * (legacycostVal*yearTrgt);
+yearL5 = arrs[4] * (legacycostVal*yearTrgt);
 
 if(caseVal == 1){finalData = [yearL1];}
 else if(caseVal == 2){finalData = [yearL1,yearL2];}
@@ -604,12 +619,12 @@ function estimateCostChart()
 {var finalData;
 var yearTarget = $('#myRange').val();
 var estimatecostVal = $(".estimatedCloudCost").val();	  
-
-year1 = estimatecostVal * (1*yearTarget);
-year2 = estimatecostVal * (2*yearTarget);
-year3 = estimatecostVal * (3*yearTarget);
-year4 = estimatecostVal * (4*yearTarget);
-year5 = estimatecostVal * (5*yearTarget);
+var yearTrgt = $("#slideVal").html()/100;
+year1 = 1 * (estimatecostVal*yearTrgt);
+year2 = 2 * (estimatecostVal*yearTrgt);
+year3 = 3 * (estimatecostVal*yearTrgt);
+year4 = 4 * (estimatecostVal*yearTrgt);
+year5 = 5 * (estimatecostVal*yearTrgt);
 
 if(yearTarget == 1){finalData = [year1];}
 else if(yearTarget == 2){finalData = [year1,year2];}
@@ -753,11 +768,11 @@ else if(yearTarget == 2){finalData3 = [txtVal,txtVal];}
 else if(yearTarget == 3){finalData3 = [txtVal,txtVal,txtVal];}
 else if(yearTarget == 4){finalData3 = [txtVal,txtVal,txtVal,txtVal];}
 else if(yearTarget == 5){finalData3 = [txtVal,txtVal,txtVal,txtVal,txtVal];}
-var year1line = year1+yearL1+txtVal;
-var year2line = year2+yearL2+txtVal;
-var year3line = year3+yearL3+txtVal;
-var year4line = year4+yearL4+txtVal;
-var year5line = year5+yearL5+txtVal;
+year1line = year1+yearL1+txtVal;
+year2line = year2+yearL2+txtVal;
+year3line = year3+yearL3+txtVal;
+year4line = year4+yearL4+txtVal;
+year5line = year5+yearL5+txtVal;
 
 if(yearTarget == 1){finalData4 = [year1line];year2line=0;year3line=0;year4line=0;year5line=0;}
 else if(yearTarget == 2){finalData4 = [year2line];year3line=0;year4line=0;year5line=0;}
@@ -799,6 +814,39 @@ Highcharts.chart('container6', {
             lineColor: Highcharts.getOptions().colors[3],
             fillColor: 'white'
         }
+    }]
+});
+}
+
+
+function cumulativeRfn(){
+	var lVal = $(".legacyCost").val();
+	var cBar1 = lVal - year1line;
+	var cBar2 = lVal - year2line + cBar1;
+	var cBar3 = lVal - year3line + cBar2;
+	var cBar4 = lVal - year4line + cBar3;
+	var cBar5 = lVal - year5line + cBar4;
+Highcharts.chart('cumulativeR', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Cumulative Returns'
+    },
+    xAxis: {
+        categories: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5']
+    },
+    yAxis: {
+         title: {
+            text: 'Cumulative Values',
+        }
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: 'Cumulative Returns',
+        data: [cBar1,cBar2,cBar3,cBar4,cBar5]
     }]
 });
 }
