@@ -31,14 +31,36 @@
 	<meta name="viewport" content="widht=device-width, initial-scale=1" >
 </head>
 <body>
-   
+   <div id="preloader"><div id="status">&nbsp;</div></div>
 <div class="popUpCartBg"></div>
 <div class="mainCover">
 <div id="mySidepanel" class="sidepanel adminMenu">
-  <a href="#" class="clkBtn" data-next="userSetupPage">Create User Profile</a>
-  <a href="#">Upload Files</a>
-  <a href="#">Subscription</a>
-  <a href="#" class="clkBtn" data-next="adminDashboard">Dashboard</a>
+  <a href="#" class="mMenu">Assessment </a>
+	  <div class="subMenu">
+	  <a href="#" class="clkBtn" data-next="inputPage1" ><i></i>Workload Assessments</a>
+	  <a href="#"><i></i>Sensitive Data Analysis</a>
+	  <a href="#" class="clkBtn" data-next="inputPage2"><i></i>ETL Code Analysis</a>
+	  <a href="#"><i></i>Schema / Code Analysis</a>
+	  <a href="#" class="clkBtn" data-next="inputPage3"><i></i>Data Quality Analysis</a>
+	  </div>
+  <a href="#" class="mMenu">Dashboard</a>   
+	  <div class="subMenu">
+	  <a href="#" class="clkBtn" data-next="adminDashboard"><i></i>Workloads</a>
+	  <a href="#"><i></i>Code Complexity Analysis</a>
+	  <a href="#"><i></i>Data Quality report</a>
+	  <a href="#"><i></i>Data Profiling</a>
+	  <a href="#" class="clkBtn" data-next="piiScreen"><i></i>PII .Analysis</a>
+	  </div>
+  <a href="#" class="mMenu">Return on Investments</a>
+	  <div class="subMenu">
+	  <a href="#" class="clkBtn" data-next="roiCalculator"><i></i>ROI</a>
+	  <a href="#"><i></i>Cloud Cost Estimator</a>
+	  <a href="#"><i></i>Legacy Cost Estimator</a>
+	  </div>
+  <a href="#" class="mMenu">Adminsitration</a>
+	  <div class="subMenu">
+	  <a href="#" class="clkBtn" data-next="userSetupPage"><i></i>Create User Profile</a>
+	  </div>
 </div>	
 <button class="openbtn adminMenu">☰</button>
 
@@ -54,8 +76,8 @@
 <div class="adminPage pageCover" data-next="adminDashboard">	
 	<div class="jumpText">Jump start your Cloud Migration Journey with us!!</div>
 		<div class="loginBox" >
-			<h5>Admin Login</h5>
-			<form action="/login" method="post" id="loginform">
+			<h5>Login</h5>
+			<form action="" method="post" id="loginform">
 			<span class="err errorAdmin">Username or Password was incorrect</span>	
 			<input type="email" data-error="err" name="EMail" id="emailLogin" class="emailLogin form-control" placeholder="Enter email">	
 			<span class="err invalid_email">Email-id is invalid</span>	
@@ -121,6 +143,7 @@
 		<div id="dashboardScreen" class="dashboardScreen bg pageCover">
 		<h5><!-- Current Data Landscape --></h5>
 		<div class="roiCover">
+		<div class="roiInner">
 		<div class="heatMapDropDown">
 		<select name="Heat Map" id="heatMapMenu" class="form-control wd300">
 		<option value="NUMBER OF AMPS">NUMBER OF AMPS</option>
@@ -130,6 +153,10 @@
 		</div>
 		<div class="roiCalculatorBtn">
 		<button type="button" data-next="roiCalculator" class="btn clkBtn btn-primary btn-block mrgT10">Roi Calculator</button>
+		</div>
+		<div class="pdfGenerateBtn">
+		<button type="button" onclick="pdftest('roots')" class="btn btn-primary btn-block mrgT10">Export PDF</button>
+		</div>
 		</div>
 		</div>
 		<div id="roots">
@@ -156,9 +183,7 @@
 <figure class="highcharts-figure"><div id="assessmentEnvelope"></div></figure>
 </div>
 </div>
-<div class="pdfGenerateBtn">
-		<button type="button" onclick="test()" class="btn btn-primary btn-block mrgT10">Export PDF</button>
-		</div>
+
 </div>
 <div id="roiCalculator" class="roiCalculator bg pageCover">
 		<h5><span>ROI Calculator</span></h5>
@@ -234,6 +259,11 @@ else{output.innerHTML = d;}
 				</table>
 				</form>
 				</div>
+				<div class="roiPDFCover">
+				<div class="pdfGenerateBtn2">
+		<button type="button" onclick="pdftest('roiInnerPDF');" class="btn btn-primary btn-block mrgT10">Export PDF</button>
+		</div>
+				<div id="roiInnerPDF" class="roiInnerPDF">
 				<figure class="highcharts-figure legacyFigure bsh hgCover">
 				<h2>Legacy Cost</h2>
     <div id="container3"></div>
@@ -255,8 +285,9 @@ else{output.innerHTML = d;}
 <figure class="highcharts-figure cumulativeReturns">
     <div id="cumulativeR"></div>
 </figure>
+</div>
 	</div>
-	
+	</div>
 </div>
 
 	<div id="userSetupPage" class="userSetupPage bg pageCover">
@@ -332,36 +363,412 @@ else{output.innerHTML = d;}
       <button type="submit" class="searchBtn"></button>
 	</div>
 </div>
+
+
+<!-- Member Login -->
+<div id="inputPage1" class="bg inputPage1 pageCover">
+		<h5>Congratulations, you have made the right decision by selecting PROBING TOOL</h5>
+<form action="" method="post" id="inputPage1form">
+ 
+<table align="center" cellpadding = "6" class="mrgT20">
+ 
+<tr>
+<td width="40%">Select Current Technology Platform</td>
+<td>
+<select name="Technology Platfornm"class="form-control wd300">
+<option value="Teradata">Teradata</option>
+<option value="Exadata">Exadata</option>
+<option value="Greenplum">Greenplum</option>
+<option value="Neteeza">Neteeza</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Select OS Platform</td>
+<td>
+<select name="OS Platform" class="form-control wd300">
+<option value="Unix/Linux">Unix/Linux</option>
+<option value="Windows">Windows</option>
+<option value="Solaris">Solaris</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Can we connect an instant database</td>
+<td>
+	<div class="radioBtn">
+	<input name="Connect Database" type="radio" value="Yes" id="instantDB1"/><label class="form-check-label" for="instantDB1">Yes</label>
+	<input name="Connect Database" type="radio" value="No" id="instantDB2"/><label class="form-check-label" for="instantDB2">No</label>
+	</div>
+</td>
+</tr>
+
+<tr>
+<td class="vAlignT">Please Provide DB Connection String</td>
+ 
+<td>
+	<div class="hostTable">
+	<table>
+	<tr>
+	<td >Host Name</td>
+	<td><input type="text" name="DB Host name" maxlength="30" class="form-control wd300" /></td>
+	</tr>
+	 
+	<tr>
+	<td>User Name</td>
+	<td><input type="text" name="DB UserName" maxlength="30" class="form-control wd300" /></td>
+	</tr>
+	 
+	<tr>
+	<td>Password</td>
+	<td><input type="text" name="DB Password" maxlength="30" class="form-control wd300" /></td>
+	</tr>
+	</table>
+	</div>
+</td>
+</tr>
+
+ 
+
+
+<tr>
+<td>Download Template to provide input<br />APPLIED FOR</td>
+<td>
+<button class="btnDownload"><i class="downloadIcon"></i> DM Volumentrics</button>
+<button class="btnDownload"><i class="downloadIcon"></i> Schema Details</button>
+<button class="btnDownload"><i class="downloadIcon"></i> Workload Details</button>
+</td>
+</tr>
+ 
+<tr>
+<td colspan="2" align="center">
+<div class="tabs tabs50">
+			<div class="tabBtn padL0"><button type="button" class="opacityHalf btn btn-primary btn-block mrgT10">Previous</button></div>
+			<div class="tabBtn padR0"><button type="button" data-next="inputPage2" class="clkBtn btn btn-primary btn-block mrgT10 active">Next</button></div>	
+		</div>
+</td>
+</tr>
+</table>
+ </form>
 </div>
 
-<div class="displayJson">
-<div class="jsoncover">
-<a href="#" class="jsonClose">Close</a>
-<h3>JSON Values</h3>
-<h5>Admin Login</h5>
-<div class="box1"></div>
-<h5>Member Login</h5>
-<div class="box2"></div>
-<h5>Member Input Page1</h5>
-<div class="box3"></div>
-<h5>Member Input Page2</h5>
-<div class="box4"></div>
-<h5>Member Input Page3</h5>
-<div class="box5"></div>
+
+
+<div id="inputPage2" class="inputPage2 bg pageCover">
+<h5>Please provide below inputs</h5>
+
+<form action="" method="post" id="inputPage2form"> 
+<table align="center" cellpadding = "6">
+ 
+<tr>
+<td width="40%">Can we connect to ETL Code Repository</td>
+<td>
+<div class="radioBtn">
+	<input name="Connect ETL" type="radio" value="Yes" id="etlRep1"/><label class="form-check-label" for="etlRep1">Yes</label>
+	<input name="Connect ETL" type="radio" value="No" id="etlRep2"/><label class="form-check-label" for="etlRep2">No</label>
+	</div>
+</td>
+</tr>
+
+<tr>
+<td class="vAlignT">Please Provide ETL Server Details
+ 
+<td>
+	<div class="hostTable">
+	<table>
+	<tr>
+	<td>Host Name</td>
+	<td><input type="text" name="ETL Host name" maxlength="30" class="form-control wd300"/></td>
+	</tr>
+	 
+	<tr>
+	<td>User Name</td>
+	<td><input type="text" name="ETL UserName" maxlength="30" class="form-control wd300"/></td>
+	</tr>
+	 
+	<tr>
+	<td>Password</td>
+	<td><input type="text" name="ETL Password" maxlength="30" class="form-control wd300"/></td>
+	</tr>
+	 
+	 
+	</table>
+	 </div>
+</td>
+</tr>
+
+
+<tr>
+<td>Download Template to provide input<br /></td>
+<td>
+<button class="btnDownload"><i class="downloadIcon"></i>ETL Volumentrics</button>
+<button class="btnDownload"><i class="downloadIcon"></i>Workload Details</button>
+</td>
+</tr>
+
+
+<tr>
+<td>Can we connect to BI Tool Repository</td>
+<td>
+<div class="radioBtn">
+	<input name="Connect BiTool" type="radio" value="Yes" id="biTool1"/><label class="form-check-label" for="biTool1">Yes</label>
+	<input name="Connect BiTool" type="radio" value="No" id="biTool2"/><label class="form-check-label" for="biTool2">No</label>
+	</div>
+</td>
+</tr>
+
+<tr>
+<td class="vAlignT">Please Provide BI Server Details</td>
+ 
+<td>
+	<div class="hostTable">
+	<table>
+	<tr>
+	<td>Host Name</td>
+	<td><input type="text" name="BI Host name" maxlength="30" class="form-control wd300"/></td>
+	</tr>
+	 
+	<tr>
+	<td>User Name</td>
+	<td><input type="text" name="BI UserName" maxlength="30" class="form-control wd300"/></td>
+	</tr>
+	 
+	<tr>
+	<td>Password</td>
+	<td><input type="text" name="BI Password" maxlength="30" class="form-control wd300"/></td>
+	</tr>
+	 
+	 
+	</table>
+	 </div>
+</td>
+</tr>
+
+
+<tr>
+<td class="vAlignT">Download Template to provide input</td>
+<td>
+<button class="btnDownload"><i class="downloadIcon"></i> BI Volumentrics</button>
+<button class="btnDownload"><i class="downloadIcon"></i> Workload Details</button>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+<div class="tabs tabs50">
+			<div class="tabBtn padL0"><button type="button" data-next="inputPage1" class="clkBtn btn btn-primary btn-block mrgT10">Previous</button></div>
+			<div class="tabBtn padR0"><button type="button" data-next="inputPage3" class="clkBtn btn btn-primary btn-block mrgT10 active">Next</button></div>	
+		</div>
+</td>
+</tr>
+</table>
+</form>
+</div>
+<div id="inputPage3" class="inputPage3 bg pageCover">
+<h5>Please provide below inputs</h5>
+<form action="" method="post" id="inputPage3form">
+ 
+<table align="center" cellpadding = "6">
+ 
+<tr>
+<td width="40%">What defines success for Migration?</td>
+<td><input type="text" name="Success Host name" maxlength="30"  class="form-control wd300"/></td>
+</tr>
+
+
+<tr>
+<td>Can you provide physical/logical datamodel?</td>
+<td>
+<div class="custom-file">
+    <input type="file" class="custom-file-input" id="physicalDatamodel" required>
+    <label class="custom-file-label" for="physicalDatamodel">Choose file...</label>
+  </div>
+</tr>
+
+
+<tr>
+<td>Please furnish the growth estimations of data volumes?<br /></td>
+<td>
+<select name="Growth Estimation" class="form-control wd300">
+<option value="1% daily">1% daily</option>
+<option value="2% monthly">2% monthly</option>
+<option value="10% yearly">10% yearly</option>
+<option value="Other - VALUE">Other - VALUE</option>
+</select>
+</td>
+</tr>
+
+ 
+<tr>
+<td>What is the data retention and archival policy?<br /></td>
+<td>
+
+<select name="Data Retention" class="form-control wd300">
+<option value="6 months">6 months</option>
+<option value="1 year">1 year</option>
+<option value="2 years">2 years</option>
+<option value="6 years">6 years</option>
+</select>
+</td>
+</tr> 
+
+<tr>
+<td>What is the data archival policy?<br /></td>
+<td>
+<select name="Data Archival" class="form-control wd300">
+<option value="Daily">Daily</option>
+<option value="Weekly">Weekly</option>
+<option value="Monthly">Monthly</option>
+<option value="Fortnightly">Fortnightly</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>What DR (Disaster Recovery) strategy is implemented?</td>
+<td>
+
+<select name="DR Strategy" class="form-control wd300">
+<option value="Active-Active system">Active-Active system</option>
+<option value="Active-Passive System">Active-Passive System</option>
+<option value="Dual Load strategy">Dual Load strategy</option>
+<option value="Restore/Recovery from Backup">Restore/Recovery from Backup</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>What is the % prod capacity required in lower envs?<br /></td>
+<td>
+<select name="Data Archival" class="form-control wd300">
+<option value="5% DEV, 5% UAT, 10% LP">5% DEV, 5% UAT, 10% LP</option>
+<option value="5% DEV, 10% UAT, 20% LP">5% DEV, 10% UAT, 20% LP</option>
+<option value="10% DEV, 20% UAT, 20% LP">10% DEV, 20% UAT, 20% LP</option>
+<option value="10% DEV, 20% UAT, 30% LP">10% DEV, 20% UAT, 30% LP</option>
+</select>
+</td>
+</tr>
+
+
+
+
+
+<tr>
+<td>How many Teradata licenses are being used currently?<br /></td>
+<td>
+<select name="Teradata License" class="form-control wd300">
+<option value="10">10</option>
+<option value="50">50</option>
+<option value="100">100</option>
+<option value="200">200</option>
+</select>
+</td>
+</tr>
+
+
+<tr>
+<td>What is growth expected in number of users?<br /></td>
+<td>
+
+<select name="Expected Growth" class="form-control wd300">
+<option value="1% daily">1% daily</option>
+<option value="2% daily">2% daily</option>
+<option value="10% daily">10% daily</option>
+<option value="Other - VALUE">Other - VALUE</option>
+</select>
+</td>
+</tr>
+  
+
+<tr>
+<td>Can you provide architecture diagram</td>
+<td>
+<div class="custom-file">
+    <input type="file" class="custom-file-input" id="archDiagram" required>
+    <label class="custom-file-label" for="archDiagram">Choose file...</label>
+  </div>
+</tr>
+
+
+<tr>
+<td>What ETL (Extract, Transform and Load) tools are being used?<br /></td>
+<td>
+<select name="ETL Tools" class="form-control wd300">
+<option value="Ab-Initio">Ab-Initio</option>
+<option value="Datastage">Datastage</option>
+<option value="Informatica">Informatica</option>
+<option value="Teradata Utilities">Teradata Utilities</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<div class="tabs tabs50">
+			<div class="tabBtn padL0"><button type="button" data-next="inputPage2" class="clkBtn btn btn-primary btn-block mrgT10">Previous</button></div>
+			<div class="tabBtn padR0"><button type="button" class="opacityHalf btn finalBtn btn-primary btn-block mrgT10 active">Next</button></div>	
+		</div>
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+<div id="piiScreen" class="piiscreen bg pageCover">
+		<h5>PII Data</h5>
+		<div class="datatableCover">
+		<table id="piiTable" class="display select" cellspacing="0" width="100%">
+   <thead>
+            <tr>
+                <th></th>
+                <th>PII Field Name</th>
+                <th>Table Name</th>
+                <th>Mandatory Field</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>Full Name</td><td>T_ACCT</td><td>N</td>
+                
+     
+            </tr>
+             <tr><td></td><td>Home Address</td><td>T_ADDR</td><td>Y</td></tr>
+			 <tr><td></td><td>E-Mail Address</td><td>T_ACCT</td><td>Y</td></tr>
+			 <tr><td></td><td>SSN</td><td>T_ACCT</td><td>N</td></tr>
+			 <tr><td></td><td>Passport Number</td><td>T_ACCT</td><td>Y</td></tr>
+			 <tr><td></td><td>Driver's License Number</td><td>T_ACCT</td><td>Y</td></tr>
+			 <tr><td></td><td>Credit Card Number</td><td>T_ACCT</td><td>Y</td></tr>
+			 <tr><td></td><td>Date of Birth</td><td>T_ACCT</td><td>N</td></tr>
+			 <tr><td></td><td>Telephone Number</td><td>T_ACCT</td><td>Y</td></tr>
+			 <tr><td></td><td>Mobile Number</td><td>T_ACCT</td><td>N</td></tr>
+			
+			 
+			</tbody>
+</table></div>
+
+		<!--<div class="userSetupCover">
+		<h1>Please setup objectives for assessment</h1>
+		<div class="userSetupmenu">
+			<a href="#">On-Premise DW platform to AWS Redshift</a>
+			<a href="#">On-Premise DW platform to Snowflake on AWS</a>
+			<a href="#">On-Premise DW platform to Snowflake on Azure</a>
+			<a href="#">On-Premise DW platform to Google BigQuer</a>
+			<a href="#">On-Premise DW platform to Azure SQL Data Warehouse</a>
+			
+		</div>
+		<div class="tabBtn"><button type="button" data-next="memLoginPage" class="btn clkBtn btn-primary btn-block mrgT10">Submit</button></div>
+		</div>-->
 </div>
 </div>
-<pre id="csv1" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv2" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv3" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv4" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv5" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv6" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv7" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv8" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv9" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv10" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv11" style="display: none">Date,Time,Temperature</pre>
-<pre id="csv12" style="display: none">Date,Time,Temperature</pre>
+<div class="heatMapContent"></div>
+<script>
+for(i=1;i<31;i++)
+{
+	$(".heatMapContent").append('<pre id="csv'+i+'" style="display: none">Date,Time,Temperature</pre>');
+}
+</script>
 <script>
 var bubbleVal1 = [
             [4, 11, 14]
@@ -430,7 +837,9 @@ Highcharts.chart('container', {
 
     series: [{
         data: bubbleVal1,
-		title:'',
+		 title: {
+        text: 'Dev'
+    },
 		tooltip: {
             headerFormat: 'TD_BIM_FR_TRNG_DB_DEV<br>',
             pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
@@ -496,7 +905,7 @@ Highcharts.chart('container', {
 	{
         data: bubbleVal5,
 		tooltip: {
-            headerFormat: '',
+            headerFormat: 'Billing_Dev<br>',
             pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
         },
         marker: {
@@ -512,7 +921,7 @@ Highcharts.chart('container', {
 	{
         data: bubbleVal6,
 		tooltip: {
-            headerFormat: '',
+            headerFormat: 'Billing_UAT<br>',
             pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
         },
         marker: {
@@ -528,7 +937,7 @@ Highcharts.chart('container', {
 	{
         data: bubbleVal7,
 		tooltip: {
-            headerFormat: '',
+            headerFormat: 'Billing_PRD<br>',
             pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
         },
         marker: {
@@ -544,7 +953,7 @@ Highcharts.chart('container', {
 	{
         data: bubbleVal8,
 		tooltip: {
-            headerFormat: '',
+            headerFormat: 'Policy<br>',
             pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
         },
         marker: {
@@ -561,7 +970,7 @@ Highcharts.chart('container', {
         data: bubbleVal9,
 		name:'name',
 		tooltip: {
-            headerFormat: '',
+            headerFormat: 'Claims<br>',
             pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
         },
         marker: {
@@ -578,7 +987,7 @@ Highcharts.chart('container', {
         data: bubbleVal10,
 		name:'name',
 		tooltip: {
-            headerFormat: '',
+            headerFormat: 'Members<br>',
             pointFormat: '({point.y},{point.x}) Total Migration Score:{point.z}'
         },
         marker: {
@@ -602,16 +1011,34 @@ heatmapCSVtext("#csv1",0,15,24,ampsData);
 heatmapCSVtext("#csv2",15,30,24,ampsData);
 heatmapCSVtext("#csv3",30,45,24,ampsData);
 heatmapCSVtext("#csv4",45,60,24,ampsData);
+heatmapCSVtext("#csv5",60,75,24,ampsData);
+heatmapCSVtext("#csv6",75,90,24,ampsData);
+heatmapCSVtext("#csv7",90,105,24,ampsData);
+heatmapCSVtext("#csv8",105,120,24,ampsData);
+heatmapCSVtext("#csv9",120,135,24,ampsData);
+heatmapCSVtext("#csv10",135,150,24,ampsData);
 
-heatmapCSVtext("#csv5",0,15,18,concurrentdata);
-heatmapCSVtext("#csv6",15,30,18,concurrentdata);
-heatmapCSVtext("#csv7",30,45,18,concurrentdata);
-heatmapCSVtext("#csv8",45,60,18,concurrentdata);
+heatmapCSVtext("#csv11",0,15,24,concurrentdata);
+heatmapCSVtext("#csv12",15,30,24,concurrentdata);
+heatmapCSVtext("#csv13",30,45,24,concurrentdata);
+heatmapCSVtext("#csv14",45,60,24,concurrentdata);
+heatmapCSVtext("#csv15",60,75,24,concurrentdata);
+heatmapCSVtext("#csv16",75,90,24,concurrentdata);
+heatmapCSVtext("#csv17",90,105,24,concurrentdata);
+heatmapCSVtext("#csv18",105,120,24,concurrentdata);
+heatmapCSVtext("#csv19",120,135,24,concurrentdata);
+heatmapCSVtext("#csv20",135,150,24,concurrentdata);
 
-heatmapCSVtext("#csv9",0,15,24,cpudata);
-heatmapCSVtext("#csv10",15,30,24,cpudata);
-heatmapCSVtext("#csv11",30,45,24,cpudata);
-heatmapCSVtext("#csv12",45,60,24,cpudata);
+heatmapCSVtext("#csv21",0,15,24,cpudata);
+heatmapCSVtext("#csv22",15,30,24,cpudata);
+heatmapCSVtext("#csv23",30,45,24,cpudata);
+heatmapCSVtext("#csv24",45,60,24,cpudata);
+heatmapCSVtext("#csv25",60,75,24,cpudata);
+heatmapCSVtext("#csv26",75,90,24,cpudata);
+heatmapCSVtext("#csv27",90,105,24,cpudata);
+heatmapCSVtext("#csv28",105,120,24,cpudata);
+heatmapCSVtext("#csv29",120,135,24,cpudata);
+heatmapCSVtext("#csv30",135,150,24,cpudata);
 </script>
 <script>
 legacyCostChart();				
@@ -705,15 +1132,15 @@ Highcharts.chart('assessmentEnvelope', {
 
 </script>
 <script>
-      function test() {
+      function pdftest(id) {
         // Get the element.
-        var element = document.getElementById('roots');
+        var element = document.getElementById(id);
 
         // Generate the PDF.
         html2pdf().from(element).set({
           margin: 0,
           filename: 'test.pdf',
-          html2canvas: { scale: 1 },
+          html2canvas: { scale: 3 },
           jsPDF: {orientation: 'landscape', unit: 'in', format: 'letter', compressPDF: true}
         }).save();
       }
