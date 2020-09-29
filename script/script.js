@@ -18,9 +18,23 @@ var year4line;
 var year5line;
 
 $(document).ready(function() {
+	setTimeout(function(){$("#preloader").hide() }, 1000);
 	$(".popUpCart").hide();
 	  $(".popUpCartBg").hide();															
 	  var table = $('#example').DataTable({
+      'columnDefs': [{
+         'targets': 0,
+         'searchable':false,
+         'orderable':false,
+         'className': 'dt-body-center',
+         'render': function (data, type, full, meta){
+             return '<input type="checkbox" name="id[]" value="' 
+                + $('<div/>').text(data).html() + '">';
+         }
+      }]
+   });
+   
+   var table = $('#piiTable').DataTable({
       'columnDefs': [{
          'targets': 0,
          'searchable':false,
@@ -54,11 +68,32 @@ var clkBtn = $(this).attr("data-next");
 $(".pageCover").hide();
 $("#"+clkBtn).show();
 });
-$(".openbtn, #mySidepanel a").click(function(){
+$(".openbtn, .menuBtn, .subMenu a").click(function(){
 	  $("#mySidepanel").toggleClass('Slidewidth');
 });
-$(".openbtn2, #mySidepanel2 a").click(function(){
-	  $("#mySidepanel2").toggleClass('Slidewidth');
+
+
+$(".mMenu").click(function(){
+	
+	if($(this).hasClass("active"))
+	{
+	
+	$(this).next(".subMenu").slideUp(300,function(){
+	$(this).prev().removeClass("active");	
+	});
+	
+	}
+	
+	if(!$(this).hasClass("active"))
+	{
+		$(".mMenu").next(".subMenu").slideUp(300);
+		$(this).next(".subMenu").slideDown(300,function(){
+			$(".mMenu").removeClass("active");
+			$(this).prev().addClass("active");
+		});
+		
+	}
+	
 });
 	  
 	  $("input").focus(function(){
@@ -81,7 +116,7 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
   });
   
   $(document).on("click",".totalROI",function() {
-	  $(".hgCover").show();	  
+	  $(".roiPDFCover").show();	  
         legacyCostChart();
 		estimateCostChart();
 		yearonyearCost();		
@@ -122,24 +157,37 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
 		
 		
   });
+  
+  
+
 
   var dev = [3106, 222, 2, 1238, 11,439,43086,368];
  var qa = [2994, 231, 3, 1578, 15,674,100,312];
  var sit = [3312, 197, 1, 1497, 9,554,43124,401];
- var prod =  [3197, 274, 4, 1254, 10,395,43634,361];
-
+ var prod = [3197, 274, 4, 1254, 10,395,43634,361]; 
+ var bDev =  [4231, 215, 6, 1824, 21,498,48798,458];
+ var bUAT =  [2879, 125, 9, 1524, 16,487,50648,547];
+ var bPRD =  [5487, 658, 26, 2365, 14,659,43634,456];
+ var policy = [5648, 874, 9, 1547, 23,687,54879,654];
+ var claims =  [3985, 215, 6, 1124, 8,542,41235,487];
+ var members =  [3256, 298, 5, 1365, 14,457,44569,354];
+assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
+    assessmentCircleFn('TD_BIM_FR_TRNG_DB_DEV',2442,379,3586,8126);
+	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1','NUMBER OF AMPS');
+	envelopeChartfn(0,15,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_DEV");
+	
   $(document).on("click",".highcharts-series-0",function() {	  
    assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_DEV',2442,379,3586,8126);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
-	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1');
+	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1','NUMBER OF AMPS');
 	envelopeChartfn(0,15,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_DEV");
 	
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
-		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV','csv5');
+		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV','csv11','CONCURRENT USERS');
 		envelopeChartfn(0,15,24,concurrentdata,"Concurrent Users - TD_BIM_FR_TRNG_DB_DEV");
 	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
-		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_DEV','csv9');
+		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_DEV','csv21','CPU Utilization');
 		envelopeChartfn(0,15,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_DEV");
 	}
   });
@@ -147,13 +195,13 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
    assessmentBarFn(qa,'TD_BIM_FR_TRNG_DB_QA');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_QA',2641,345,3614,9874);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
-	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_QA','csv2');
+	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_QA','csv2','NUMBER OF AMPS');
 	envelopeChartfn(15,30,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_QA");
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
-		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_QA','csv6');
+		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_QA','csv12','CONCURRENT USERS');
 		envelopeChartfn(15,30,24,concurrentdata,"Concurrent Users - TD_BIM_FR_TRNG_DB_QA");
 	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
-		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_QA','csv10');
+		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_QA','csv22','CPU Utilization');
 		envelopeChartfn(15,30,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_QA");
 	}
   });
@@ -161,13 +209,13 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
    assessmentBarFn(sit,'TD_BIM_FR_TRNG_DB_SIT');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_SIT',2800,224,3796,9564);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
-	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_SIT','csv3');
+	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_SIT','csv3','NUMBER OF AMPS');
 	envelopeChartfn(30,45,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_SIT");
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
-		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_SIT','csv7');
+		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_SIT','csv13','CONCURRENT USERS');
 		envelopeChartfn(30,45,24,concurrentdata,"Concurrent Users - TD_BIM_FR_TRNG_DB_SIT");
 	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
-		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_SIT','csv11');
+		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_SIT','csv23','CPU Utilization');
 		envelopeChartfn(30,45,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_SIT");
 	}
   });
@@ -175,28 +223,126 @@ $(".openbtn2, #mySidepanel2 a").click(function(){
    assessmentBarFn(prod,'TD_BIM_FR_TRNG_DB_PROD');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_PROD',3421,401,4214,12465);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
-	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_PROD','csv4');
+	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_PROD','csv4','NUMBER OF AMPS');
 	envelopeChartfn(45,60,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_PROD");
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
-		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_PROD','csv8');
+		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_PROD','csv14','CONCURRENT USERS');
 		envelopeChartfn(45,60,24,concurrentdata,"Concurrent Users - TD_BIM_FR_TRNG_DB_PROD");
 	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
-		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_PROD','csv12');
+		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_PROD','csv24','CPU Utilization');
 		envelopeChartfn(45,60,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_PROD");
 	}
   });
   
+  
+  
+  $(document).on("click",".highcharts-series-4",function() {	  
+   assessmentBarFn(bDev,'Billing_Dev');
+    assessmentCircleFn('Billing_Dev',2214,287,4126,10325);
+	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
+	assessmentHeatmap('NUMBER OF AMPS - Billing_Dev','csv5','NUMBER OF AMPS');
+	envelopeChartfn(60,75,24,ampsData,"Number of Amps - Billing_Dev");
+	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
+		assessmentHeatmap('CONCURRENT USERS - Billing_Dev','csv15','CONCURRENT USERS');
+		envelopeChartfn(60,75,24,concurrentdata,"Concurrent Users - Billing_Dev");
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - Billing_Dev','csv25','CPU Utilization');
+		envelopeChartfn(60,75,24,cpudata,"CPU Utilization - Billing_Dev");
+	}
+  });
+  
+  $(document).on("click",".highcharts-series-5",function() {	  
+   assessmentBarFn(bUAT,'Billing_UAT');
+    assessmentCircleFn('Billing_UAT',2564,354,3200,9856);
+	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
+	assessmentHeatmap('NUMBER OF AMPS - Billing_UAT','csv6','NUMBER OF AMPS');
+	envelopeChartfn(75,90,24,ampsData,"Number of Amps - Billing_UAT");
+	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
+		assessmentHeatmap('CONCURRENT USERS - Billing_UAT','csv16','CONCURRENT USERS');
+		envelopeChartfn(75,90,24,concurrentdata,"Concurrent Users - Billing_UAT");
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - Billing_UAT','csv26','CPU Utilization');
+		envelopeChartfn(75,90,24,cpudata,"CPU Utilization - Billing_UAT");
+	}
+  });
+  
+  $(document).on("click",".highcharts-series-6",function() {	  
+   assessmentBarFn(bPRD,'Billing_PRD');
+    assessmentCircleFn('Billing_PRD',2354,425,3100,9451);
+	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
+	assessmentHeatmap('NUMBER OF AMPS - Billing_PRD','csv7','NUMBER OF AMPS');
+	envelopeChartfn(90,105,24,ampsData,"Number of Amps - Billing_PRD");
+	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
+		assessmentHeatmap('CONCURRENT USERS - Billing_PRD','csv17','CONCURRENT USERS');
+		envelopeChartfn(90,105,24,concurrentdata,"Concurrent Users - Billing_PRD");
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - Billing_PRD','csv27','CPU Utilization');
+		envelopeChartfn(90,105,24,cpudata,"CPU Utilization - Billing_PRD");
+	}
+  });
+  $(document).on("click",".highcharts-series-7",function() {	  
+   assessmentBarFn(policy,'Policy');
+    assessmentCircleFn('Policy',3214,487,3641,8978);
+	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
+	assessmentHeatmap('NUMBER OF AMPS - Policy','csv8','NUMBER OF AMPS');
+	envelopeChartfn(105,120,24,ampsData,"Number of Amps - Policy");
+	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
+		assessmentHeatmap('CONCURRENT USERS - Policy','csv18','CONCURRENT USERS');
+		envelopeChartfn(105,120,24,concurrentdata,"Concurrent Users - Policy");
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - Policy','csv28','CPU Utilization');
+		envelopeChartfn(105,120,24,cpudata,"CPU Utilization - Policy");
+	}
+  });
+  $(document).on("click",".highcharts-series-8",function() {	  
+   assessmentBarFn(claims,'Claims');
+    assessmentCircleFn('Claims',3154,312,3956,8654);
+	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
+	assessmentHeatmap('NUMBER OF AMPS - Claims','csv9','NUMBER OF AMPS');
+	envelopeChartfn(120,135,24,ampsData,"Number of Amps - Claims");
+	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
+		assessmentHeatmap('CONCURRENT USERS - Claims','csv19','CONCURRENT USERS');
+		envelopeChartfn(120,135,24,concurrentdata,"Concurrent Users - Claims");
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - Claims','csv29','CPU Utilization');
+		envelopeChartfn(120,135,24,cpudata,"CPU Utilization - Claims");
+	}
+  });
+  $(document).on("click",".highcharts-series-9",function() {	  
+   assessmentBarFn(members,'Members');
+    assessmentCircleFn('Members',2879,285,4236,11324);
+	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
+	assessmentHeatmap('NUMBER OF AMPS - Members','csv10','NUMBER OF AMPS');
+	envelopeChartfn(135,150,24,ampsData,"Number of Amps - Members");
+	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
+		assessmentHeatmap('CONCURRENT USERS - Members','csv20','CONCURRENT USERS');
+		envelopeChartfn(135,150,24,concurrentdata,"Concurrent Users - Members");
+	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
+		assessmentHeatmap('CPU UTILIZATION - Members','csv30','CPU Utilization');
+		envelopeChartfn(135,150,24,cpudata,"CPU Utilization - Members");
+	}
+  });
+  
+  
+  
+  
+  
   $("#heatMapMenu").change(function(){
     if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
-	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1');
-	envelopeChartfn(0,16,24,cpudata,"NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV");
+		assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
+    assessmentCircleFn('TD_BIM_FR_TRNG_DB_DEV',2442,379,3586,8126);
+	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1','NUMBER OF AMPS');
+	envelopeChartfn(0,15,24,cpudata,"NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV");
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
-		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV','csv5');
-		envelopeTitle = "CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV";
-		envelopeChartfn(0,16,24,cpudata,"CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV");
+		assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
+    assessmentCircleFn('TD_BIM_FR_TRNG_DB_DEV',2442,379,3586,8126);
+		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV','csv11','CONCURRENT USERS');
+		envelopeChartfn(0,15,24,cpudata,"CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV");
 	}else if($("#heatMapMenu").val() == "CPU UTILIZATION"){
-		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_DEV','csv9');
-		envelopeChartfn(0,16,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_DEV");
+		assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
+    assessmentCircleFn('TD_BIM_FR_TRNG_DB_DEV',2442,379,3586,8126);
+		assessmentHeatmap('CPU UTILIZATION - TD_BIM_FR_TRNG_DB_DEV','csv21','CPU Utilization');
+		envelopeChartfn(0,15,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_DEV");
 	}
   });
   
@@ -220,7 +366,7 @@ for(j=0;j<days;j++)
  }  
 $(id).html($(id).text());
  }
- function assessmentHeatmap(hdTitle,ids)
+ function assessmentHeatmap(hdTitle,ids,tooltip)
  {
  Highcharts.chart('container2', {
     chart: {
@@ -271,14 +417,15 @@ $(id).html($(id).text());
             [0.5, '#feff9a'],
             [0.9, '#ff3434']
         ],
-        min: -5
+        min: 0,
+		max: 100
     },
 
     series: [{
         borderWidth: 0,
         colsize: 24 * 36e5, // one day
         tooltip: {
-            headerFormat: 'Number of amps<br/>',
+            headerFormat: tooltip+'<br/>',
             pointFormat: '{point.x:%e %b, %Y} {point.y}:00: <b>{point.value} amps</b>'
         }
     }]
