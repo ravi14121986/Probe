@@ -154,7 +154,7 @@ font-size: 24px;
     z-index: 1;
     height: 277px;
     top: 52px;
-    left: -2px;
+    left: -1px;
     background-color: #005474;
     overflow-x: hidden;
     transition: 0.5s;
@@ -204,7 +204,6 @@ background-size: 22px 22px;}
 .openbtn, .openbtn2 {
 	outline: none;
     border-radius: 22px 0 0 0;
-    background: #005474;
     font-size: 20px;
     cursor: pointer;
     color: white;
@@ -214,13 +213,19 @@ background-size: 22px 22px;}
     top: 0px;
     left: -1px;
     z-index: 99;
-	
+	background: #005474 url(../images/menuIcon.png) no-repeat 17px 16px;
+    width: 54px;
+    height: 53px;
+    background-size: 20px 20px;
+	border:0;
 }
 
 .openbtn:hover {
-  background-color:#007bff;
+  background:#007bff url(../images/menuIcon.png) no-repeat 17px 16px;display: inline-block;
   outline: none;
+  background-size: 20px 20px;
 }
+
 .Slidewidth{width:270px;}
 .searchBtn{
 	    background: #005474 url(../images/searchIcon.png) no-repeat 6px 6px;
@@ -664,4 +669,5 @@ border-radius:15px;border:2px solid #027cff;}
      background-position: center;
      margin: -50px 0 0 -50px;
  }
+
 	
