@@ -532,9 +532,11 @@ float: left;}
     background: #fff;
 }
 .highcharts-credits{display:none;}
-#container6,#container2,#container3,#container4,#container5{width:460px!important;height:340px!important;}
+#container3,#container4,#container5{width:460px!important;height:294px!important;}
+#container6{width:460px!important;height:330px!important;}
 #container2{width:460px!important;height:380px!important;}
 #assessmentEnvelope{width:960px!important;height:360px!important;}
+#roiInnerPDF h4{text-align:center;}
 .cumulativeCover{display: block;
     float: left;
     margin: 0 0 16px 18px;
@@ -542,7 +544,7 @@ float: left;}
 	background:#fff;}
 	#cumulativeR{width:960px;}
 .roiModelCover{
-	height: 396px;
+	height: 348px;
     width: 484px;
     margin: 0 0 16px 16px;
     padding: 5px;
