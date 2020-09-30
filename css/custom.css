@@ -535,6 +535,7 @@ float: left;}
 #container3,#container4,#container5{width:460px!important;height:294px!important;}
 #container6{width:460px!important;height:330px!important;}
 #container2{width:460px!important;height:380px!important;}
+#assessmentBar .highcharts-legend-item{display:none;}
 #assessmentEnvelope{width:960px!important;height:360px!important;}
 #roiInnerPDF h4{text-align:center;}
 .cumulativeCover{display: block;
@@ -571,7 +572,8 @@ float: left;}
 .popUpCartBg{position:fixed;top:0;bottom:0;left:0;right:0;z-index:998;background:#000;opacity:0.5;}
 .popUpCart{position:fixed;width:700px;height:400px;top:50%;left:50%;margin-left:-350px;margin-top:-200px;background:#fff;border:1px solid #ccc;z-index:999;
 border-radius:15px;border:2px solid #027cff;}
-#assessmentBar,#assessmentCircle{width:460px;height:350px;}
+#assessmentCircle{width:460px;height:350px;}
+#assessmentBar{width:460px;height:400px;}
 .assessmentEnvelope{width:1004px;}
 .assessmentCircle{position:relative;}
 .assessmentCircle ul{    position: absolute;
