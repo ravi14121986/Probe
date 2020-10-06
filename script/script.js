@@ -18,6 +18,11 @@ var year4line;
 var year5line;
 
 $(document).ready(function() {
+	$(".btnDownload").click(function (e) {
+    window.open('data:application/vnd.ms-excel,' + $('#inputPage2form').html());
+    e.preventDefault();
+});
+
 	setTimeout(function(){$("#preloader").hide() }, 1000);
 	$(".popUpCart").hide();
 	  $(".popUpCartBg").hide();															
@@ -356,6 +361,8 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 for(i=starts;i<ends;i++)
 {
 var ampMonth = csvData[i].DATE;
+ampMonth = ampMonth.replace(/\b\d\b/g, '0$&');
+console.log(ampMonth);
 var stringMonth = ampMonth.substr(0,2);
 z=z+1;
 for(j=0;j<days;j++)
