@@ -31,6 +31,17 @@
 	<meta name="viewport" content="widht=device-width, initial-scale=1" >
 </head>
 <body>
+<div id="ajaxID"></div>
+<!-- <script>
+
+$(function(){
+    $.get('https://kst7yuo1x9.execute-api.us-east-1.amazonaws.com/dev/hello', function(data){
+	
+        $('#ajaxID').append(data['message']);
+		console.log(data);
+    });
+});
+</script> --> 
    <div id="preloader"><div id="status">&nbsp;</div></div>
 <div class="popUpCartBg"></div>
 <div class="mainCover">
@@ -39,7 +50,7 @@
 	  <div class="subMenu">
 	  <a href="#" class="clkBtn" data-next="inputPage1" ><i></i>Workload Assessments</a>
 	  <a href="#"><i></i>Sensitive Data Analysis</a>
-	  <a href="#" class="clkBtn" data-next="inputPage2"><i></i>ETL Code Analysis</a>
+	  <a href="#" class="clkBtn" data-next="inputPage2"><i></i>ETL Code, BI Analysis</a>
 	  <a href="#"><i></i>Schema / Code Analysis</a>
 	  <a href="#" class="clkBtn" data-next="inputPage3"><i></i>Data Quality Analysis</a>
 	  </div>
@@ -203,7 +214,7 @@
 				<tr>
 				<td>Legacy Cost</td>
 				<td class="parnt">
-				<input type="text" name="Legacy Cost" maxlength="30" value="500" class="legacyCost form-control wd300" />
+				<input type="text" name="Legacy Cost" maxlength="30" value="2000" class="legacyCost form-control wd300" />
 				<div class="costIcon legacyIcon"></div>
 				</td>
 				</tr>
@@ -368,7 +379,7 @@ else{output.innerHTML = d;}
 
 <!-- Member Login -->
 <div id="inputPage1" class="bg inputPage1 pageCover">
-		<h5>Congratulations, you have made the right decision by selecting PROBING TOOL</h5>
+		<h5>Workload Assessment</h5>
 <form action="" method="post" id="inputPage1form">
  
 <table align="center" cellpadding = "6" class="mrgT20">
@@ -437,7 +448,7 @@ else{output.innerHTML = d;}
 <tr>
 <td>Download Template to provide input<br />APPLIED FOR</td>
 <td>
-<button class="btnDownload"><i class="downloadIcon"></i> DM Volumentrics</button>
+<button class="btnDownload"><i class="downloadIcon"></i> DM Volumetrics</button>
 <button class="btnDownload"><i class="downloadIcon"></i> Schema Details</button>
 <button class="btnDownload"><i class="downloadIcon"></i> Workload Details</button>
 </td>
@@ -458,8 +469,7 @@ else{output.innerHTML = d;}
 
 
 <div id="inputPage2" class="inputPage2 bg pageCover">
-<h5>Please provide below inputs</h5>
-
+<h5>ETL Code, BI Analysis</h5>
 <form action="" method="post" id="inputPage2form"> 
 <table align="center" cellpadding = "6">
  
@@ -503,9 +513,20 @@ else{output.innerHTML = d;}
 
 <tr>
 <td>Download Template to provide input<br /></td>
-<td>
-<button class="btnDownload"><i class="downloadIcon"></i>ETL Volumentrics</button>
-<button class="btnDownload"><i class="downloadIcon"></i>Workload Details</button>
+<td class="floatDiv">
+<div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i>ETL Volumetrics</button></div>
+<div class="w280px"><div class="custom-file">
+    <input type="file" class="custom-file-input" id="ETLupload" required>
+    <label class="custom-file-label" for="ETLupload">Choose file...</label>
+  </div>
+ </div><br class="clrB">
+<div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i>Workload Details</button></div>
+<div class="w280px">
+	<div class="custom-file">
+    <input type="file" class="custom-file-input" id="workloadETLUpload" required>
+    <label class="custom-file-label" for="workloadETLUpload">Choose file...</label>
+  </div>
+</div>
 </td>
 </tr>
 
@@ -550,9 +571,21 @@ else{output.innerHTML = d;}
 
 <tr>
 <td class="vAlignT">Download Template to provide input</td>
-<td>
-<button class="btnDownload"><i class="downloadIcon"></i> BI Volumentrics</button>
-<button class="btnDownload"><i class="downloadIcon"></i> Workload Details</button>
+<td class="floatDiv">
+<div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i> BI Volumetrics</button></div>
+<div class="w280px">
+	<div class="custom-file">
+    <input type="file" class="custom-file-input" id="BIupload" required>
+    <label class="custom-file-label" for="BIupload">Choose file...</label>
+  </div>
+</div><br class="clrB">
+<div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i> Workload Details</button></div>
+<div class="w280px">
+	<div class="custom-file">
+    <input type="file" class="custom-file-input" id="workloadBIupload" required>
+    <label class="custom-file-label" for="workloadBIupload">Choose file...</label>
+  </div>
+</div>
 </td>
 </tr>
 
@@ -568,7 +601,7 @@ else{output.innerHTML = d;}
 </form>
 </div>
 <div id="inputPage3" class="inputPage3 bg pageCover">
-<h5>Please provide below inputs</h5>
+<h5>Data Quality Analysis</h5>
 <form action="" method="post" id="inputPage3form">
  
 <table align="center" cellpadding = "6">
@@ -580,7 +613,7 @@ else{output.innerHTML = d;}
 
 
 <tr>
-<td>Can you provide physical/logical datamodel?</td>
+<td>Can you provide physical/logical data model?</td>
 <td>
 <div class="custom-file">
     <input type="file" class="custom-file-input" id="physicalDatamodel" required>
@@ -603,7 +636,7 @@ else{output.innerHTML = d;}
 
  
 <tr>
-<td>What is the data retention and archival policy?<br /></td>
+<td>What is the data retention policy?<br /></td>
 <td>
 
 <select name="Data Retention" class="form-control wd300">
@@ -640,7 +673,7 @@ else{output.innerHTML = d;}
 </tr>
 
 <tr>
-<td>What is the % prod capacity required in lower envs?<br /></td>
+<td>What is the % prod capacity required in lower environment?<br /></td>
 <td>
 <select name="Data Archival" class="form-control wd300">
 <option value="5% DEV, 5% UAT, 10% LP">5% DEV, 5% UAT, 10% LP</option>
@@ -656,9 +689,9 @@ else{output.innerHTML = d;}
 
 
 <tr>
-<td>How many Teradata licenses are being used currently?<br /></td>
+<td>How many License Units / Cluster Size is used in production currently?<br /></td>
 <td>
-<select name="Teradata License" class="form-control wd300">
+<select name="License Units / Cluster Size" class="form-control wd300">
 <option value="10">10</option>
 <option value="50">50</option>
 <option value="100">100</option>
@@ -716,7 +749,7 @@ else{output.innerHTML = d;}
 </div>
 
 <div id="piiScreen" class="piiscreen bg pageCover">
-		<h5>PII Data</h5>
+		<h5>PII Analysis</h5>
 		<div class="datatableCover">
 		<table id="piiTable" class="display select" cellspacing="0" width="100%">
    <thead>
