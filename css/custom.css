@@ -108,6 +108,7 @@ font-size: 24px;
 .padL0{padding-left:0px!important;}
 .padR0{padding-right:0px!important;}
 .mrgT20{margin-top:20px;}
+.mrgBR10{margin-bottom:10px;margin-right:10px;}
 .tabs{height:50px;}
 .pad20{padding:20px;}
 .mrgT10{margin-top:10px;}
@@ -120,15 +121,18 @@ font-size: 24px;
     border-radius: 8px;
     border: 1px solid #cccc;
 }
+.w280px{width:280px;}
 .hostTable table td{padding:5px;}
 .btnDownload {
   background: #dbdbdb;
     border: none;
     color: black;
-    padding: 5px 12px;
+    padding: 9px 12px;
     cursor: pointer;
     font-size: 14px;
     border-radius: 6px;
+	min-width: 150px;
+    text-align: left;
 }
 
 /* Darker background on mouse-over */
@@ -560,7 +564,8 @@ float: left;}
     padding: 5px;
     background: #fff;}
 .bigChartCover{margin: 12px 0 10px 20px;float:left;overflow:hidden;}
-.highcharts-legend-item{float:left;}
+.highcharts-legend-item,.floatL, .floatDiv div{float:left;}
+.clrB{clear:both;}
 #roots{margin:0 auto;width:1024px;}
 #roots h2{     margin: 0;
     text-align: center;
