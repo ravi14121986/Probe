@@ -18,6 +18,10 @@ var year4line;
 var year5line;
 
 $(document).ready(function() {
+	$(".custom-file a").click(function () {
+             $(".custom-file input").trigger('click');
+        });
+	
 	$(".btnDownload").click(function (e) {
     window.open('data:application/vnd.ms-excel,' + $('#inputPage2form').html());
     e.preventDefault();
@@ -39,7 +43,7 @@ $(document).ready(function() {
       }]
    });
    
-   var table = $('#piiTable').DataTable({
+   var piitable = $('#piiTable').DataTable({
       'columnDefs': [{
          'targets': 0,
          'searchable':false,
@@ -1004,3 +1008,6 @@ Highcharts.chart('cumulativeR', {
     }]
 });
 }
+
+
+
