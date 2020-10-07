@@ -121,7 +121,11 @@ font-size: 24px;
     border-radius: 8px;
     border: 1px solid #cccc;
 }
+.checkboxF .form-check{float:left;margin:0 20px 0 0;}
+#sensitivedata table{width:60%; min-width:600px;}
 .w280px{width:280px;}
+.FLname div{width:49%; float:left;}
+.FLname div:nth-child(1){margin:0 2% 0 0}
 .hostTable table td{padding:5px;}
 .btnDownload {
   background: #dbdbdb;
@@ -680,3 +684,38 @@ border-radius:15px;border:2px solid #027cff;}
  }
 
 	
+	.exampleDD {
+    border: 1px solid #ccc;
+    background: #e6e6e6;
+}
+.brdNone{border:0px solid #ccc!important;background:none!important;}
+.or{    text-align: center;
+    padding: 8px;
+    font-weight: bold;}
+.dragdrop{    width: 500px;
+    margin: 10px auto 20px auto;}
+	.dragdrop output li{list-style:none;color:green;}
+	.exampleDD #files1{margin:10px;}
+	.custom-file a{    position: absolute;
+    right: 13px;
+    z-index: 1;
+    background: #e9ecef;
+    top: 6px;
+    color: #000;
+    padding: 1px 2px;}
+#drop_zone {
+        border: 2px dashed #7b7b7b;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 100px 25px 30px 25px;
+    text-align: center;
+    font: 20pt bold'Vollkorn';
+    color: #348cd7;
+    background: #f0f0f0 url(../images/fileUpload.png) no-repeat 50% 24px;
+}
+.thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
