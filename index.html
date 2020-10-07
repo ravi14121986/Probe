@@ -49,7 +49,7 @@ $(function(){
   <a href="#" class="mMenu">Assessment </a>
 	  <div class="subMenu">
 	  <a href="#" class="clkBtn" data-next="inputPage1" ><i></i>Workload Assessments</a>
-	  <a href="#"><i></i>Sensitive Data Analysis</a>
+	  <a href="#" class="clkBtn" data-next="SDanalysis"><i></i>Sensitive Data Analysis</a>
 	  <a href="#" class="clkBtn" data-next="inputPage2"><i></i>ETL Code, BI Analysis</a>
 	  <a href="#"><i></i>Schema / Code Analysis</a>
 	  <a href="#" class="clkBtn" data-next="inputPage3"><i></i>Data Quality Analysis</a>
@@ -196,6 +196,95 @@ $(function(){
 </div>
 
 </div>
+<div id="SDanalysis"class="SDanalysis bg pageCover">
+<h5><span>Sensitive Data Analysis</span></h5>
+<form action="" method="post" id="sensitivedata">
+			<table align="center" cellpadding = "6" class="mrgT20"> 
+				<tr>
+				<td width="40%">Regulatory Compliance</td>
+				<td class="checkboxF">
+				<div class="form-check">
+    <input type="checkbox" class="form-check-input" id="PCIcheck">
+    <label class="form-check-label" for="PCIcheck">PCI/DSS</label>
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="SOC1check">
+    <label class="form-check-label" for="SOC1check">SOC1/SOC2</label>
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="HIPPAcheck">
+    <label class="form-check-label" for="HIPPAcheck">HIPPA</label>
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="PIcheck">
+    <label class="form-check-label" for="PIcheck">PI</label>
+  </div>
+				</td>
+				</tr>
+				<tr>
+				<td>Preferred Security Tools</td>
+				<td class="FLname">
+				<div><input type="text" name="GroupID" placeholder="Database Encryption" maxlength="50" class="form-control" /></div>
+				<div><input type="text" name="GroupID" placeholder="File Encryption" maxlength="50" class="form-control" /></div>
+				</td>
+				</tr>
+				<td></td>
+				<td class="FLname">
+				<div><input type="text" name="GroupID" placeholder="Data Masking" maxlength="50" class="form-control" /></div>
+				<div><input type="text" name="GroupID" placeholder="Tokenization" maxlength="50" class="form-control" /></div>
+				</td>
+				</tr>
+				<tr>
+				<td>Number of Sensitive Data Stores</td>
+				<td class="FLname">
+				<div><input type="text" name="GroupID" placeholder="Databases" maxlength="50" class="form-control" /></div>
+				<div><input type="text" name="GroupID" placeholder="Files" maxlength="50" class="form-control" /></div>
+				</td>
+				</tr>
+				<tr>
+				<td>Number of Sensitive Integrations</td>
+				<td class="FLname">
+				<div><input type="text" name="GroupID" placeholder="API Access" maxlength="50" class="form-control" /></div>
+				<div><input type="text" name="GroupID" placeholder="Tools" maxlength="50" class="form-control" /></div>
+				</td>
+				</tr>
+				<tr>
+				<td>Number of Non-Prod Environments</td>
+				<td class="FLname">
+				<div><input type="text" name="GroupID" placeholder="Development" maxlength="50" class="form-control" /></div>
+				<div><input type="text" name="GroupID" placeholder="Test" maxlength="50" class="form-control" /></div>
+				</td>
+				</tr>
+				
+				<tr>
+				<td>Enter Data Catalogue </td>
+				<td>
+					<select name="dataCalalogue" class="form-control">
+						<option value="infoDataCatalogue">Informatica Data Catalogue</option>
+						<option value="collibra">Collibra</option>
+						<option value="dataStage">Data Stage</option>
+						<option value="other CSV">Other ( CSV)</value>
+					</select>
+				
+				</td>
+				</tr>
+			</table>
+			</form>
+
+    <div class="dragdrop">
+		<div class="exampleDD dragFileIcon brdNone">
+			<div id="drop_zone">Drag and Drop files here to Upload<br>
+			<output id="file_list2"></output>
+			</div>
+			
+		</div>
+		<div class="or">or</div>
+		<div class="exampleDD">
+			<input type="file" id="files1" name="files1[]" multiple />
+			<output id="file_list1"></output>
+		</div>
+    </div>
+</div>
 <div id="roiCalculator" class="roiCalculator bg pageCover">
 		<h5><span>ROI Calculator</span></h5>
 		<div class="roiCalculatorCover bsh">
@@ -309,43 +398,44 @@ else{output.innerHTML = d;}
 				<tr>
 				<td width="40%">Name of Assessment</td>
 				<td>
-				<input type="text" name="UserID" maxlength="30" class="form-control wd300" />
+				<input type="text" name="UserID" maxlength="30" class="form-control" />
 				</td>
 				</tr>
 				<tr>
 				<td>Client Name</td>
-				<td>
-				<input type="text" name="GroupID" maxlength="30" class="form-control wd300" />
+				<td class="FLname">
+				<div><input type="text" name="GroupID" placeholder="First Name" maxlength="30" class="form-control" /></div>
+				<div><input type="text" name="GroupID" placeholder="Last Name" maxlength="30" class="form-control" /></div>
 				</td>
 				</tr>
 				<tr>
-				<td>Client Contact</td>
+				<td>Client Phone No</td>
 				<td>
-				<input type="text" name="fname" maxlength="30" class="form-control wd300" />
+				<input type="text" name="fname" maxlength="30" class="form-control" />
 				</td>
 				</tr>
 				<tr>
-				<td>User Name</td>
+				<td>User Name (E-Mail)</td>
 				<td>
-				<input type="text" name="mname" maxlength="30" class="form-control wd300" />
+				<input type="text" name="mname" placeholder="eg: user@domain.com" maxlength="30" class="form-control" />
 				</td>
 				</tr>
 				<tr>
 				<td>Password</td>
 				<td>
-				<input type="text" name="lname" maxlength="30" class="form-control wd300" />
+				<input type="text" name="lname" maxlength="30" class="form-control" />
 				</td>
 				</tr>
 				<tr>
 				<td>Re enter Password</td>
 				<td>
-				<input type="text" name="dob" maxlength="30" class="form-control wd300" />
+				<input type="text" name="dob" maxlength="30" class="form-control" />
 				</td>
 				</tr>
 				<tr>
 				<td>Target Platform</td>
 				<td>
-				<select name="Assessment Platform" class="form-control wd300">
+				<select name="Assessment Platform" class="form-control">
 					<option value="AWS Redshift">AWS Redshift</option>
 					<option value="Snowflake on AWS">Snowflake on AWS</option>
 					<option value="Snowflake on Azure">Snowflake on Azure</option>
@@ -518,6 +608,7 @@ else{output.innerHTML = d;}
 <div class="w280px"><div class="custom-file">
     <input type="file" class="custom-file-input" id="ETLupload" required>
     <label class="custom-file-label" for="ETLupload">Choose file...</label>
+	<a href="#">Upload</a>
   </div>
  </div><br class="clrB">
 <div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i>Workload Details</button></div>
@@ -525,6 +616,7 @@ else{output.innerHTML = d;}
 	<div class="custom-file">
     <input type="file" class="custom-file-input" id="workloadETLUpload" required>
     <label class="custom-file-label" for="workloadETLUpload">Choose file...</label>
+	<a href="#">Upload</a>
   </div>
 </div>
 </td>
@@ -577,6 +669,7 @@ else{output.innerHTML = d;}
 	<div class="custom-file">
     <input type="file" class="custom-file-input" id="BIupload" required>
     <label class="custom-file-label" for="BIupload">Choose file...</label>
+	<a href="#">Upload</a>
   </div>
 </div><br class="clrB">
 <div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i> Workload Details</button></div>
@@ -584,6 +677,7 @@ else{output.innerHTML = d;}
 	<div class="custom-file">
     <input type="file" class="custom-file-input" id="workloadBIupload" required>
     <label class="custom-file-label" for="workloadBIupload">Choose file...</label>
+	<a href="#">Upload</a>
   </div>
 </div>
 </td>
@@ -618,6 +712,7 @@ else{output.innerHTML = d;}
 <div class="custom-file">
     <input type="file" class="custom-file-input" id="physicalDatamodel" required>
     <label class="custom-file-label" for="physicalDatamodel">Choose file...</label>
+	<a href="#">Upload</a>
   </div>
 </tr>
 
@@ -721,6 +816,7 @@ else{output.innerHTML = d;}
 <div class="custom-file">
     <input type="file" class="custom-file-input" id="archDiagram" required>
     <label class="custom-file-label" for="archDiagram">Choose file...</label>
+	<a href="#">Upload</a>
   </div>
 </tr>
 
@@ -1179,5 +1275,118 @@ Highcharts.chart('assessmentEnvelope', {
         }).save();
       }
     </script>
+	
+	<script>
+	
+// SIMPLEST
+function handleFileSelect1(evt) {
+    var files = evt.target.files; // FileList object
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+        output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+        f.size, ' bytes, last modified: ',
+        f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+            '</li>');
+    }
+    document.getElementById('file_list1').innerHTML = '<ul>' + output.join('') + '</ul>';
+}
+document.getElementById('files1').addEventListener('change', handleFileSelect1, false);
+
+
+
+
+
+// DROP ZONE
+function handleFileSelect2(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    var files = evt.dataTransfer.files; // FileList object.
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+        output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+        f.size, ' bytes, last modified: ',
+        f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+            '</li>');
+    }
+    document.getElementById('file_list2').innerHTML = '<ul>' + output.join('') + '</ul>';
+}
+
+function handleDragOver(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+}
+
+// Setup the Drag n' Drop listeners.
+var dropZone = document.getElementById('drop_zone');
+dropZone.addEventListener('dragover', handleDragOver, false);
+dropZone.addEventListener('drop', handleFileSelect2, false);
+
+
+
+
+
+// PROGRESS BAR
+var reader;
+var progress = document.querySelector('.percent');
+
+function updateProgress(evt) {
+    // evt is a ProgressEvent.
+    if (evt.lengthComputable) {
+        var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
+        // Increase the progress bar length.
+        if (percentLoaded < 100) {
+            progress.style.width = percentLoaded + '%';
+            progress.textContent = percentLoaded + '%';
+        }
+    }
+}
+
+function abortRead() {
+    reader.abort();
+}
+
+function errorHandler(evt) {
+    switch (evt.target.error.code) {
+        case evt.target.error.NOT_FOUND_ERR:
+            alert('File Not Found!');
+            break;
+        case evt.target.error.NOT_READABLE_ERR:
+            alert('File is not readable');
+            break;
+        case evt.target.error.ABORT_ERR:
+            break; // noop
+        default:
+            alert('An error occurred reading this file.');
+    }
+}
+
+function handleFileSelect3(evt) {
+    // Reset progress indicator on new file selection.
+    progress.style.width = '0%';
+    progress.textContent = '0%';
+    reader = new FileReader();
+    reader.onerror = errorHandler;
+    reader.onprogress = updateProgress;
+    reader.onabort = function (e) {
+        alert('File read cancelled');
+    };
+    reader.onloadstart = function (e) {
+        document.getElementById('progress_bar').className = 'loading';
+    };
+    reader.onload = function (e) {
+        // Ensure that the progress bar displays 100% at the end.
+        progress.style.width = '100%';
+        progress.textContent = '100%';
+        setTimeout("document.getElementById('progress_bar').className='';", 2000);
+    };
+    // Read in the file as a binary string.
+    reader.readAsBinaryString(evt.target.files[0]);
+}
+
+document.getElementById('files3').addEventListener('change', handleFileSelect3, false);
+	</script>
 </body>
 </html>
