@@ -17,20 +17,31 @@ var year3line;
 var year4line;
 var year5line;
 
+
+
 $(document).ready(function() {
 	
 	
 	
 	$("#userProfileID").click(function(){
-  $.post("https://wzldawy7n6.execute-api.us-east-1.amazonaws.com/Dev/user",
-  {	"ID":"100",
-    "Name": $("#userNm").val(),
-    "phone": $("#pssWord").val()
-  },
-  function(data, status){
-    alert("Data: " + data + "\nStatus: " + status);
-  });
+ var person = {
+			ID:"6987",
+            Name:$("#userNm").val(),
+            phone:$("#pssWord").val()
+        }
 
+        $('#target').html('sending..');
+
+        $.ajax({
+            url: 'https://wzldawy7n6.execute-api.us-east-1.amazonaws.com/Dev/',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                $('#target').html(data.msg);
+            },
+            data: JSON.stringify(person)
+        });
 });
 	
 	$(".custom-file a").click(function () {
