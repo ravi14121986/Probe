@@ -23,9 +23,9 @@ $(document).ready(function() {
 	
 	$("#userProfileID").click(function(){
   $.post("https://wzldawy7n6.execute-api.us-east-1.amazonaws.com/Dev/user",
-  {
-    name: $("#userNm").val(),
-    city: $("#pssWord").val()
+  {	"ID":"100",
+    "Name": $("#userNm").val(),
+    "phone": $("#pssWord").val()
   },
   function(data, status){
     alert("Data: " + data + "\nStatus: " + status);
