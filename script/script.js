@@ -18,12 +18,31 @@ var year4line;
 var year5line;
 
 $(document).ready(function() {
+	
+	
+	
+	$("#userProfileID").click(function(){
+  $.post("https://wzldawy7n6.execute-api.us-east-1.amazonaws.com/Dev/user",
+  {
+    name: $("#userNm").val(),
+    city: $("#pssWord").val()
+  },
+  function(data, status){
+    alert("Data: " + data + "\nStatus: " + status);
+  });
+});
+	
 	$(".custom-file a").click(function () {
              $(".custom-file input").trigger('click');
         });
 	
 	$(".btnDownload").click(function (e) {
     window.open('data:application/vnd.ms-excel,' + $('#inputPage2form').html());
+    e.preventDefault();
+});
+
+$(".btnDownload2").click(function (e) {
+    window.open('data:application/vnd.ms-excel,' + $('#codeComplexityform').html());
     e.preventDefault();
 });
 
@@ -359,7 +378,12 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
   
   
  });
- 
+ function codeComplexityFn()
+ {
+	 for(i=0;i<ends;i++)
+	 {
+	 }
+ }
  function heatmapCSVtext(id,starts,ends,days,csvData){
 	  var z=0;
 for(i=starts;i<ends;i++)
