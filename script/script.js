@@ -25,9 +25,9 @@ $(document).ready(function() {
 	
 	$("#userProfileID").click(function(){
  var person = {
-			ID:"6987",
-            Name:$("#userNm").val(),
-            phone:$("#pssWord").val()
+			"ID":"6987",
+            "Name":$("#userNm").val(),
+            "phone":$("#pssWord").val()
         }
 
         $('#target').html('sending..');
