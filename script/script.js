@@ -30,6 +30,7 @@ $(document).ready(function() {
   function(data, status){
     alert("Data: " + data + "\nStatus: " + status);
   });
+
 });
 	
 	$(".custom-file a").click(function () {
