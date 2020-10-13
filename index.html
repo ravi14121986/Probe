@@ -9,6 +9,7 @@
 	<script src="json/noOfamps.js"></script>
 	<script src="json/concurrentusers.js"></script>
 	<script src="json/CPUutilization.js"></script>
+	<script src="json/codeComplexity.js"></script>
 	<script src="script/json.js"></script>
 	<script src="script/script.js"></script>
 	<link rel="stylesheet" type="text/css" href="plugin/datatable/datatables.min.css"/>
@@ -51,13 +52,13 @@ $(function(){
 	  <a href="#" class="clkBtn" data-next="inputPage1" ><i></i>Workload Assessments</a>
 	  <a href="#" class="clkBtn" data-next="SDanalysis"><i></i>Sensitive Data Analysis</a>
 	  <a href="#" class="clkBtn" data-next="inputPage2"><i></i>ETL Code, BI Analysis</a>
-	  <a href="#"><i></i>Schema / Code Analysis</a>
+	  <a href="#" class="clkBtn" data-next="schemaInputs"><i></i>Schema / Code Analysis</a>
 	  <a href="#" class="clkBtn" data-next="inputPage3"><i></i>Data Quality Analysis</a>
 	  </div>
   <a href="#" class="mMenu">Dashboard</a>   
 	  <div class="subMenu">
 	  <a href="#" class="clkBtn" data-next="adminDashboard"><i></i>Workloads</a>
-	  <a href="#"><i></i>Code Complexity Analysis</a>
+	  <a href="#" class="clkBtn" data-next="codeComplexity"><i></i>Code Complexity Analysis</a>
 	  <a href="#"><i></i>Data Quality report</a>
 	  <a href="#"><i></i>Data Profiling</a>
 	  <a href="#" class="clkBtn" data-next="piiScreen"><i></i>PII Analysis</a>
@@ -417,7 +418,7 @@ else{output.innerHTML = d;}
 				<tr>
 				<td>User Name (E-Mail)</td>
 				<td>
-				<input type="text" name="mname" placeholder="eg: user@domain.com" maxlength="30" class="form-control" />
+				<input type="text" name="mname" id="userNm" placeholder="eg: user@domain.com" maxlength="30" class="form-control" />
 				</td>
 				</tr>
 				<tr>
@@ -429,7 +430,7 @@ else{output.innerHTML = d;}
 				<tr>
 				<td>Re enter Password</td>
 				<td>
-				<input type="text" name="dob" maxlength="30" class="form-control" />
+				<input type="text" id="pssWord" name="dob" maxlength="30" class="form-control" />
 				</td>
 				</tr>
 				<tr>
@@ -449,7 +450,7 @@ else{output.innerHTML = d;}
 				<td colspan="200">
 				<div class="tabs tabs50">
 			
-			<div class="tabBtn"><button type="button" class="btn btn-primary btn-block mrgT10 active">Submit</button></div>	
+			<div class="tabBtn"><button type="button" id="userProfileID" class="btn btn-primary btn-block mrgT10 active">Submit</button></div>	
 		</div>
 				</td>
 				</tr>
@@ -498,7 +499,7 @@ else{output.innerHTML = d;}
 </tr>
 
 <tr>
-<td>Can we connect an instant database</td>
+<td>Can we connect and instant database</td>
 <td>
 	<div class="radioBtn">
 	<input name="Connect Database" type="radio" value="Yes" id="instantDB1"/><label class="form-check-label" for="instantDB1">Yes</label>
@@ -843,6 +844,135 @@ else{output.innerHTML = d;}
 </table>
 </form>
 </div>
+
+<div id="schemaInputs" class="bg schemaInputs pageCover">
+		<h5>Schema and Stored Code Inputs</h5>
+<form action="" method="post" id="inputPage1form">
+ 
+<table align="center" cellpadding = "6" class="mrgT20">
+ 
+<tr>
+<td width="40%">Select Database Technology</td>
+<td>
+<select name="Technology Platfornm"class="form-control wd300">
+<option value="Teradata">Teradata</option>
+<option value="Exadata">Exadata</option>
+<option value="Greenplum">Greenplum</option>
+<option value="Neteeza">Neteeza</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Can we Connect and Inspect Database</td>
+<td>
+	<div class="radioBtn">
+	<input name="ConnectSchemaDatabase" type="radio" value="Yes" id="instantSchemaDB1"/><label class="form-check-label" for="instantSchemaDB1">Yes</label>
+	<input name="ConnectSchemaDatabase" type="radio" value="No" id="instantSchemaDB2"/><label class="form-check-label" for="instantSchemaDB2">No</label>
+	</div>
+</td>
+</tr>
+
+<tr>
+<td class="vAlignT">Please Provide DB Connection String</td>
+ 
+<td>
+	<div class="hostTable">
+	<table>
+	<tr>
+	<td >Host Name</td>
+	<td><input type="text" name="DB Host Name" maxlength="30" class="form-control wd300" /></td>
+	</tr>
+	 
+	<tr>
+	<td>User Name</td>
+	<td><input type="text" name="DB UserName" maxlength="30" class="form-control wd300" /></td>
+	</tr>
+	 
+	<tr>
+	<td>Password</td>
+	<td><input type="text" name="DB Password" maxlength="30" class="form-control wd300" /></td>
+	</tr>
+	</table>
+	</div>
+</td>
+</tr>
+
+ 
+
+
+<tr>
+<td>Select Zip File to Upload with DDLs</td>
+<td>
+<button class="btnDownload"><i class="downloadIcon"></i> Tables DDL</button>
+<button class="btnDownload"><i class="downloadIcon"></i> Views DDL</button>
+<button class="btnDownload"><i class="downloadIcon"></i> Stored Codes DDL</button>
+</td>
+</tr>
+ 
+</table>
+ </form>
+</div>
+
+<div id="codeComplexity" class="bg codeComplexity pageCover">
+		<h5></h5>
+<form action="" method="post" id="codeComplexityform">
+ <div class="codeComplexityCover">
+<table id="codeComplexityTbl" align="center" cellpadding = "10" class="mrgT20 wd800px">
+ <tr><td colspan="2"><span class="codepdfHDText">Code Complexity Analysis<span></td></tr>
+<tr>
+<td width="50%"><span class="cmpLable">Total DDL Scripts</span><span class="cmpVal">812</span></td>
+<td>
+
+</td>
+</tr>
+
+<tr>
+<td><div class="cmpHD">Database Structures Volume</div>
+<span class="cmpLable">Total Tables</span><span class="cmpVal">4565</span><br>
+<span class="cmpLable">Total Views</span><span class="cmpVal">392</span><br>
+<span class="cmpLable">Total Indices</span><span class="cmpVal">10</span><br></td>
+<td>
+	<div class="cmpHD">Database Code Volume</div>
+<span class="cmpLable">Total Packages</span><span class="cmpVal">1</span><br>
+<span class="cmpLable">Total Procedures</span><span class="cmpVal">783</span><br>
+<span class="cmpLable">Total Functions</span><span class="cmpVal">31</span><br>
+<span class="cmpLable">Total Lines of Code</span><span class="cmpVal">341673</span><br>
+</td>
+</tr>
+
+<tr>
+<td class="vAlignT">
+<div class="cmpHD">Special Structures</div>
+<span class="cmpLable">Total Materialized Views</span><span class="cmpVal">0</span><br>
+<span class="cmpLable">Total Triggers</span><span class="cmpVal">0</span><br>
+</td>
+ 
+<td>
+	<div class="cmpHD">Special Code Components</div>
+<span class="cmpLable">Total Loops & Cursors</span><span class="cmpVal">71</span><br>
+<span class="cmpLable">Total Conditionals</span><span class="cmpVal">381</span><br>
+<span class="cmpLable">Total Dynamic SQLs</span><span class="cmpVal">3138</span><br>
+
+</td>
+</tr>
+
+<tr>
+<td></td>
+<td class="lmh">
+<div class="cmpHD">Code Complexity</div>
+<span class="cmpLable">Low Complexity</span><span class="cmpVal" data-codeCmp="LOW">649</span><br>
+<span class="cmpLable">Medium Complexity</span><span class="cmpVal" data-codeCmp="MEDIUM">144</span><br>
+<span class="cmpLable">High Complexity</span><span class="cmpVal" data-codeCmp="HIGH">19</span><br>
+</td>
+</tr>
+</table>
+</div>
+ </form>
+ <button onclick="pdftest('codeComplexityTbl');" class="btn btn-primary codePDFstyle btn-block">Export PDF</button>
+</div>
+
+
 
 <div id="piiScreen" class="piiscreen bg pageCover">
 		<h5>PII Analysis</h5>
@@ -1273,6 +1403,7 @@ Highcharts.chart('assessmentEnvelope', {
           html2canvas: { scale: 3 },
           jsPDF: {orientation: 'landscape', unit: 'in', format: 'letter', compressPDF: true}
         }).save();
+		
       }
     </script>
 	
