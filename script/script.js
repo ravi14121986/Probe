@@ -20,29 +20,23 @@ var year5line;
 
 
 $(document).ready(function() {
-	
-	
-	
+		
 	$("#userProfileID").click(function(){
- var person = {
-			"ID":"6987",
-            "Name":$("#userNm").val(),
-            "phone":$("#pssWord").val()
-        }
-
-        $('#target').html('sending..');
-
-        $.ajax({
-            url: 'https://wzldawy7n6.execute-api.us-east-1.amazonaws.com/Dev/',
-            type: 'post',
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (data) {
-                $('#target').html(data.msg);
-            },
-            data: JSON.stringify(person)
-        });
+		var formData = {
+		"ID":"9",
+		"Name":$("#userNm").val(),
+		"phone":$("#phoneNum").val()
+	}
+		$.ajax({
+  type: "POST",
+  url: "https://wzldawy7n6.execute-api.us-east-1.amazonaws.com/Dev/user",
+  data:JSON.stringify(formData),
+  success: function(data){ alert("success");},
+  dataType: "json",
+  contentType : "application/json"
 });
+		
+	});
 	
 	$(".custom-file a").click(function () {
              $(".custom-file input").trigger('click');
