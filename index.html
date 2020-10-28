@@ -29,7 +29,7 @@
    <script src="script/html2pdf.bundle.js"></script>
 
 
-	<meta name="viewport" content="widht=device-width, initial-scale=1" >
+	<meta name="viewport" content="width=device-width, initial-scale=1" >
 </head>
 <body>
 <div id="ajaxID"></div>
@@ -49,10 +49,10 @@ $(function(){
 <div id="mySidepanel" class="sidepanel adminMenu">
   <a href="#" class="mMenu">Assessment </a>
 	  <div class="subMenu">
+	  <a href="#" class="clkBtn" data-next="schemaInputs"><i></i>Schema / Code Analysis</a>
 	  <a href="#" class="clkBtn" data-next="inputPage1" ><i></i>Workload Assessments</a>
 	  <a href="#" class="clkBtn" data-next="SDanalysis"><i></i>Sensitive Data Analysis</a>
 	  <a href="#" class="clkBtn" data-next="inputPage2"><i></i>ETL Code, BI Analysis</a>
-	  <a href="#" class="clkBtn" data-next="schemaInputs"><i></i>Schema / Code Analysis</a>
 	  <a href="#" class="clkBtn" data-next="inputPage3"><i></i>Data Quality Analysis</a>
 	  </div>
   <a href="#" class="mMenu">Dashboard</a>   
@@ -67,9 +67,9 @@ $(function(){
 	  <div class="subMenu">
 	  <a href="#" class="clkBtn" data-next="roiCalculator"><i></i>ROI</a>
 	  <a href="#"><i></i>Cloud Cost Estimator</a>
-	  <a href="#"><i></i>Legacy Cost Estimator</a>
+	  <a href="#"class="clkBtn" data-next="lCostEstimator"><i></i>Legacy Cost Estimator</a>
 	  </div>
-  <a href="#" class="mMenu">Adminsitration</a>
+  <a href="#" class="mMenu">Administration</a>
 	  <div class="subMenu">
 	  <a href="#" class="clkBtn" data-next="userSetupPage"><i></i>Create User Profile</a>
 	  </div>
@@ -102,6 +102,321 @@ $(function(){
 		</div>
 		<div id="correct" style="color:gray;"></div>
 	</div>
+	<div id="lCostEstimator" class="lCostEstimator bg pageCover">
+		<h5>Legacy Cost Estimator</h5>
+		<div class="lCostEstimatorCover bsh">
+		<form action="" method="post" id="lCostform">
+			<table align="center" cellpadding = "6" class="mrgBT20"> 
+				
+				<td width="20%"><b>Legacy Labor Cost</b></td>
+				<td class="parnt">
+				<input type="text" name="Legacy Labor Cost" maxlength="30" value="2000" class="lLaborCost form-control wd300" />
+				</td>
+				</tr>
+				<tr>
+				<td><b>Legacy H/W Cost</b></td>
+				<td class="parnt">
+				<input type="text" name="Legacy H/W Cost" maxlength="30" value="500" class="lHWCost form-control wd300" />
+				</td>
+				</tr>
+				<tr>
+				<td><b>Legacy License Cost</b></td>
+				<td class="parnt">
+				<input type="text" name="Legacy License Cost" maxlength="30" value="500" class="lLicenseCost form-control wd300" />
+				</td>
+				</tr>
+				<tr>
+				<td><b>Legacy Misc Cost</b></td>
+				<td class="parnt">
+				<input type="text" name="EstimatedCloudCost" maxlength="30" value="500" class="estimatedCloudCost form-control wd300" />
+				</td>
+				</tr>
+				</table>
+				<table class="legacyTechlgy" cellpadding="6">
+				<tr>
+				<th>Legacy Technology Stack</th><th></th><th>Retire</th><th>Years to Retire</th><th>Target Technology</th><th>Current Sizing File</th></tr>
+				<tr>
+				<td>Legacy EDW Technology</td><td>
+					<select class="form-control">
+					<option value="Teradata">Teradata</option>
+					<option value="Exadata">Exadata</option>
+					<option value="Greenplum">Greenplum</option>
+					<option value="Neteeza">Neteeza</option>
+					<option value="Oracle">Oracle</option>
+					<option value="SQL Server">SQL Server</option>
+					</select>
+				</td>
+				<td class="tglSwitch">
+					<label class="tSwitch">
+  <input type="checkbox" checked>
+  <span class="chkSlider round"></span>
+</label>
+				</td>
+				<td>
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				</td>
+				<td><div class="custom-file">
+    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
+    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div></td></tr>
+  
+  <tr>
+				<td>Legacy ETL Technology</td><td>
+					<select class="form-control">
+					<option value="Teradata">Teradata</option>
+					<option value="Exadata">Exadata</option>
+					<option value="Greenplum">Greenplum</option>
+					<option value="Neteeza">Neteeza</option>
+					<option value="Oracle">Oracle</option>
+					<option value="SQL Server">SQL Server</option>
+					</select>
+				</td>
+				<td class="tglSwitch">
+					<label class="tSwitch">
+  <input type="checkbox" checked>
+  <span class="chkSlider round"></span>
+</label>
+				</td>
+				<td>
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				</td>
+				<td><div class="custom-file">
+    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
+    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div></td></tr>
+  
+  <tr>
+				<td>Legacy BI Tool</td><td>
+					<select class="form-control">
+					<option value="Teradata">Teradata</option>
+					<option value="Exadata">Exadata</option>
+					<option value="Greenplum">Greenplum</option>
+					<option value="Neteeza">Neteeza</option>
+					<option value="Oracle">Oracle</option>
+					<option value="SQL Server">SQL Server</option>
+					</select>
+				</td>
+				<td class="tglSwitch">
+					<label class="tSwitch">
+  <input type="checkbox" checked>
+  <span class="chkSlider round"></span>
+</label>
+				</td>
+				<td>
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				</td>
+				<td><div class="custom-file">
+    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
+    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div></td></tr>
+  
+  <tr>
+				<td>Legacy Analytics Tool</td><td>
+					<select class="form-control">
+					<option value="Teradata">Teradata</option>
+					<option value="Exadata">Exadata</option>
+					<option value="Greenplum">Greenplum</option>
+					<option value="Neteeza">Neteeza</option>
+					<option value="Oracle">Oracle</option>
+					<option value="SQL Server">SQL Server</option>
+					</select>
+				</td>
+				<td class="tglSwitch">
+					<label class="tSwitch">
+  <input type="checkbox" checked>
+  <span class="chkSlider round"></span>
+</label>
+				</td>
+				<td>
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				</td>
+				<td><div class="custom-file">
+    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
+    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div></td></tr>
+  
+  <tr>
+				<td>Legacy Data Catalog</td><td>
+					<select class="form-control">
+					<option value="Teradata">Teradata</option>
+					<option value="Exadata">Exadata</option>
+					<option value="Greenplum">Greenplum</option>
+					<option value="Neteeza">Neteeza</option>
+					<option value="Oracle">Oracle</option>
+					<option value="SQL Server">SQL Server</option>
+					</select>
+				</td>
+				<td class="tglSwitch">
+					<label class="tSwitch">
+  <input type="checkbox" checked>
+  <span class="chkSlider round"></span>
+</label>
+				</td>
+				<td>
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				</td>
+				<td><div class="custom-file">
+    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
+    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div></td></tr>
+  
+  <tr>
+				<td>Legacy Data Lineage Tool</td><td>
+					<select class="form-control">
+					<option value="Teradata">Teradata</option>
+					<option value="Exadata">Exadata</option>
+					<option value="Greenplum">Greenplum</option>
+					<option value="Neteeza">Neteeza</option>
+					<option value="Oracle">Oracle</option>
+					<option value="SQL Server">SQL Server</option>
+					</select>
+				</td>
+				<td class="tglSwitch">
+					<label class="tSwitch">
+  <input type="checkbox" checked>
+  <span class="chkSlider round"></span>
+</label>
+				</td>
+				<td>
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				</td>
+				<td><div class="custom-file">
+    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
+    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div></td></tr>
+  
+  <tr>
+				<td>Legacy MDM Tool</td><td>
+					<select class="form-control">
+					<option value="Teradata">Teradata</option>
+					<option value="Exadata">Exadata</option>
+					<option value="Greenplum">Greenplum</option>
+					<option value="Neteeza">Neteeza</option>
+					<option value="Oracle">Oracle</option>
+					<option value="SQL Server">SQL Server</option>
+					</select>
+				</td>
+				<td class="tglSwitch">
+					<label class="tSwitch">
+  <input type="checkbox" checked>
+  <span class="chkSlider round"></span>
+</label>
+				</td>
+				<td>
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				</td>
+				<td><div class="custom-file">
+    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
+    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div></td></tr>
+  
+  <tr>
+				<td>Legacy Data Quality Tool</td><td>
+					<select class="form-control">
+					<option value="Teradata">Teradata</option>
+					<option value="Exadata">Exadata</option>
+					<option value="Greenplum">Greenplum</option>
+					<option value="Neteeza">Neteeza</option>
+					<option value="Oracle">Oracle</option>
+					<option value="SQL Server">SQL Server</option>
+					</select>
+				</td>
+				<td class="tglSwitch">
+					<label class="tSwitch">
+  <input type="checkbox" checked>
+  <span class="chkSlider round"></span>
+</label>
+				</td>
+				<td>
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				</td>
+				<td><div class="custom-file">
+    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
+    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div></td></tr>
+  
+  <tr>
+				<td>Legacy Data Governance Tool</td><td>
+					<select class="form-control">
+					<option value="Teradata">Teradata</option>
+					<option value="Exadata">Exadata</option>
+					<option value="Greenplum">Greenplum</option>
+					<option value="Neteeza">Neteeza</option>
+					<option value="Oracle">Oracle</option>
+					<option value="SQL Server">SQL Server</option>
+					</select>
+				</td>
+				<td class="tglSwitch">
+					<label class="tSwitch">
+  <input type="checkbox" checked>
+  <span class="chkSlider round"></span>
+</label>
+				</td>
+				<td>
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				</td>
+				<td><div class="custom-file">
+    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
+    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div></td></tr>
+				</table>
+				</form>
+				</div>
+		</div>
 <div id="adminDashboard" class="adminDashboard bg pageCover">
 		<h5>Probe Tool Assessment Report</h5>
 		<div class="datatableCover">
@@ -394,49 +709,61 @@ else{output.innerHTML = d;}
 
 	<div id="userSetupPage" class="userSetupPage bg pageCover">
 	<h5>Create User Profile</h5>
+	<div class="successMsg">User profile has been created successfully<br><br>
+	<button type="button" class="btn btn-primary btn-block">Close</button>
+	</div>
 			<form action="" method="post" id="dashboardform">
 			<table align="center" cellpadding = "6" class="mrgT20"> 
 				<tr>
-				<td width="40%">Name of Assessment</td>
+				<td width="30%">Name of Assessment</td>
 				<td>
-				<input type="text" name="UserID" maxlength="30" class="form-control" />
+				<input type="text" id="assessmentName" name="UserID" maxlength="30" class="form-control" />
+				<span class="error"></span>
 				</td>
 				</tr>
 				<tr>
 				<td>Client Name</td>
 				<td class="FLname">
-				<div><input type="text" name="GroupID" placeholder="First Name" maxlength="30" class="form-control" /></div>
-				<div><input type="text" name="GroupID" placeholder="Last Name" maxlength="30" class="form-control" /></div>
+				<div><input type="text" name="firstName" id="firstName" placeholder="First Name" maxlength="30" class="form-control" />
+				<span class="error"></span>
+				</div>
+				<div><input type="text" name="lastName" id="lastName" placeholder="Last Name" maxlength="30" class="form-control" />
+				<span class="error"></span>
+				</div>
 				</td>
 				</tr>
 				<tr>
 				<td>Client Phone No</td>
 				<td>
-				<input type="text" name="fname" id="phoneNum" maxlength="30" class="form-control" />
+				<input type="text" name="phone" id="phoneNum" placeholder="xxxxxxxxxx" maxlength="10" class="form-control" />
+				<span class="error"></span>
 				</td>
 				</tr>
 				<tr>
 				<td>User Name (E-Mail)</td>
 				<td>
 				<input type="text" name="mname" id="userNm" placeholder="eg: user@domain.com" maxlength="30" class="form-control" />
+				<span class="error"></span>
 				</td>
 				</tr>
 				<tr>
 				<td>Password</td>
 				<td>
-				<input type="text" name="lname" maxlength="30" class="form-control" />
+				<input type="password" name="password" id="passwordOne" maxlength="30" class="form-control" />
+				<span class="error"></span>
 				</td>
 				</tr>
 				<tr>
-				<td>Re enter Password</td>
+				<td>Confirm Password</td>
 				<td>
-				<input type="text" name="dob" maxlength="30" class="form-control" />
+				<input type="password" name="rePassword" id="passwordUser" maxlength="30" class="form-control" />
+				<span class="error"></span>
 				</td>
 				</tr>
 				<tr>
 				<td>Target Platform</td>
 				<td>
-				<select name="Assessment Platform" class="form-control">
+				<select id="assessmentPlatform" name="Assessment Platform" class="form-control">
 					<option value="AWS Redshift">AWS Redshift</option>
 					<option value="Snowflake on AWS">Snowflake on AWS</option>
 					<option value="Snowflake on Azure">Snowflake on Azure</option>
@@ -540,9 +867,27 @@ else{output.innerHTML = d;}
 <tr>
 <td>Download Template to provide input<br />APPLIED FOR</td>
 <td>
-<button class="btnDownload"><i class="downloadIcon"></i> DM Volumetrics</button>
-<button class="btnDownload"><i class="downloadIcon"></i> Schema Details</button>
-<button class="btnDownload"><i class="downloadIcon"></i> Workload Details</button>
+<div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>DM Volumetrics</button></div>
+<div class="w280px floatL"><div class="custom-file">
+    <input type="file" class="custom-file-input" id="dmUpload" required>
+    <label class="custom-file-label" for="dmUpload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div>
+ </div><br class="clrB">
+ <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Schema Details</button></div>
+<div class="w280px floatL"><div class="custom-file">
+    <input type="file" class="custom-file-input" id="schemaUpload" required>
+    <label class="custom-file-label" for="schemaUpload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div>
+ </div><br class="clrB">
+ <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Workload Details</button></div>
+<div class="w280px floatL"><div class="custom-file">
+    <input type="file" class="custom-file-input" id="workloadUpload" required>
+    <label class="custom-file-label" for="workloadUpload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div>
+ </div>
 </td>
 </tr>
  
@@ -860,6 +1205,8 @@ else{output.innerHTML = d;}
 <option value="Exadata">Exadata</option>
 <option value="Greenplum">Greenplum</option>
 <option value="Neteeza">Neteeza</option>
+<option value="Oracle">Oracle</option>
+<option value="SQL Server">SQL Server</option>
 </select>
 </td>
 </tr>
@@ -905,9 +1252,27 @@ else{output.innerHTML = d;}
 <tr>
 <td>Select Zip File to Upload with DDLs</td>
 <td>
-<button class="btnDownload"><i class="downloadIcon"></i> Tables DDL</button>
-<button class="btnDownload"><i class="downloadIcon"></i> Views DDL</button>
-<button class="btnDownload"><i class="downloadIcon"></i> Stored Codes DDL</button>
+<div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Tables DDL</button></div>
+<div class="w280px floatL"><div class="custom-file">
+    <input type="file" class="custom-file-input" id="tableDDLUpload" required>
+    <label class="custom-file-label" for="tableDDLUpload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div>
+ </div><br class="clrB">
+ <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Views DDL</button></div>
+<div class="w280px floatL"><div class="custom-file">
+    <input type="file" class="custom-file-input" id="viewDDLUpload" required>
+    <label class="custom-file-label" for="tableDDLUpload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div>
+ </div><br class="clrB">
+ <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Stored Codes DDL</button></div>
+<div class="w280px floatL"><div class="custom-file">
+    <input type="file" class="custom-file-input" id="storeDDLUpload" required>
+    <label class="custom-file-label" for="storeDDLUpload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div>
+ </div>
 </td>
 </tr>
  
@@ -919,52 +1284,96 @@ else{output.innerHTML = d;}
 		<h5></h5>
 <form action="" method="post" id="codeComplexityform">
  <div class="codeComplexityCover">
-<table id="codeComplexityTbl" align="center" cellpadding = "10" class="mrgT20 wd800px">
- <tr><td colspan="2"><span class="codepdfHDText">Code Complexity Analysis<span></td></tr>
+<table id="codeComplexityTbl" align="center" cellpadding = "10" class="mrgT20 wd1000px">
+ <tr><td colspan="3"><span class="codepdfHDText">Code Complexity Analysis<span></td></tr>
 <tr>
-<td width="50%"><span class="cmpLable">Total DDL Scripts</span><span class="cmpVal">812</span></td>
-<td>
-
-</td>
+<td width="33.33%"><span class="cmpLable">Total DDL Scripts</span><span class="cmpVal">781</span></td>
+<td></td><td></td>
 </tr>
-
 <tr>
-<td><div class="cmpHD">Database Structures Volume</div>
-<span class="cmpLable">Total Tables</span><span class="cmpVal">4565</span><br>
-<span class="cmpLable">Total Views</span><span class="cmpVal">392</span><br>
-<span class="cmpLable">Total Indices</span><span class="cmpVal">10</span><br></td>
-<td>
-	<div class="cmpHD">Database Code Volume</div>
-<span class="cmpLable">Total Packages</span><span class="cmpVal">1</span><br>
-<span class="cmpLable">Total Procedures</span><span class="cmpVal">783</span><br>
-<span class="cmpLable">Total Functions</span><span class="cmpVal">31</span><br>
-<span class="cmpLable">Total Lines of Code</span><span class="cmpVal">341673</span><br>
+<td class="positionR"><div class="cmpHD">Database Structures Volume</div>
+<span class="pieIcon pieIcon1"><a href="#"></a></span><span class="pieIcon pieIcon2 active"><a href="#"></a></span>
+<div class="pieChart"><figure class="highcharts-figure"><div id="piechart1" style="width:350px;height:250px;"></div></figure></div>
+<div class="pieTable">
+<span class="cmpLable">Total Tables</span><span class="cmpVal">0</span><br>
+<span class="cmpLable">Total Views</span><span class="cmpVal">0</span><br>
+<span class="cmpLable">Total Indices</span><span class="cmpVal">0</span>
+</div>
 </td>
-</tr>
-
-<tr>
-<td class="vAlignT">
+<td class="positionR">
 <div class="cmpHD">Special Structures</div>
+<span class="pieIcon pieIcon1"><a href="#"></a></span><span class="pieIcon pieIcon2 active"><a href="#"></a></span>
+<div class="pieChart"><figure class="highcharts-figure"><div id="piechart2" style="width:350px;height:250px;"></div></figure></div>
+<div class="pieTable">
 <span class="cmpLable">Total Materialized Views</span><span class="cmpVal">0</span><br>
-<span class="cmpLable">Total Triggers</span><span class="cmpVal">0</span><br>
+<span class="cmpLable">Total Triggers</span><span class="cmpVal">0</span>
+</div>
+</td>
+<td class="positionR">
+	<div class="cmpHD">Schema Effort</div>
+	<span class="pieIcon pieIcon1"><a href="#"></a></span><span class="pieIcon pieIcon2 active"><a href="#"></a></span>
+	<div class="pieChart"><figure class="highcharts-figure"><div id="piechart3" style="width:350px;height:250px;"></div></figure></div>
+	<div class="pieTable">
+<span class="cmpLable">Low Complexity</span><span class="cmpVal">619</span><br>
+<span class="cmpLable">Medium Complexity</span><span class="cmpVal">143</span><br>
+<span class="cmpLable">High Complexity</span><span class="cmpVal">19</span>
+</div>
+</td>
+</tr>
+
+<tr>
+<td class="vAlignT positionR">
+<div class="cmpHD">Database Code Volume</div>
+<span class="pieIcon pieIcon1"><a href="#"></a></span><span class="pieIcon pieIcon2 active"><a href="#"></a></span>
+<div class="pieChart"><figure class="highcharts-figure"><div id="piechart4" style="width:350px;height:250px;"></div></figure></div>
+<div class="pieTable">
+<span class="cmpLable">Total Packages</span><span class="cmpVal">0</span><br>
+<span class="cmpLable">Total Procedures</span><span class="cmpVal">783</span><br>
+<span class="cmpLable">Total Functions</span><span class="cmpVal">0</span><br>
+<span class="cmpLable">Total Lines of Code</span><span class="cmpVal">339666</span>
+</div>
 </td>
  
-<td>
+<td class="positionR">
 	<div class="cmpHD">Special Code Components</div>
-<span class="cmpLable">Total Loops & Cursors</span><span class="cmpVal">71</span><br>
-<span class="cmpLable">Total Conditionals</span><span class="cmpVal">381</span><br>
-<span class="cmpLable">Total Dynamic SQLs</span><span class="cmpVal">3138</span><br>
+	<span class="pieIcon pieIcon1"><a href="#"></a></span><span class="pieIcon pieIcon2 active"><a href="#"></a></span>
+	<div class="pieChart"><figure class="highcharts-figure"><div id="piechart5" style="width:350px;height:250px;"></div></figure></div>
+	<div class="pieTable">
+<span class="cmpLable">Total Loops & Cursors</span><span class="cmpVal">69</span><br>
+<span class="cmpLable">Total Conditionals</span><span class="cmpVal">374</span><br>
+<span class="cmpLable">Total Dynamic SQLs</span><span class="cmpVal">3136</span>
+</div>
 
 </td>
-</tr>
-
-<tr>
-<td></td>
-<td class="lmh">
+<td class="lmh positionR">
 <div class="cmpHD">Code Complexity</div>
-<span class="cmpLable">Low Complexity</span><span class="cmpVal" data-codeCmp="LOW">649</span><br>
-<span class="cmpLable">Medium Complexity</span><span class="cmpVal" data-codeCmp="MEDIUM">144</span><br>
-<span class="cmpLable">High Complexity</span><span class="cmpVal" data-codeCmp="HIGH">19</span><br>
+<span class="pieIcon pieIcon1"><a href="#"></a></span><span class="pieIcon pieIcon2 active"><a href="#"></a></span>
+<div class="pieChart"><figure class="highcharts-figure"><div id="piechart6" style="width:350px;height:250px;"></div></figure></div>
+<div class="pieTable">
+<span class="cmpLable">Low Complexity</span><span class="cmpVal" data-codeCmp="LOW">619</span><br>
+<span class="cmpLable">Medium Complexity</span><span class="cmpVal" data-codeCmp="MEDIUM">143</span><br>
+<span class="cmpLable">High Complexity</span><span class="cmpVal" data-codeCmp="HIGH">19</span>
+</div>
+</td>
+</tr>
+</table>
+<table id="topTables" align="center" cellpadding="10" class="mrgT20">
+<tr>
+<td>
+<div class="topTablesCover">
+<div class="topHD">Top 10 Functions</div>
+<figure class="highcharts-figure">
+    <div id="topFunctions"></div>
+</figure>
+</div>
+</td>
+<td>
+<div class="topTablesCover">
+<div class="topHD">Top Values of Raw Project Objects</div>
+<figure class="highcharts-figure">
+    <div id="topRawProjects"></div>
+</figure>
+</div>
 </td>
 </tr>
 </table>
@@ -1396,15 +1805,26 @@ Highcharts.chart('assessmentEnvelope', {
       function pdftest(id) {
         // Get the element.
         var element = document.getElementById(id);
-
+var docs;
         // Generate the PDF.
-        html2pdf().from(element).set({
+       docs = html2pdf().from(element).set({
           margin: 0,
-          filename: 'test.pdf',
           html2canvas: { scale: 3 },
           jsPDF: {orientation: 'landscape', unit: 'in', format: 'letter', compressPDF: true}
-        }).save();
+        });
+		docs.save('test.pdf');
+		 var pdf = btoa(docs); 
 		
+		 
+		 $.ajax({
+  type: "POST",
+  url: "https://42onrffs5b.execute-api.us-east-1.amazonaws.com/v1/upload",
+  data: {data: pdf},
+  success: function(data){ alert("success");},
+  dataType: "binary",
+  contentType: "application/pdf"
+});
+
       }
     </script>
 	
@@ -1422,6 +1842,7 @@ function handleFileSelect1(evt) {
             '</li>');
     }
     document.getElementById('file_list1').innerHTML = '<ul>' + output.join('') + '</ul>';
+	alert(files[1]);
 }
 document.getElementById('files1').addEventListener('change', handleFileSelect1, false);
 
@@ -1494,31 +1915,115 @@ function errorHandler(evt) {
             alert('An error occurred reading this file.');
     }
 }
-
-function handleFileSelect3(evt) {
-    // Reset progress indicator on new file selection.
-    progress.style.width = '0%';
-    progress.textContent = '0%';
-    reader = new FileReader();
-    reader.onerror = errorHandler;
-    reader.onprogress = updateProgress;
-    reader.onabort = function (e) {
-        alert('File read cancelled');
-    };
-    reader.onloadstart = function (e) {
-        document.getElementById('progress_bar').className = 'loading';
-    };
-    reader.onload = function (e) {
-        // Ensure that the progress bar displays 100% at the end.
-        progress.style.width = '100%';
-        progress.textContent = '100%';
-        setTimeout("document.getElementById('progress_bar').className='';", 2000);
-    };
-    // Read in the file as a binary string.
-    reader.readAsBinaryString(evt.target.files[0]);
+	</script>
+	<script>
+	piechart('piechart1','Total Tables','Total Views','Total Indices','',0,0,0,'');
+	piechart('piechart2','Total Materialized Views','Total Triggers','','',0,0,'','');
+	piechart('piechart3','Low Complexity','Medium Complexity','High Complexity','',619,143,19,'');
+	piechart('piechart4','Total Packages','Total Procedures','Total Functions','Total Lines of Code',0,783,0,339666);
+	piechart('piechart5','Total Loops & Cursors','Total Conditionals','Total Dynamic SQLs','',69,374,3136,0);
+	piechart('piechart6','Low Complexity','Medium Complexity','High Complexity','',619,143,19,'');
+	function piechart(ID,l1,l2,l3,l4,lval1,lval2,lval3,lval4){
+	// Build the chart
+Highcharts.chart(ID, {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: '',
+        colorByPoint: true,
+        data: [{
+            name: l1,
+            y: lval1
+            
+        }, {
+            name: l2,
+            y: lval2
+        }, {
+            name: l3,
+            y: lval3
+        },
+		{
+            name: l4,
+            y: lval4
+        }]
+    }]
+});
 }
+	</script>
+	<script>
+	var chart = Highcharts.chart('topFunctions', {
 
-document.getElementById('files3').addEventListener('change', handleFileSelect3, false);
+    title: {
+        text: ''
+    },
+
+    subtitle: {
+        text: ''
+    },
+
+    xAxis: {
+        categories: ['UPPER', 'NVL', 'TO_CHAR', 'TRIM', 'MAX', 'TO_DATE', 'DECODE', 'LPAD', 'RTRIM', 'USING']
+    },
+
+    series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [4696, 4110, 1760, 1239, 1097, 1035, 822, 484, 469, 461],
+        showInLegend: false
+    }]
+
+});
+
+var chart = Highcharts.chart('topRawProjects', {
+
+    title: {
+        text: ''
+    },
+
+    subtitle: {
+        text: ''
+    },
+
+    xAxis: {
+        categories: ['WRITE', 'READ', 'CREATE']
+    },
+
+    series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [10, 9, 1],
+        showInLegend: false
+    }]
+
+});
+
+
+
 	</script>
 </body>
 </html>
