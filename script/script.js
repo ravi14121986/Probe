@@ -16,36 +16,184 @@ var year2line;
 var year3line;
 var year4line;
 var year5line;
-
+var labelNameDL;
 
 
 $(document).ready(function() {
-		
+
+	$(document).on("click",".pieIcon1.active a",function() {
+		$(this).parent().removeClass("active");
+		$(this).parent().siblings(".pieIcon2").addClass("active");
+		$(this).parent().siblings(".pieChart").show();
+		$(this).parent().siblings(".pieTable").hide();		
+	});
+	$(document).on("click",".pieIcon2.active a",function() {
+		$(this).parent().removeClass("active")
+		$(this).parent().siblings(".pieIcon1").addClass("active");
+		$(this).parent().siblings(".pieChart").hide();
+		$(this).parent().siblings(".pieTable").show();
+	});
+	
+	
+	$('form input[type=file]').change(function(){
+		$(this).siblings("label").html($(this).val());
+     
+	 var file = this.files[0];
+    $.ajax({
+  type: "POST",
+  url: "https://42onrffs5b.execute-api.us-east-1.amazonaws.com/v1/upload",
+  data: file,
+  success: function(data){ alert("success");},
+  dataType: "binary",
+  contentType: "application/pdf",
+  processData: false
+});
+    });
+	
+	$(".btnDownload").click(function(){
+		labelNameDL = $(this).find("span").html();
+        $.ajax({
+            type: 'GET',
+            url: 'https://q3c3ix92v1.execute-api.us-east-1.amazonaws.com/v1/teradatavantage-usfs?file=assesment.pdf',
+            success:function(data){
+             var dataArr = JSON.parse(data);
+			 window.open(dataArr.URL);
+            }
+        });
+    return false;
+    });
+	$('input[name="phone"]').keypress(function(e) {
+    var a = [];  var k = e.which;    
+    for (i = 48; i < 58; i++) a.push(i);    
+    if (!(a.indexOf(k)>=0)) e.preventDefault();  
+});	
 	$("#userProfileID").click(function(){
+		var valBoolean = [0,0,0,0,0,0,0,0];		
 		var formData = {
-		"ID":"9",
-		"Name":$("#userNm").val(),
-		"phone":$("#phoneNum").val()
+		"ID":$("#userNm").val(),
+		"Assessment_Name":$("#assessmentName").val(),
+		"First_Name":$("#firstName").val(),
+		"Last_Name":$("#lastName").val(),
+		"E-Mail":$("#userNm").val(),
+		"Phone":$("#phoneNum").val(),
+		"Password":$("#passwordUser").val(),
+"Target_Plateform":$("#assessmentPlatform").val()			
 	}
-		$.ajax({
+	
+	if(	$("#assessmentName").val() == "")
+	{
+	$("#assessmentName").siblings(".error").html("Please Enter Assessment Name");
+	}
+	else if(!$("#assessmentName").val() == ""){
+		$("#assessmentName").siblings(".error").html("");
+		valBoolean[0] = 1;
+	}
+	if($("#firstName").val() == ""){
+		$("#firstName").siblings(".error").html("Please Enter First Name");	
+	}
+	else if(!$("#firstName").val() == ""){
+		$("#firstName").siblings(".error").html("");
+valBoolean[1] = 1;		
+	}
+	if($("#lastName").val() == ""){
+		$("#lastName").siblings(".error").html("Please Enter Last Name");
+	}
+	else if(!$("#lastName").val() == ""){
+		$("#lastName").siblings(".error").html("");	
+		valBoolean[2] = 1;
+	}
+
+	
+	var mob = /^[1-9]{1}[0-9]{9}$/;
+	var currentValue = $("#phoneNum").val();
+	if(mob.test(currentValue) == false && currentValue.length < 10 && currentValue.length > 0 ){
+		$("#phoneNum").siblings(".error").html("Please Enter Valid Phone Number");
+	}
+else if(currentValue == "")
+{
+	$("#phoneNum").siblings(".error").html("Please Enter Phone Number");
+}	
+else{
+		$("#phoneNum").siblings(".error").html("");
+		valBoolean[3] = 1;
+	}
+	
+	
+	
+	var regexEmail = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if(!regexEmail.test($("#userNm").val())) {
+  $("#userNm").siblings(".error").html("Please Enter Valid Email");
+  }else if($("#userNm").val() == "")
+  {
+	  $("#userNm").siblings(".error").html("Please Enter Email");
+  }else{
+		$("#userNm").siblings(".error").html("");
+		valBoolean[4] = 1;
+	}
+	
+	
+	var pRE = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})/, pRE2 = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})/
+            var pssWord1 = $('#passwordOne').val();            
+        if( !pRE.test(pssWord1)) {
+           $("#passwordOne").siblings(".error").html("Use at least 8 characters and mix of letters (uppercase and lowercase), numbers and symbols");
+        }else if(pssWord1 == "")
+		{
+	  $("#passwordOne").siblings(".error").html("Please Enter Password");
+		}
+		else{
+		$("#passwordOne").siblings(".error").html("");
+		valBoolean[5] = 1;
+		}
+		var pssWord2 = $('#passwordUser').val();
+		if(!pRE2.test(pssWord2)) {
+           $("#passwordUser").siblings(".error").html("Use at least 8 characters and mix of letters (uppercase and lowercase), numbers and symbols");
+        }else if(pssWord2 == "")
+		{
+	  $("#passwordUser").siblings(".error").html("Please Enter Password");
+		}
+		else{
+		$("#passwordUser").siblings(".error").html("");
+		valBoolean[6] = 1;
+	}
+		if(pssWord1 != pssWord2 ) {
+           $("#passwordUser").siblings(".error").html("Password and Confirm Password do not match");
+        }
+		else if((pssWord1 == pssWord2)&& pssWord1.length > 0 && pssWord2.length > 0 ){
+		$("#passwordUser").siblings(".error").html("");
+		valBoolean[7] = 1;
+		
+	}
+	
+	if(valBoolean.includes(0))
+{console.log("failed");
+}
+else{
+	$.ajax({
   type: "POST",
   url: "https://wzldawy7n6.execute-api.us-east-1.amazonaws.com/Dev/user",
   data:JSON.stringify(formData),
-  success: function(data){ alert("success");},
+  success: function(data){
+	  $(".successMsg, .popUpCartBg").show();
+  $("#userSetupPage input").val("");
+  },
   dataType: "json",
   contentType : "application/json"
 });
-		
+	}
+	
 	});
 	
+	$(document).on("click",".successMsg button",function() {
+		$(".successMsg, .popUpCartBg").hide();
+	});
 	$(".custom-file a").click(function () {
              $(".custom-file input").trigger('click');
         });
 	
-	$(".btnDownload").click(function (e) {
+/*	$(".btnDownload").click(function (e) {
     window.open('data:application/vnd.ms-excel,' + $('#inputPage2form').html());
     e.preventDefault();
-});
+});*/
 
 $(".btnDownload2").click(function (e) {
     window.open('data:application/vnd.ms-excel,' + $('#codeComplexityform').html());
@@ -175,10 +323,8 @@ $(".mMenu").click(function(){
 		 $(".displayJson .box5").append(formData5);
  
 	  });
-	  $('#submitMemLogin').click(function(){
-        
+	  $('#submitMemLogin').click(function(){        
         var email = $('.emailLogin').val();
-
         
         if(email== ''){
           $('.errorEmail').show();
@@ -396,7 +542,6 @@ for(i=starts;i<ends;i++)
 {
 var ampMonth = csvData[i].DATE;
 ampMonth = ampMonth.replace(/\b\d\b/g, '0$&');
-console.log(ampMonth);
 var stringMonth = ampMonth.substr(0,2);
 z=z+1;
 for(j=0;j<days;j++)
@@ -641,8 +786,6 @@ Highcharts.chart('assessmentBar', {
   }else{
 	  var emailVal = $("#emailLogin").val();
 	  var passwordval = $("#passwordLogin").val();
-	  console.log(emailVal);
-	  console.log(passwordval);
 	  for (var i = 0; i < obj.length; i++){
   if ((obj[i].EMail == emailVal)&&(obj[i].Password == passwordval)){
 	  var correctVar  = $("#submitMemLogin").parents(".pageCover").attr("data-next");
