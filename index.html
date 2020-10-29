@@ -85,7 +85,7 @@ $(function(){
 </div>
 <button class="openbtn2 memMenu">☰</button>
 
-<div class="adminPage pageCover" data-next="adminDashboard">	
+<div class="adminPage pageCover" data-next="schemaInputs">	
 	<div class="jumpText">Jump start your Cloud Migration Journey with us!!</div>
 		<div class="loginBox" >
 			<h5>Login</h5>
@@ -810,7 +810,9 @@ else{output.innerHTML = d;}
 <option value="Teradata">Teradata</option>
 <option value="Exadata">Exadata</option>
 <option value="Greenplum">Greenplum</option>
-<option value="Neteeza">Neteeza</option>
+<option value="Neteeza">Netezza</option>
+<option value="Oracle">Oracle</option>
+<option value="SQL Server">SQL Server</option>
 </select>
 </td>
 </tr>
@@ -827,7 +829,7 @@ else{output.innerHTML = d;}
 </tr>
 
 <tr>
-<td>Can we connect and instant database</td>
+<td>Allow tool to connect to database or manually upload information</td>
 <td>
 	<div class="radioBtn">
 	<input name="Connect Database" type="radio" value="Yes" id="instantDB1"/><label class="form-check-label" for="instantDB1">Yes</label>
@@ -865,7 +867,7 @@ else{output.innerHTML = d;}
 
 
 <tr>
-<td>Download Template to provide input<br />APPLIED FOR</td>
+<td>Download Template or Upload files</td>
 <td>
 <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>DM Volumetrics</button></div>
 <div class="w280px floatL"><div class="custom-file">
@@ -874,13 +876,13 @@ else{output.innerHTML = d;}
 	<a href="#">Upload</a>
   </div>
  </div><br class="clrB">
- <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Schema Details</button></div>
+<!--<div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Schema Details</button></div>
 <div class="w280px floatL"><div class="custom-file">
     <input type="file" class="custom-file-input" id="schemaUpload" required>
     <label class="custom-file-label" for="schemaUpload">Choose file...</label>
 	<a href="#">Upload</a>
   </div>
- </div><br class="clrB">
+ </div><br class="clrB"> -->
  <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Workload Details</button></div>
 <div class="w280px floatL"><div class="custom-file">
     <input type="file" class="custom-file-input" id="workloadUpload" required>
@@ -1204,7 +1206,7 @@ else{output.innerHTML = d;}
 <option value="Teradata">Teradata</option>
 <option value="Exadata">Exadata</option>
 <option value="Greenplum">Greenplum</option>
-<option value="Neteeza">Neteeza</option>
+<option value="Neteeza">Netezza</option>
 <option value="Oracle">Oracle</option>
 <option value="SQL Server">SQL Server</option>
 </select>
@@ -1250,7 +1252,7 @@ else{output.innerHTML = d;}
 
 
 <tr>
-<td>Select Zip File to Upload with DDLs</td>
+<td>Select File to Upload with DDLs or download files</td>
 <td>
 <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Tables DDL</button></div>
 <div class="w280px floatL"><div class="custom-file">
@@ -1923,6 +1925,8 @@ function errorHandler(evt) {
 	piechart('piechart5','Total Loops & Cursors','Total Conditionals','Total Dynamic SQLs','',69,374,3136,0);
 	piechart('piechart6','Low Complexity','Medium Complexity','High Complexity','',619,143,19,'');
 	function piechart(ID,l1,l2,l3,l4,lval1,lval2,lval3,lval4){
+	var arr = [{name: l1,y: lval1}, {name: l2,y: lval2}, {name: l3,y: lval3},{name: l4,y: lval4}];
+	
 	// Build the chart
 Highcharts.chart(ID, {
     chart: {
@@ -1955,21 +1959,7 @@ Highcharts.chart(ID, {
     series: [{
         name: '',
         colorByPoint: true,
-        data: [{
-            name: l1,
-            y: lval1
-            
-        }, {
-            name: l2,
-            y: lval2
-        }, {
-            name: l3,
-            y: lval3
-        },
-		{
-            name: l4,
-            y: lval4
-        }]
+        data: arr
     }]
 });
 }
