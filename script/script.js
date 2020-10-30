@@ -20,6 +20,37 @@ var labelNameDL;
 
 
 $(document).ready(function() {
+	
+	
+	$(document).on("click","#LCEsubmit",function() {
+		$(".chkBox").each(function(){
+  $(this).val(($(this).is(":checked") ? "Yes" : "No"));
+  });
+		var formData = {
+		"id":$("#emailLogin").val(),
+		"Legacy_Labor_Cost":$("#legacyID1").val(),
+		"Legacy_HW_Cost":$("#legacyID2").val(),
+		"Legacy_License_Cost":$("#legacyID3").val(),
+		"Legacy_Misc_Cost":$("#legacyID4").val(),
+		"Legacy_EDW_Technology":$("#legacyID5").val(),
+		"Legacy_EDW_Retire":$("#legacyID6").val(),
+		"Legacy_EDW_YearToRetire":$("#legacyID7").val(),
+		"Legacy_EDW_TargetTechnology":$("#legacyID8").val()		
+	}
+	
+	$.ajax({
+  type: "POST",
+  url: "https://ty25i7u6ib.execute-api.us-east-1.amazonaws.com/dev1/LegacyCost-dev",
+  data:JSON.stringify(formData),
+  success: function(data){
+	  alert("success");
+  },
+  dataType: "json",
+  contentType : "application/json"
+}); 
+	});
+
+
 
 	$(document).on("click",".pieIcon1.active a",function() {
 		$(this).parent().removeClass("active");
