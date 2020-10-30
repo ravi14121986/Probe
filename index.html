@@ -110,25 +110,25 @@ $(function(){
 				
 				<td width="20%"><b>Legacy Labor Cost</b></td>
 				<td class="parnt">
-				<input type="text" name="Legacy Labor Cost" maxlength="30" value="2000" class="lLaborCost form-control wd300" />
+				<input type="text" name="Legacy Labor Cost" id="legacyID1" maxlength="30" value="2000" class="lLaborCost form-control wd300" />
 				</td>
 				</tr>
 				<tr>
 				<td><b>Legacy H/W Cost</b></td>
 				<td class="parnt">
-				<input type="text" name="Legacy H/W Cost" maxlength="30" value="500" class="lHWCost form-control wd300" />
+				<input type="text" name="Legacy H/W Cost" id="legacyID2" maxlength="30" value="500" class="lHWCost form-control wd300" />
 				</td>
 				</tr>
 				<tr>
 				<td><b>Legacy License Cost</b></td>
 				<td class="parnt">
-				<input type="text" name="Legacy License Cost" maxlength="30" value="500" class="lLicenseCost form-control wd300" />
+				<input type="text" name="Legacy License Cost" id="legacyID3" maxlength="30" value="500" class="lLicenseCost form-control wd300" />
 				</td>
 				</tr>
 				<tr>
 				<td><b>Legacy Misc Cost</b></td>
 				<td class="parnt">
-				<input type="text" name="EstimatedCloudCost" maxlength="30" value="500" class="estimatedCloudCost form-control wd300" />
+				<input type="text" name="Legacy Misc Cost" id="legacyID4" maxlength="30" value="500" class="lMiscCost form-control wd300" />
 				</td>
 				</tr>
 				</table>
@@ -137,284 +137,286 @@ $(function(){
 				<th>Legacy Technology Stack</th><th></th><th>Retire</th><th>Years to Retire</th><th>Target Technology</th><th>Current Sizing File</th></tr>
 				<tr>
 				<td>Legacy EDW Technology</td><td>
-					<select class="form-control">
+					<select class="form-control" id="legacyID5">
 					<option value="Teradata">Teradata</option>
 					<option value="Exadata">Exadata</option>
 					<option value="Greenplum">Greenplum</option>
-					<option value="Neteeza">Neteeza</option>
+					<option value="Netezza">Netezza</option>
 					<option value="Oracle">Oracle</option>
 					<option value="SQL Server">SQL Server</option>
 					</select>
 				</td>
 				<td class="tglSwitch">
 					<label class="tSwitch">
-  <input type="checkbox" checked>
+  <input type="checkbox" checked id="legacyID6" class="chkBox">
   <span class="chkSlider round"></span>
 </label>
 				</td>
 				<td>
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+  <input type="range" min="1" max="5" class="slider" value="5" id="legacyID7">  
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				<td><input type="text" name="" maxlength="30" value="" id="legacyID8" class="form-control" />
 				</td>
 				<td><div class="custom-file">
-    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
-    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+    <input type="file" class="custom-file-input" id="dataWhouseupload1" required>
+    <label class="custom-file-label" for="dataWhouseupload1">Choose file...</label>
 	<a href="#">Upload</a>
   </div></td></tr>
   
   <tr>
 				<td>Legacy ETL Technology</td><td>
-					<select class="form-control">
+					<select class="form-control" id="legacyID9">
 					<option value="Teradata">Teradata</option>
 					<option value="Exadata">Exadata</option>
 					<option value="Greenplum">Greenplum</option>
-					<option value="Neteeza">Neteeza</option>
+					<option value="Netezza">Netezza</option>
 					<option value="Oracle">Oracle</option>
 					<option value="SQL Server">SQL Server</option>
 					</select>
 				</td>
 				<td class="tglSwitch">
 					<label class="tSwitch">
-  <input type="checkbox" checked>
+  <input type="checkbox" checked id="legacyID10">
   <span class="chkSlider round"></span>
 </label>
 				</td>
 				<td>
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+  <input type="range" min="1" max="5" value="5" class="slider" id="legacyID11">  
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				<td><input type="text" name="" maxlength="30" value="" id="legacyID12" class="form-control" />
 				</td>
 				<td><div class="custom-file">
-    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
-    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+    <input type="file" class="custom-file-input" id="dataWhouseupload2" required>
+    <label class="custom-file-label" for="dataWhouseupload2">Choose file...</label>
 	<a href="#">Upload</a>
   </div></td></tr>
   
   <tr>
 				<td>Legacy BI Tool</td><td>
-					<select class="form-control">
+					<select class="form-control" id="legacyID13">
 					<option value="Teradata">Teradata</option>
 					<option value="Exadata">Exadata</option>
 					<option value="Greenplum">Greenplum</option>
-					<option value="Neteeza">Neteeza</option>
+					<option value="Netezza">Netezza</option>
 					<option value="Oracle">Oracle</option>
 					<option value="SQL Server">SQL Server</option>
 					</select>
 				</td>
 				<td class="tglSwitch">
 					<label class="tSwitch">
-  <input type="checkbox" checked>
+  <input type="checkbox" checked id="legacyID14">
   <span class="chkSlider round"></span>
 </label>
 				</td>
 				<td>
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+  <input type="range" min="1" max="5" value="5" class="slider" id="legacyID15">  
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				<td><input type="text" name="" maxlength="30" value="" id="legacyID16" class="form-control" />
 				</td>
 				<td><div class="custom-file">
-    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
-    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+    <input type="file" class="custom-file-input" id="dataWhouseupload3" required>
+    <label class="custom-file-label" for="dataWhouseupload3">Choose file...</label>
 	<a href="#">Upload</a>
   </div></td></tr>
   
   <tr>
 				<td>Legacy Analytics Tool</td><td>
-					<select class="form-control">
+					<select class="form-control" id="legacyID17">
 					<option value="Teradata">Teradata</option>
 					<option value="Exadata">Exadata</option>
 					<option value="Greenplum">Greenplum</option>
-					<option value="Neteeza">Neteeza</option>
+					<option value="Netezza">Netezza</option>
 					<option value="Oracle">Oracle</option>
 					<option value="SQL Server">SQL Server</option>
 					</select>
 				</td>
 				<td class="tglSwitch">
 					<label class="tSwitch">
-  <input type="checkbox" checked>
+  <input type="checkbox" checked id="legacyID18">
   <span class="chkSlider round"></span>
 </label>
 				</td>
 				<td>
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+  <input type="range" min="1" max="5" value="5" class="slider" id="legacyID19">  
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				<td><input type="text" name="" maxlength="30" value="" id="legacyID20" class="form-control" />
 				</td>
 				<td><div class="custom-file">
-    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
-    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+    <input type="file" class="custom-file-input" id="dataWhouseupload4" required>
+    <label class="custom-file-label" for="dataWhouseupload4">Choose file...</label>
 	<a href="#">Upload</a>
   </div></td></tr>
   
   <tr>
 				<td>Legacy Data Catalog</td><td>
-					<select class="form-control">
+					<select class="form-control" id="legacyID21">
 					<option value="Teradata">Teradata</option>
 					<option value="Exadata">Exadata</option>
 					<option value="Greenplum">Greenplum</option>
-					<option value="Neteeza">Neteeza</option>
+					<option value="Netezza">Netezza</option>
 					<option value="Oracle">Oracle</option>
 					<option value="SQL Server">SQL Server</option>
 					</select>
 				</td>
 				<td class="tglSwitch">
 					<label class="tSwitch">
-  <input type="checkbox" checked>
+  <input type="checkbox" checked id="legacyID22">
   <span class="chkSlider round"></span>
 </label>
 				</td>
 				<td>
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+  <input type="range" min="1" max="5" value="5" class="slider" id="legacyID23">  
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				<td><input type="text" name="" maxlength="30" value="" id="legacyID24" class="form-control" />
 				</td>
 				<td><div class="custom-file">
-    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
-    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+    <input type="file" class="custom-file-input" id="dataWhouseupload5" required>
+    <label class="custom-file-label" for="dataWhouseupload5">Choose file...</label>
 	<a href="#">Upload</a>
   </div></td></tr>
   
   <tr>
 				<td>Legacy Data Lineage Tool</td><td>
-					<select class="form-control">
+					<select class="form-control" id="legacyID25">
 					<option value="Teradata">Teradata</option>
 					<option value="Exadata">Exadata</option>
 					<option value="Greenplum">Greenplum</option>
-					<option value="Neteeza">Neteeza</option>
+					<option value="Netezza">Netezza</option>
 					<option value="Oracle">Oracle</option>
 					<option value="SQL Server">SQL Server</option>
 					</select>
 				</td>
 				<td class="tglSwitch">
 					<label class="tSwitch">
-  <input type="checkbox" checked>
+  <input type="checkbox" checked id="legacyID26">
   <span class="chkSlider round"></span>
 </label>
 				</td>
 				<td>
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+  <input type="range" min="1" max="5" value="5" class="slider" id="legacyID27">  
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				<td><input type="text" name="" maxlength="30" value="" id="legacyID28" class="form-control" />
 				</td>
 				<td><div class="custom-file">
-    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
-    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+    <input type="file" class="custom-file-input" id="dataWhouseupload6" required>
+    <label class="custom-file-label" for="dataWhouseupload6">Choose file...</label>
 	<a href="#">Upload</a>
   </div></td></tr>
   
   <tr>
 				<td>Legacy MDM Tool</td><td>
-					<select class="form-control">
+					<select class="form-control" id="legacyID29">
 					<option value="Teradata">Teradata</option>
 					<option value="Exadata">Exadata</option>
 					<option value="Greenplum">Greenplum</option>
-					<option value="Neteeza">Neteeza</option>
+					<option value="Netezza">Netezza</option>
 					<option value="Oracle">Oracle</option>
 					<option value="SQL Server">SQL Server</option>
 					</select>
 				</td>
 				<td class="tglSwitch">
 					<label class="tSwitch">
-  <input type="checkbox" checked>
+  <input type="checkbox" checked id="legacyID30">
   <span class="chkSlider round"></span>
 </label>
 				</td>
 				<td>
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+  <input type="range" min="1" max="5" value="5" class="slider" id="legacyID31">  
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				<td><input type="text" name="" maxlength="30" value="" id="legacyID32" class="form-control" />
 				</td>
 				<td><div class="custom-file">
-    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
-    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+    <input type="file" class="custom-file-input" id="dataWhouseupload7" required>
+    <label class="custom-file-label" for="dataWhouseupload7">Choose file...</label>
 	<a href="#">Upload</a>
   </div></td></tr>
   
   <tr>
 				<td>Legacy Data Quality Tool</td><td>
-					<select class="form-control">
+					<select class="form-control" id="legacyID33">
 					<option value="Teradata">Teradata</option>
 					<option value="Exadata">Exadata</option>
 					<option value="Greenplum">Greenplum</option>
-					<option value="Neteeza">Neteeza</option>
+					<option value="Netezza">Netezza</option>
 					<option value="Oracle">Oracle</option>
 					<option value="SQL Server">SQL Server</option>
 					</select>
 				</td>
 				<td class="tglSwitch">
 					<label class="tSwitch">
-  <input type="checkbox" checked>
+  <input type="checkbox" checked id="legacyID34">
   <span class="chkSlider round"></span>
 </label>
 				</td>
 				<td>
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+  <input type="range" min="1" max="5" value="5" class="slider" id="legacyID35">  
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				<td><input type="text" name="" maxlength="30" value="" id="legacyID36" class="form-control" />
 				</td>
 				<td><div class="custom-file">
-    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
-    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+    <input type="file" class="custom-file-input" id="dataWhouseupload8" required>
+    <label class="custom-file-label" for="dataWhouseupload8">Choose file...</label>
 	<a href="#">Upload</a>
   </div></td></tr>
   
   <tr>
 				<td>Legacy Data Governance Tool</td><td>
-					<select class="form-control">
+					<select class="form-control" id="legacyID37">
 					<option value="Teradata">Teradata</option>
 					<option value="Exadata">Exadata</option>
 					<option value="Greenplum">Greenplum</option>
-					<option value="Neteeza">Neteeza</option>
+					<option value="Netezza">Netezza</option>
 					<option value="Oracle">Oracle</option>
 					<option value="SQL Server">SQL Server</option>
 					</select>
 				</td>
 				<td class="tglSwitch">
 					<label class="tSwitch">
-  <input type="checkbox" checked>
+  <input type="checkbox" checked id="legacyID38">
   <span class="chkSlider round"></span>
 </label>
 				</td>
 				<td>
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+  <input type="range" min="1" max="5" value="5" class="slider" id="legacyID39">  
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td><input type="text" name="" maxlength="30" value="" class="form-control" />
+				<td><input type="text" name="" maxlength="30" value="" id="legacyID40" class="form-control" />
 				</td>
 				<td><div class="custom-file">
-    <input type="file" class="custom-file-input" id="dataWhouseupload" required>
-    <label class="custom-file-label" for="dataWhouseupload">Choose file...</label>
+    <input type="file" class="custom-file-input" id="dataWhouseupload9" required>
+    <label class="custom-file-label" for="dataWhouseupload9">Choose file...</label>
 	<a href="#">Upload</a>
   </div></td></tr>
 				</table>
 				</form>
+				
+				<button id="LCEsubmit" class="btn btn-primary btn-block">Submit</button>
 				</div>
 		</div>
 <div id="adminDashboard" class="adminDashboard bg pageCover">
@@ -604,7 +606,7 @@ $(function(){
 <div id="roiCalculator" class="roiCalculator bg pageCover">
 		<h5><span>ROI Calculator</span></h5>
 		<div class="roiCalculatorCover bsh">
-		<form action="" method="post" id="dashboardform">
+		<form action="" method="post" id="ROIform">
 			<table align="center" cellpadding = "6" class="mrgT20"> 
 				<tr>
 				<td width="40%">Migration Pattern</td>
@@ -810,7 +812,7 @@ else{output.innerHTML = d;}
 <option value="Teradata">Teradata</option>
 <option value="Exadata">Exadata</option>
 <option value="Greenplum">Greenplum</option>
-<option value="Neteeza">Netezza</option>
+<option value="Netezza">Netezza</option>
 <option value="Oracle">Oracle</option>
 <option value="SQL Server">SQL Server</option>
 </select>
@@ -829,7 +831,7 @@ else{output.innerHTML = d;}
 </tr>
 
 <tr>
-<td>Allow tool to connect to database or manually upload information</td>
+<td>Allow tool to connect to your Instance or manually upload information</td>
 <td>
 	<div class="radioBtn">
 	<input name="Connect Database" type="radio" value="Yes" id="instantDB1"/><label class="form-check-label" for="instantDB1">Yes</label>
@@ -1195,7 +1197,7 @@ else{output.innerHTML = d;}
 
 <div id="schemaInputs" class="bg schemaInputs pageCover">
 		<h5>Schema and Stored Code Inputs</h5>
-<form action="" method="post" id="inputPage1form">
+<form action="" method="post" id="schemaInputsform">
  
 <table align="center" cellpadding = "6" class="mrgT20">
  
@@ -1206,7 +1208,7 @@ else{output.innerHTML = d;}
 <option value="Teradata">Teradata</option>
 <option value="Exadata">Exadata</option>
 <option value="Greenplum">Greenplum</option>
-<option value="Neteeza">Netezza</option>
+<option value="Netezza">Netezza</option>
 <option value="Oracle">Oracle</option>
 <option value="SQL Server">SQL Server</option>
 </select>
@@ -1214,7 +1216,7 @@ else{output.innerHTML = d;}
 </tr>
 
 <tr>
-<td>Can we Connect and Inspect Database</td>
+<td>Allow tool to connect to your instance or manually upload information</td>
 <td>
 	<div class="radioBtn">
 	<input name="ConnectSchemaDatabase" type="radio" value="Yes" id="instantSchemaDB1"/><label class="form-check-label" for="instantSchemaDB1">Yes</label>
@@ -1222,35 +1224,6 @@ else{output.innerHTML = d;}
 	</div>
 </td>
 </tr>
-
-<tr>
-<td class="vAlignT">Please Provide DB Connection String</td>
- 
-<td>
-	<div class="hostTable">
-	<table>
-	<tr>
-	<td >Host Name</td>
-	<td><input type="text" name="DB Host Name" maxlength="30" class="form-control wd300" /></td>
-	</tr>
-	 
-	<tr>
-	<td>User Name</td>
-	<td><input type="text" name="DB UserName" maxlength="30" class="form-control wd300" /></td>
-	</tr>
-	 
-	<tr>
-	<td>Password</td>
-	<td><input type="text" name="DB Password" maxlength="30" class="form-control wd300" /></td>
-	</tr>
-	</table>
-	</div>
-</td>
-</tr>
-
- 
-
-
 <tr>
 <td>Select File to Upload with DDLs or download files</td>
 <td>
@@ -1275,6 +1248,30 @@ else{output.innerHTML = d;}
 	<a href="#">Upload</a>
   </div>
  </div>
+</td>
+</tr>
+<tr>
+<td class="vAlignT">Please Provide DB Connection String</td>
+ 
+<td>
+	<div class="hostTable">
+	<table>
+	<tr>
+	<td >Host Name</td>
+	<td><input type="text" name="DB Host Name" maxlength="30" class="form-control wd300" /></td>
+	</tr>
+	 
+	<tr>
+	<td>User Name</td>
+	<td><input type="text" name="DB UserName" maxlength="30" class="form-control wd300" /></td>
+	</tr>
+	 
+	<tr>
+	<td>Password</td>
+	<td><input type="text" name="DB Password" maxlength="30" class="form-control wd300" /></td>
+	</tr>
+	</table>
+	</div>
 </td>
 </tr>
  
