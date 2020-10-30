@@ -334,7 +334,7 @@ position: absolute;
     overflow-y: scroll;
     position: relative;}
 	#mySidepanel{height:auto;}
-	#dashboardform table{width:580px;}
+	#dashboardform table,#ROIform table{width:580px;}
 	#dashboardform .tabBtn{    margin: 0 auto;
     float: none;}
 	.datatableCover{
