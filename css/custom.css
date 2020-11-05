@@ -46,7 +46,7 @@ body{background:#c9c9c9!important;}
 vertical-align: middle;
 border-radius:20px 20px 0 0;
 font-size: 24px;
-    padding: 0 200px 0 80px;
+    padding: 0 80px 0 80px;
     text-align: center;} 
 .bg table td{vertical-align: top;}
 .bg table{width:90%;}
@@ -337,6 +337,8 @@ position: absolute;
 	#dashboardform table,#ROIform table{width:580px;}
 	#dashboardform .tabBtn, #ROIform .tabBtn{    margin: 0 auto;
     float: none;}
+	.legacyDatabase{min-width:130px;}
+	#LCEsubmit{width:200px;margin:0 auto;}
 	.datatableCover{
 		    width: 90%;
     margin: 30px auto;
@@ -656,6 +658,59 @@ border-radius:15px;border:2px solid #027cff;}
 	.heatMapDropDown{
 		float: right;
     margin: 31px 5px 0 0}
+	.deleteRow{background: #fff url(../images/dustbin.png) no-repeat;
+    width: 20px;
+    height: 26px;
+    background-size: 100% 100%;
+    display: inline-block;
+    margin: 6px 0 0 3px;}
+	#legacyTechTotal input{    border: none!important;
+    background: #fff!important;
+    font-weight: bold;
+    width: 200px!important;
+    text-align: center;
+    box-shadow: 0px 8px 0px 2px #0be102;
+    color: #0097d9;
+}
+	#legacyTechTotal .tdBG{
+    color: #000;
+    border: 1px solid #fff;
+    vertical-align: middle;}
+	#legacyTechlgy_filter{display:none;}
+	.legacyTechlgyCover{position: relative;
+    margin: 25px 0 0 0;
+    float: left;
+    width: 100%;}
+	.legacyTechlgyCover .addNew{position: absolute;
+    right: 3px;
+    background: #007bff;
+    color: #fff;
+    padding: 3px 18px;
+    border-radius: 6px;z-index:9;    text-decoration: none;}
+	.legacyTechlgyCover .addNew:hover{background:#005cbf;}
+	#legacyTechTotal .tdBG div{
+	width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 0 auto;
+    color: #0097d9;
+    text-align: center;
+    padding: 81px 15px 0 15px;
+    /* border: 2px solid #04b3ff; */
+    font-weight: 600;
+    box-shadow: 0px -4px 0px 4px #00c4ff;
+    font-family: verdana;
+    font-size: 12px;
+	}
+	.laborCost{background: #fff url(../images/laborCost.png) no-repeat 47px 14px;
+    background-size: 50px 60px;}
+	.hardwareCost{    background: #fff url(../images/hardwareCost.png) no-repeat 39px 18px;
+    background-size: 60px 54px;}
+	.licenseCost{background: #fff url(../images/licenseCost.png) no-repeat 35px 22px;
+    background-size: 70px 51px;}
+	.miscCost{    background: #fff url(../images/miscCost.png) no-repeat 41px 20px;
+    background-size: 50px 53px;}
+	#legacyTechTotal{width: 425px!important;}
 	.legacyIcon{background: #fff url(../images/legacy.png) no-repeat 3px 5px;
     background-size: 26px 25px;}
 	.legacyIcon:hover{background: #ececec url(../images/legacy.png) no-repeat 3px 5px;
@@ -861,8 +916,10 @@ input:checked + .chkSlider:before {
 #lCostEstimator .rangeNum span:nth-child(4){width:33px;}
 #lCostEstimator table{width:100%;}
 #lCostEstimator .legacyTechlgy th{
-		background:#04b3ff;
-		border:1px solid #fff;
+		background: #00c4ff;
+    border: 1px solid #fff;
+    font-family: verdana;
+    font-size: 13px;
 	}
 #lCostEstimator .legacyTechlgy td{
 		background:#fff;
@@ -872,3 +929,5 @@ input:checked + .chkSlider:before {
     background: #fff;
     min-width: 980px;
     margin: 30px auto;}
+.singleBtn{width:200px;}
+.mrg20Auto{margin:20px auto;}
