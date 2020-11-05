@@ -702,8 +702,8 @@ border-radius:15px;border:2px solid #027cff;}
     font-family: verdana;
     font-size: 12px;
 	}
-	.laborCost{background: #fff url(../images/laborCost.png) no-repeat 47px 14px;
-    background-size: 50px 60px;}
+	.laborCost{    background: #fff url(../images/laborCost.png) no-repeat 42px 14px;
+    background-size: 60px 60px;}
 	.hardwareCost{    background: #fff url(../images/hardwareCost.png) no-repeat 39px 18px;
     background-size: 60px 54px;}
 	.licenseCost{background: #fff url(../images/licenseCost.png) no-repeat 35px 22px;
