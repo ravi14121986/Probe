@@ -23,22 +23,26 @@ $(document).ready(function() {
 	
 	
 	$(document).on("click","#LCEsubmit",function() {
-		$(".chkBox").each(function(){
-  $(this).val(($(this).is(":checked") ? "Yes" : "No"));
-  });
-		var formData = {
+		
+		/*var formData = {
 		"id":$("#emailLogin").val(),
 		"Legacy_Labor_Cost":$("#legacyID1").val(),
-		"Legacy_HW_Cost":$("#legacyID2").val(),
-		"Legacy_License_Cost":$("#legacyID3").val(),
-		"Legacy_Misc_Cost":$("#legacyID4").val(),
-		"Legacy_EDW_Technology":$("#legacyID5").val(),
-		"Legacy_EDW_Retire":$("#legacyID6").val(),
-		"Legacy_EDW_YearToRetire":$("#legacyID7").val(),
-		"Legacy_EDW_TargetTechnology":$("#legacyID8").val()		
-	}
+		
+	}*/
+	var legacyLebarSum = 0;
+  $(".legacyLebarC1").each(function(){legacyLebarSum += parseFloat($(this).val());});
+  $('#legacyID1').val(legacyLebarSum + '$');
+  var legacyHWSum = 0;
+  $(".legacyHWC1").each(function(){legacyHWSum += parseFloat($(this).val());});
+  $('#legacyID2').val(legacyHWSum + '$');
+  var legacyLicenseSum = 0;
+  $(".legacyLicenseC1").each(function(){legacyLicenseSum += parseFloat($(this).val());});
+  $('#legacyID3').val(legacyLicenseSum + '$');
+  var legacyMiscSum = 0;
+  $(".legacyMiscC1").each(function(){legacyMiscSum += parseFloat($(this).val());});
+  $('#legacyID4').val(legacyMiscSum + '$');
 	
-	$.ajax({
+	/*$.ajax({
   type: "POST",
   url: "https://ty25i7u6ib.execute-api.us-east-1.amazonaws.com/dev1/LegacyCost-dev",
   data:JSON.stringify(formData),
@@ -47,7 +51,7 @@ $(document).ready(function() {
   },
   dataType: "json",
   contentType : "application/json"
-}); 
+}); */
 	});
 
 
@@ -259,6 +263,39 @@ $(".btnDownload2").click(function (e) {
          }
       }]
    });
+   var dropDown1 = $(".dropDown1").html();
+   var dropDown2 = $(".dropDown2").html();
+   var inputColumn1 = $(".inputColumn1").html();
+   var inputColumn2 = $(".inputColumn2").html();
+   var inputColumn3 = $(".inputColumn3").html();
+   var inputColumn4 = $(".inputColumn4").html();
+   var inputColumn5 = $(".inputColumn5").html();
+   var inputColumn6 = $(".inputColumn6").html();
+   var legacyTechlgy = $('#legacyTechlgy').DataTable({
+      'columnDefs': [{
+         'targets': 0,
+         'orderable':false,
+         'className': 'dt-body-center'
+      }]
+   });
+ 
+    $(document).on("click",".addNew",function() {
+        legacyTechlgy.row.add( [
+            dropDown1,
+            dropDown2,
+            inputColumn1,
+            inputColumn2,
+            inputColumn3,
+			inputColumn4,
+			inputColumn5,
+			inputColumn6
+      ] ).draw( false );
+ 
+       
+    } );
+	$(document).on("click",".deleteRow",function() {
+		 legacyTechlgy.row($(this).parents('tr')).remove().draw();
+	 });
 	
       $('.errorEmail').hide();
 	  $('.invalid_email').hide();
