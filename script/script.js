@@ -17,9 +17,207 @@ var year3line;
 var year4line;
 var year5line;
 var labelNameDL;
+var obj;
+ 
 
 
 $(document).ready(function() {
+	
+	$(document).on("click","#schemaSubmit",function() {
+	var rValue = $('input[name="ConnectSchemaDatabase"]:checked').val();
+	var schemaData = {
+		"id":$("#userNm").val(),
+		"Technology":$("#schemaTechnology").val(),
+		"Allow tool to connect to your instance":rValue,
+		"Host Name":$("#schemaHostName").val(),
+		"User Name":$("#schemaUserName").val(),
+		"Password":$("#schemaPassword").val()		
+	}
+	$.ajax({
+  type: "POST",
+  url: "https://6ffu48re50.execute-api.us-east-1.amazonaws.com/dev/",
+  data:JSON.stringify(schemaData),
+  success: function(data){
+	  alert("Success"+rValue)
+  },
+  dataType: "json",
+  contentType : "application/json"
+});
+	});
+	
+	
+	$(document).on("click","#workloadSubmit",function() {
+	var rValue = $('input[name="workloadDatabaseR"]:checked').val();
+	var schemaData = {
+		"id":$("#userNm").val(),
+		"Technology":$("#workloadTechnology").val(),
+		"Platform":$("#workloadPlatform").val(),
+		"Allow tool to connect to your instance":rValue,
+		"Host Name":$("#workloadHostname").val(),
+		"User Name":$("#workloadUsername").val(),
+		"Password":$("#workloadPassword").val()		
+	}
+	$.ajax({
+  type: "POST",
+  url: "https://hhm86ao3w2.execute-api.us-east-1.amazonaws.com/dev/",
+  data:JSON.stringify(schemaData),
+  success: function(data){
+	  alert("Success"+rValue)
+  },
+  dataType: "json",
+  contentType : "application/json"
+});
+	});
+	
+	
+	$(document).on("click","#ETL_BI_Submit",function() {
+	var etlValue = $('input[name="ETL_R"]:checked').val();
+	var biValue = $('input[name="BiTool_R"]:checked').val();
+	var schemaData = {
+		"id":$("#userNm").val(),
+		"Connect to ETL Code Repository?":etlValue,
+		"ETL Host Name":$("#ETL_Hostname").val(),
+		"ETL User Name":$("#ETL_UserName").val(),
+		"ETL Password":$("#ETL_Password").val(),
+		"Connect to BI Tool Repository?":biValue,
+		"BI Host Name":$("#BI_Hostname").val(),
+		"BI User Name":$("#BI_UserName").val(),
+		"BI Password":$("#BI_Password").val()			
+	}
+	$.ajax({
+  type: "POST",
+  url: "https://6i7jf6rx6c.execute-api.us-east-1.amazonaws.com/dev/",
+  data:JSON.stringify(schemaData),
+  success: function(data){
+	  alert("Success");
+  },
+  dataType: "json",
+  contentType : "application/json"
+});
+	});
+	
+	
+	$(document).on("click","#sensitiveDataSubmit",function() {
+	var PCIcheck = $('#PCIcheck:checked').val();
+	var SOC1check = $('#SOC1check:checked').val();
+	var HIPPAcheck = $('#HIPPAcheck:checked').val();
+	var PIcheck = $('#PIcheck:checked').val();
+	var schemaData = {
+		"id":$("#userNm").val(),
+		"Regulatory Compliance PCI/DSS":PCIcheck,
+		"Regulatory Compliance SOC1/SOC2":SOC1check,
+		"Regulatory Compliance HIPPA":HIPPAcheck,
+		"Regulatory Compliance PI":PIcheck,
+		"Data Masking":$("#Data_Masking").val(),
+		"Tokenization":$("#Tokenization").val(),
+		"Number of Sensitive DB":$("#sensitiveDB").val(),
+		"Number of Sensitive Files":$("#sensitiveFiles").val(),
+		"Number of Sensitive API Access":$("#API_Access").val(),
+		"Number of Sensitive Tools":$("#sensitiveTools").val(),
+"Non-Prod Environments":$("#Non-Prod-Dev").val(),
+		"Non-Prod Test":$("#Non-Prod-Test").val(),		
+		"Sensitive Data Catalogue":$("#sensitive_Data_Catalogue").val()
+		
+	}
+	$.ajax({
+  type: "POST",
+  url: "https://1maeyfot48.execute-api.us-east-1.amazonaws.com/dev/",
+  data:JSON.stringify(schemaData),
+  success: function(data){
+	  alert("Success");
+  },
+  dataType: "json",
+  contentType : "application/json"
+});
+	});
+	
+
+	$(document).on("click","#qualityAsubmit",function() {
+	var schemaData = {
+		"id":$("#userNm").val(),
+		"Success Migration":$("#successMigration").val(),
+		"Estimation DataVolume":$("#estimationDataVolume").val(),
+		"Retention Policy":$("#retentionPolicy").val(),
+		"Archival Policy":$("#archivalPolicy").val(),
+		"DR Strategy":$("#DR_Strategy").val(),
+		"Prod Capacity":$("#prodCapacity").val(),
+"License Units":$("#licenseUnits").val(),
+"Expected Growth":$("#expectedGrowth").val(),
+"ETL Tools":$("#ETL_Tools_Quality").val()		
+	}
+	$.ajax({
+  type: "POST",
+  url: "https://o99s4wit64.execute-api.us-east-1.amazonaws.com/dev",
+  data:JSON.stringify(schemaData),
+  success: function(data){
+	  alert("Success");
+  },
+  dataType: "json",
+  contentType : "application/json"
+});
+	});
+
+	
+$('#datepick1').datepicker({
+});
+$('#datepick2').datepicker({
+});
+
+$(document).on("click","#assessmentTblSubmit",function() {
+	$("#assessmentName").val($("#assessmentNamePop").val());
+	$("#firstName").val($("#firstNamePop").val());
+	$("#lastName").val($("#lastNamePOP").val());
+	
+	$(".assessmentPop").hide();
+	$(".popUpCartBg").hide();
+});
+$(document).on("click",".assessmentPopInner h1 span",function() {
+	$(".assessmentPop").hide();
+	$(".popUpCartBg").hide();
+});
+$(document).on("click",".editIcon",function() {
+	$(".assessmentPop").show();
+	$(".popUpCartBg").show();
+});
+var assessmentTbl = $('#assessmentTbl').DataTable({
+	'lengthMenu': [3, 6],
+	'pageLength': 2,
+      'columnDefs': [{
+         'targets': 0,
+         'searchable':false,
+         'orderable':false,
+         'className': 'dt-body-center',
+         'render': function (data, type, full, meta){
+             return '<input type="checkbox" name="id[]" value="' 
+                + $('<div/>').text(data).html() + '">';
+         }
+      }]
+   });
+	$.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users", function(data, status){
+    obj = JSON.stringify(data);
+	obj = JSON.parse(obj);
+});
+	
+	
+	var locations = {
+        'Legacy EDW Technology': ['Teradata','Netezza','Exadata','Greenplum', 'Oracle', 'SQL Server'],
+        'Legacy ETL Technology': ['Informatica Power Center','Talend','Datastage','AWS Glue'],
+        'Legacy BI': ['Power BI','Tableau','Microstrategy','Cognos','Qlik'],
+        'Legacy MDM': ['Informatica MDM','Datastage MDM'],
+        'Legacy Data Catalog': ['Informatica EDC','Datastage Catalog','Alation','AWS Glue'],
+        'Legacy Data Governance': ['Collibra','Informatica Axon','Datastage Governance'],
+        'Legacy Data Lineage': ['Collibra','Waterline','Informatica Power Center'],
+		'Legacy Data Quality': ['Informatica Data Quality','Datastage Quality'],
+    }
+    
+    $(document).on("change",".legacyDD1",function() {
+		var $locations = $(this).parent().next('td').children('.legacyDD2');
+        var country = $(this).val(), lcns = locations[country] || [];
+        var html = $.map(lcns, function(lcn){
+            return '<option value="' + lcn + '">' + lcn + '</option>'
+        }).join('');
+        $locations.html(html)
+    });
 	
 	
 	$(document).on("click","#LCEsubmit",function() {
@@ -31,16 +229,16 @@ $(document).ready(function() {
 	}*/
 	var legacyLebarSum = 0;
   $(".legacyLebarC1").each(function(){legacyLebarSum += parseFloat($(this).val());});
-  $('#legacyID1').val(legacyLebarSum + '$');
+  $('#legacyID1').val('$ ' + legacyLebarSum);
   var legacyHWSum = 0;
   $(".legacyHWC1").each(function(){legacyHWSum += parseFloat($(this).val());});
-  $('#legacyID2').val(legacyHWSum + '$');
+  $('#legacyID2').val('$ ' + legacyHWSum);
   var legacyLicenseSum = 0;
   $(".legacyLicenseC1").each(function(){legacyLicenseSum += parseFloat($(this).val());});
-  $('#legacyID3').val(legacyLicenseSum + '$');
+  $('#legacyID3').val('$ ' + legacyLicenseSum);
   var legacyMiscSum = 0;
   $(".legacyMiscC1").each(function(){legacyMiscSum += parseFloat($(this).val());});
-  $('#legacyID4').val(legacyMiscSum + '$');
+  $('#legacyID4').val('$ ' + legacyMiscSum);
 	
 	/*$.ajax({
   type: "POST",
@@ -210,6 +408,7 @@ else{
   success: function(data){
 	  $(".successMsg, .popUpCartBg").show();
   $("#userSetupPage input").val("");
+  console.log(obj);
   },
   dataType: "json",
   contentType : "application/json"
@@ -846,21 +1045,36 @@ Highcharts.chart('assessmentBar', {
  });
  }
  var adminValidate = true;
+ 
  function IsEmail(email) {
+	
   var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   if(!regex.test(email)) {
   $(".emailLogin").addClass("errOutline");
     return false;
   }else{
+	  console.log(obj);
 	  var emailVal = $("#emailLogin").val();
 	  var passwordval = $("#passwordLogin").val();
 	  for (var i = 0; i < obj.length; i++){
-  if ((obj[i].EMail == emailVal)&&(obj[i].Password == passwordval)){
+  if ((obj[i].ID == emailVal)&&(obj[i].Password == passwordval)){
+	  
+	  for (var j = 0; j < adminObj.length; j++){
+  if ((adminObj[j].EMail == emailVal)){ 
 	  var correctVar  = $("#submitMemLogin").parents(".pageCover").attr("data-next");
 				 $(".pageCover").hide();
 				 $("."+correctVar).show();
 				 $(".adminMenu").show();$(".memMenu").hide();
+				 $(".loginUserName").show().html('<b>'+obj[i].First_Name+', '+obj[i].Last_Name+'</b><br>'+ emailVal);
 				 return true; 
+  }else
+  {
+				 $(".pageCover,.admMenu").hide();
+				 $("#adminDashboard").show();
+				 $(".adminMenu").show();$(".memMenu").hide();
+				 $(".loginUserName").show().html('<b>'+obj[i].First_Name+', '+obj[i].Last_Name+'</b><br>'+ emailVal);
+  }
+	  }
   }
   else{
 	  $(".errorAdmin").show();
