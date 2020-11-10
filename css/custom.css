@@ -270,14 +270,20 @@ background-size: 22px 22px;}
     border-radius: 0 4px 4px 0;
     background-size: 18px;
 }
+.w340px{width:340px!important;}
 .searchControl{height: 30px!important;
     border: 1px solid #005474!important;}
 .searchCover{width:100%; position:relative;}
-.searchContainer{
+.loginUserName{
+	padding-right:10px;
 position: absolute;
     top: 10px;
     right: 10px;
-	z-index:99;
+    z-index: 99;
+    display: none;
+    font-size: 13px;
+    font-family: verdana;
+    text-align: right;
 }
 .userSetupCover
 {
@@ -931,3 +937,51 @@ input:checked + .chkSlider:before {
     margin: 30px auto;}
 .singleBtn{width:200px;}
 .mrg20Auto{margin:20px auto;}
+.editIcon{background: url("../images/edit.png") no-repeat;
+	background-size: 100% 100%;
+	width: 40px;
+    height: 37px;
+    position: absolute;
+    right: -42px;
+    top: 6px;
+    cursor: pointer;}
+	.assessmentPop{    width: 700px;
+    height: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -350px;
+    margin-top: -250px;
+    z-index: 9999;
+    border-radius: 12px;display:none;}
+	.assessmentPopInner{width: 100%;
+    height: 100%;
+    position: relative;
+	padding:20px;    padding: 54px 20px 20px 20px;}
+	.assessmentPopInner h1{position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    font-size: 24px;
+    font-weight: bold;
+    background: #00c4ff;
+    height: 34px;
+    border-radius: 10px 10px 0 0;}
+	.assessmentPopInner td{padding:6px;}
+	.assessmentPopInner h1 span{    width: 24px;
+    height: 24px;
+    position: absolute;
+    background: url(../images/close.png) no-repeat;
+    background-size: 100% 100%;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;}
+	.datepicker td, .datepicker th {width:30px!important;height:30px!important;}
+	.datepicker-dropdown,.w224px{
+		width: 224px!important;}
+		.datepicker table,#assessmentINTable{width:100%;}
+		.assessmentPopInner table.dataTable tbody td{border:1px solid #00c4ff;}
+		#assessmentTblSubmit{width:220px;margin-top:5px;}
