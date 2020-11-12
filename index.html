@@ -52,20 +52,67 @@ $(function(){
 <h1>Assessment <span></span></h1>
 <table id="assessmentINTable">
 
-<tr><td>Name</td><td>
-<select class="form-control w340px" id="assessmentNamePop">
-					<option>EDW Technology</option>
-					<option>ETL Technology</option>
-					<option>BI</option>
-					<option>MDM</option>
-					<option>Data Catalog</option>
-					<option>Data Governance</option>
-					<option>Data Lineage</option>
-					<option>Data Quality</option>
-				</select>
+<tr><td>Assessment Name</td><td>
+<input type="text" id="assessmentNamePop" class="form-control">
 </td></tr>
-<tr><td>Client</td>
-<td class="FLname"><div class="w340px">
+<tr><td>Client Name</td><td>
+<select class="form-control" id="clientNamePop">
+<option>BARCLAYS PLC</option>
+<option>Citigroup Inc</option>
+<option>MITSUBISHI UFJ FINANCIAL GROUP, INC.</option>
+<option>Wells Fargo</option>
+<option>Sunlight Financial</option>
+<option>First Data</option>
+<option>Discover Financial Services</option>
+<option>Morgan Stanley</option>
+<option>HSBC Holdings PLC</option>
+<option>Synchrony Financial</option>
+<option>ANZ Banking Group Limited</option>
+<option>Dbs Group Holdings Ltd</option>
+<option>THE CO-OPERATIVE BANK PLC</option>
+<option>Citizens Financial Group, Inc.</option>
+<option>BNP PARIBAS</option>
+<option>State Bank of India</option>
+<option>Massachusetts Mutual Life Insurance Company</option>
+<option>Metro Bank Plc</option>
+<option>The Goldman Sachs Group Inc</option>
+<option>Transunion Corp</option>
+<option>VOLKSWAGEN AG</option>
+<option>Ally Financial Inc.</option>
+<option>The Vanguard Group Inc</option>
+<option>Global Payments Inc.</option>
+<option>Nomura Holdings Inc.</option>
+<option>LPL Financial Holdings Inc.</option>
+<option>Sunlight Financial</option>
+<option>United Overseas Bank Limited</option>
+<option>Coöperatieve Rabobank U.A.</option>
+<option>NATIONWIDE BUILDING SOCIETY</option>
+<option>Lending Club</option>
+<option>Invesco LTD</option>
+<option>Royal Bank of Canada</option>
+<option>SEI Investments Company</option>
+<option>Lloyds Banking Group plc</option>
+<option>Fidelity Investment</option>
+<option>IVALUE INFOSOLUTIONS PRIVATE LIMITED</option>
+<option>BANCO SANTANDER, S.A.</option>
+<option>Tokai Tokyo Financlal Holdings, Inc.</option>
+<option>Yes Bank Limited</option>
+<option>Members Equity Bank Pty Limited</option>
+<option>Merlon Intelligence</option>
+<option>State Street South Corporation</option>
+<option>Moody's Corporation.</option>
+<option>CIMB Bank Berhad</option>
+<option>Macquarie Group Limited</option>
+<option>CLSA Asia-Pacific Markets</option>
+<option>Credit Suisse</option>
+<option>CoBank</option>
+<option>Manulife</option>
+<option>CO-OP</option>
+<option>Charles Schwab</option>
+</select>
+</td></tr>
+<tr><td>Client Contact Name</td>
+<td class="FLname"><div class="wd100p">
 				<div><input type="text" name="firstName" id="firstNamePop" placeholder="First Name" maxlength="30" class="form-control">
 				</div>
 				<div><input type="text" name="lastName" id="lastNamePOP" placeholder="Last Name" maxlength="30" class="form-control">
@@ -73,25 +120,47 @@ $(function(){
 				</td>
 </tr>
 <tr><td>Start Date</td><td>
-<input type="text" id="datepick1" class="w340px form-control">
+<input type="text" id="datepick1" class="w224px form-control">
 </td></tr>
 <tr><td>End Date</td><td>
-<input type="text" id="datepick2" class="w340px form-control">
+<input type="text" id="datepick2" class="w224px form-control">
 </td></tr>
 <tr><td colspan="2"><b>Choose the Objective of the Assesment</b><td></tr>
-<tr><td colspan="2">
+<tr><td colspan="2" class="positionR assessmentTblCover">
+<a href="#" class="addNew2">Add New Row</a>
 <table id="assessmentTbl">
 <thead>
-<tr><th></th><th>Source</th><th>Target</th>
+<tr><th>Technology</th><th>Source</th><th>Target</th><th></th>
 </tr>
 </thead>
 <tbody>
-<tr><td></td><td>Natezza</td><td>Snowflake</td>
+<tr><td class="dropDown1 userDropdown1">
+				<select class="form-control legacyDD1">
+					<option>Legacy EDW Technology</option>
+					<option>Legacy ETL Technology</option>
+					<option>Legacy BI</option>
+					<option>Legacy MDM</option>
+					<option>Legacy Data Catalog</option>
+					<option>Legacy Data Governance</option>
+					<option>Legacy Data Lineage</option>
+					<option>Legacy Data Quality</option>
+				</select>
+				</td>
+				<td class="dropDown2 userDropdown2">
+					<select class="form-control legacyDatabase legacyDD2">
+					<option>Teradata</option>
+					<option>Netezza</option>
+					<option>Exadata</option>
+					<option>Greenplum</option>
+					<option>Oracle</option>
+					<option>SQL Server</option>
+					</select>
+				</td>
+				<td class="userTargetTech"><input type="text" name="" value="" class="form-control" />
+				</td>
+				<td class="userDelete"><a href="#" class="deleteRow2"></a></td>
 </tr>
-<tr><td></td><td>Informatica</td><td>Talend</td>
-</tr>
-<tr><td></td><td>SSRS</td><td>Tabelu</td>
-</tr>
+
 </tbody>
 </table>
 
@@ -191,7 +260,7 @@ $(function(){
 	<table id="legacyTechlgy" class="legacyTechlgy" cellpadding="6">
 				<thead>
 				<tr>
-				<th width="20%">Legacy Technology Stack</th><th width="18%">Current Technology</th><th>Legacy Labor Cost($)</th><th>Legacy H/W Cost($)</th><th>Legacy License Cost($)</th><th>Legacy Misc Cost($)</th><th>Target Technology</th>
+				<th width="20%">Legacy Technology Stack</th><th width="18%">Current Technology</th><th>Legacy Labor Cost($)</th><th>Legacy H/W Cost($)</th><th>Legacy License Cost($)</th><th>Legacy Misc Cost($)</th>
 				<th></th></tr>
 				</thead>
 				<tbody>
@@ -227,8 +296,6 @@ $(function(){
 				<td class="inputColumn3"><input type="text" name="" maxlength="30" value="0" class="legacyLicenseC1 form-control" />
 				</td>
 				<td class="inputColumn4"><input type="text" name="" maxlength="30" value="0" class="legacyMiscC1 form-control" />
-				</td>
-				<td class="inputColumn5"><input type="text" name="" maxlength="30" value="" class="form-control" />
 				</td>
 				<td class="inputColumn6"><a href="#" class="deleteRow"></a></td>
 				</tr>
@@ -543,7 +610,14 @@ else{output.innerHTML = d;}
 				<tr>
 				<td width="30%">Name of Assessment</td>
 				<td class="positionR">
-				<input type="text" id="assessmentName" name="UserID" maxlength="30" class="form-control" /><div class="editIcon"></div>
+				<input type="text" id="assessmentName" name="UserID" maxlength="30" class="form-control" />
+				<span class="error"></span>
+				</td>
+				</tr>
+				<tr>
+				<td width="30%">Client Name</td>
+				<td class="positionR">
+				<input type="text" id="clientName" name="UserID" maxlength="30" class="form-control" readonly/><div class="editIcon"></div>
 				<span class="error"></span>
 				</td>
 				</tr>
@@ -615,7 +689,8 @@ else{output.innerHTML = d;}
 	
 
 <div class="loginUserName">
-
+<div class="firstLetter">VS</div>
+<div class="loginUserDetails"><span></span><div></div></div>
 </div>
 
 
