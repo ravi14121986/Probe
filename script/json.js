@@ -1,6 +1,7 @@
 var adminObj = [
-  {"EMail": "vasu@cg.com"}, 
-  {"EMail": "admin@cg.com"}
+{"EMail": "admin@cg.com", "Password": "Admin01$"},
+  {"EMail": "vasu@cg.com", "Password": "Venkat01$"}
+  
   
 ];
  
