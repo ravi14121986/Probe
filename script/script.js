@@ -23,10 +23,15 @@ var obj;
 
 $(document).ready(function() {
 	
+	
+	$(document).on("click",".loginUserName .firstLetter",function() {
+		$(".loginUserDetails").toggle();
+	});
+	
 	$(document).on("click","#schemaSubmit",function() {
 	var rValue = $('input[name="ConnectSchemaDatabase"]:checked').val();
 	var schemaData = {
-		"id":$("#userNm").val(),
+		"id":$("#emailLogin").val(),
 		"Technology":$("#schemaTechnology").val(),
 		"Allow tool to connect to your instance":rValue,
 		"Host Name":$("#schemaHostName").val(),
@@ -49,7 +54,7 @@ $(document).ready(function() {
 	$(document).on("click","#workloadSubmit",function() {
 	var rValue = $('input[name="workloadDatabaseR"]:checked').val();
 	var schemaData = {
-		"id":$("#userNm").val(),
+		"id":$("#emailLogin").val(),
 		"Technology":$("#workloadTechnology").val(),
 		"Platform":$("#workloadPlatform").val(),
 		"Allow tool to connect to your instance":rValue,
@@ -74,7 +79,7 @@ $(document).ready(function() {
 	var etlValue = $('input[name="ETL_R"]:checked').val();
 	var biValue = $('input[name="BiTool_R"]:checked').val();
 	var schemaData = {
-		"id":$("#userNm").val(),
+		"id":$("#emailLogin").val(),
 		"Connect to ETL Code Repository?":etlValue,
 		"ETL Host Name":$("#ETL_Hostname").val(),
 		"ETL User Name":$("#ETL_UserName").val(),
@@ -103,7 +108,7 @@ $(document).ready(function() {
 	var HIPPAcheck = $('#HIPPAcheck:checked').val();
 	var PIcheck = $('#PIcheck:checked').val();
 	var schemaData = {
-		"id":$("#userNm").val(),
+		"id":$("#emailLogin").val(),
 		"Regulatory Compliance PCI/DSS":PCIcheck,
 		"Regulatory Compliance SOC1/SOC2":SOC1check,
 		"Regulatory Compliance HIPPA":HIPPAcheck,
@@ -134,7 +139,7 @@ $(document).ready(function() {
 
 	$(document).on("click","#qualityAsubmit",function() {
 	var schemaData = {
-		"id":$("#userNm").val(),
+		"id":$("#emailLogin").val(),
 		"Success Migration":$("#successMigration").val(),
 		"Estimation DataVolume":$("#estimationDataVolume").val(),
 		"Retention Policy":$("#retentionPolicy").val(),
@@ -156,7 +161,6 @@ $(document).ready(function() {
   contentType : "application/json"
 });
 	});
-
 	
 $('#datepick1').datepicker({
 });
@@ -165,6 +169,7 @@ $('#datepick2').datepicker({
 
 $(document).on("click","#assessmentTblSubmit",function() {
 	$("#assessmentName").val($("#assessmentNamePop").val());
+	$("#clientName").val($("#clientNamePop").val());
 	$("#firstName").val($("#firstNamePop").val());
 	$("#lastName").val($("#lastNamePOP").val());
 	
@@ -181,16 +186,12 @@ $(document).on("click",".editIcon",function() {
 });
 var assessmentTbl = $('#assessmentTbl').DataTable({
 	'lengthMenu': [3, 6],
-	'pageLength': 2,
+	'pageLength': 3,
       'columnDefs': [{
          'targets': 0,
          'searchable':false,
          'orderable':false,
-         'className': 'dt-body-center',
-         'render': function (data, type, full, meta){
-             return '<input type="checkbox" name="id[]" value="' 
-                + $('<div/>').text(data).html() + '">';
-         }
+         'className': 'dt-body-center'
       }]
    });
 	$.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users", function(data, status){
@@ -301,10 +302,11 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
     if (!(a.indexOf(k)>=0)) e.preventDefault();  
 });	
 	$("#userProfileID").click(function(){
-		var valBoolean = [0,0,0,0,0,0,0,0];		
+		var valBoolean = [0,0,0,0,0,0,0,0,0];		
 		var formData = {
 		"ID":$("#userNm").val(),
 		"Assessment_Name":$("#assessmentName").val(),
+		"Client_Name":$("#clientName").val(),
 		"First_Name":$("#firstName").val(),
 		"Last_Name":$("#lastName").val(),
 		"E-Mail":$("#userNm").val(),
@@ -321,19 +323,27 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 		$("#assessmentName").siblings(".error").html("");
 		valBoolean[0] = 1;
 	}
+	if(	$("#clientName").val() == "")
+	{
+	$("#clientName").siblings(".error").html("Please Enter Client Name");
+	}
+	else if(!$("#clientName").val() == ""){
+		$("#clientName").siblings(".error").html("");
+		valBoolean[1] = 1;
+	}
 	if($("#firstName").val() == ""){
 		$("#firstName").siblings(".error").html("Please Enter First Name");	
 	}
 	else if(!$("#firstName").val() == ""){
 		$("#firstName").siblings(".error").html("");
-valBoolean[1] = 1;		
+valBoolean[2] = 1;		
 	}
 	if($("#lastName").val() == ""){
 		$("#lastName").siblings(".error").html("Please Enter Last Name");
 	}
 	else if(!$("#lastName").val() == ""){
 		$("#lastName").siblings(".error").html("");	
-		valBoolean[2] = 1;
+		valBoolean[3] = 1;
 	}
 
 	
@@ -348,7 +358,7 @@ else if(currentValue == "")
 }	
 else{
 		$("#phoneNum").siblings(".error").html("");
-		valBoolean[3] = 1;
+		valBoolean[4] = 1;
 	}
 	
 	
@@ -361,7 +371,7 @@ else{
 	  $("#userNm").siblings(".error").html("Please Enter Email");
   }else{
 		$("#userNm").siblings(".error").html("");
-		valBoolean[4] = 1;
+		valBoolean[5] = 1;
 	}
 	
 	
@@ -375,7 +385,7 @@ else{
 		}
 		else{
 		$("#passwordOne").siblings(".error").html("");
-		valBoolean[5] = 1;
+		valBoolean[6] = 1;
 		}
 		var pssWord2 = $('#passwordUser').val();
 		if(!pRE2.test(pssWord2)) {
@@ -386,14 +396,14 @@ else{
 		}
 		else{
 		$("#passwordUser").siblings(".error").html("");
-		valBoolean[6] = 1;
+		valBoolean[7] = 1;
 	}
 		if(pssWord1 != pssWord2 ) {
            $("#passwordUser").siblings(".error").html("Password and Confirm Password do not match");
         }
 		else if((pssWord1 == pssWord2)&& pssWord1.length > 0 && pssWord2.length > 0 ){
 		$("#passwordUser").siblings(".error").html("");
-		valBoolean[7] = 1;
+		valBoolean[8] = 1;
 		
 	}
 	
@@ -468,7 +478,6 @@ $(".btnDownload2").click(function (e) {
    var inputColumn2 = $(".inputColumn2").html();
    var inputColumn3 = $(".inputColumn3").html();
    var inputColumn4 = $(".inputColumn4").html();
-   var inputColumn5 = $(".inputColumn5").html();
    var inputColumn6 = $(".inputColumn6").html();
    var legacyTechlgy = $('#legacyTechlgy').DataTable({
       'columnDefs': [{
@@ -486,14 +495,32 @@ $(".btnDownload2").click(function (e) {
             inputColumn2,
             inputColumn3,
 			inputColumn4,
-			inputColumn5,
 			inputColumn6
+      ] ).draw( false );
+ 
+       
+    } );
+	/* For User Creation */
+	var userDropdown1 = $(".userDropdown1").html();
+	var userDropdown2 = $(".userDropdown2").html();
+	var userTargetTech = $(".userTargetTech").html();
+	var userDelete = $(".userDelete").html();
+	$(document).on("click",".addNew2",function() {
+        assessmentTbl.row.add( [
+            userDropdown1,
+            userDropdown2,
+			userTargetTech,
+			userDelete
+            
       ] ).draw( false );
  
        
     } );
 	$(document).on("click",".deleteRow",function() {
 		 legacyTechlgy.row($(this).parents('tr')).remove().draw();
+	 });
+	 $(document).on("click",".deleteRow2",function() {
+		 assessmentTbl.row($(this).parents('tr')).remove().draw();
 	 });
 	
       $('.errorEmail').hide();
@@ -1058,53 +1085,28 @@ Highcharts.chart('assessmentBar', {
 	  var passwordval = $("#passwordLogin").val();
 	  for (var i = 0; i < obj.length; i++){
   if ((obj[i].ID == emailVal)&&(obj[i].Password == passwordval)){
+						 $(".pageCover,.admMenu,#schemaInputs").hide();
+						 $("#adminDashboard,.loginUserName").show();
+						 $(".adminMenu").show();$(".memMenu").hide();
+						 $(".loginUserName .loginUserDetails div").html('<b>'+obj[i].First_Name+', '+obj[i].Last_Name+'</b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name:</b> '+ obj[i].Client_Name);
+						 $(".firstLetter").html(obj[i].First_Name.charAt(0)+obj[i].Last_Name.charAt(0));
 	  
 	  for (var j = 0; j < adminObj.length; j++){
-  if ((adminObj[j].EMail == emailVal)){ 
-	  var correctVar  = $("#submitMemLogin").parents(".pageCover").attr("data-next");
-				 $(".pageCover").hide();
-				 $("."+correctVar).show();
-				 $(".adminMenu").show();$(".memMenu").hide();
-				 $(".loginUserName").show().html('<b>'+obj[i].First_Name+', '+obj[i].Last_Name+'</b><br>'+ emailVal);
-				 return true; 
-  }else
-  {
-				 $(".pageCover,.admMenu").hide();
-				 $("#adminDashboard").show();
-				 $(".adminMenu").show();$(".memMenu").hide();
-				 $(".loginUserName").show().html('<b>'+obj[i].First_Name+', '+obj[i].Last_Name+'</b><br>'+ emailVal);
-  }
-	  }
-  }
+						 
+		if ((adminObj[j].EMail == emailVal)){ 
+						 				
+						 $('.admMenu,#schemaInputs').show();
+						$(".loginUserName .loginUserDetails div").html('<b>'+obj[i].First_Name+', '+obj[i].Last_Name+'</b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name:</b> '+'Not Added in List');
+						 				 
+						  return true;
+		  }
+	}
+	}
   else{
 	  $(".errorAdmin").show();
-  }
+	}
 }
-	/*  
-	  var adminLoginform = JSON.stringify($("#loginform").serializeArray());
-	  console.log(adminLoginform);
-	  $.ajax({
-		  type: "POST",
-		  url: "",
-		  data: adminLoginform,
-		  success: function(msg){
-			  if(msg.status=="done"){
-                 var correctVar  = $("#submitMemLogin").parents(".pageCover").attr("data-next");
-				 $(".pageCover").hide();
-				 $("."+correctVar).show();
-				 $(".adminMenu").show();$(".memMenu").hide();
-				 return true;                     
-                  }else{
-					  $(".errRespose").html("username or password was incorrect");
-				  }
-			  
-		  },
-		  dataType: "json",
-		  contentType : "application/json"
-		});
-	  
-  */
-  
+	
   }
 }
 
