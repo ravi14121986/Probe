@@ -18,10 +18,63 @@ var year4line;
 var year5line;
 var labelNameDL;
 var obj;
- 
+var objUser;
+ var elogin
 
 
 $(document).ready(function() {
+	
+	$.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users", function(data, status){
+    obj = JSON.stringify(data);
+	obj = JSON.parse(obj);
+	$("#preloader").hide();
+});
+
+var assessmentTable = $('#example').DataTable({
+      'columnDefs': [{
+         'targets': 0,
+         'searchable':false,
+         'orderable':false,
+         'className': 'dt-body-center'
+      }]
+   });
+
+	
+	$(document).on("click","#submitMemLogin",function() {
+		
+		elogin = $("#emailLogin").val();
+		$.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
+     objUser = JSON.stringify(data);
+	 objUser= JSON.parse(objUser);
+	 if((elogin === "vasu@cg.com")||(elogin === "admin@cg.com")){
+	for (var i = 0; i < obj.length; i++){
+   assessmentTable.row.add( [
+           '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ obj[i].Assessment_Name + '</a>',
+            obj[i].Client_Name,
+            obj[i].Start_Date,
+            obj[i].End_Date
+      ] ).draw( true );
+   }
+		}
+		
+		if((elogin != "vasu@cg.com")&&(elogin != "admin@cg.com")){
+	$("#example tbody").html("");
+   assessmentTable.row.add( [
+            '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ objUser.Assessment_Name + '</a>',
+            objUser.Client_Name,
+            objUser.Start_Date,
+            objUser.End_Date
+      ] ).draw( true );
+   }
+	
+});
+
+		
+	 
+		
+	});
+	
+
 	
 	
 	$(document).on("click",".loginUserName .firstLetter",function() {
@@ -184,6 +237,7 @@ $(document).on("click",".editIcon",function() {
 	$(".assessmentPop").show();
 	$(".popUpCartBg").show();
 });
+
 var assessmentTbl = $('#assessmentTbl').DataTable({
 	'lengthMenu': [3, 6],
 	'pageLength': 3,
@@ -194,10 +248,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
          'className': 'dt-body-center'
       }]
    });
-	$.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users", function(data, status){
-    obj = JSON.stringify(data);
-	obj = JSON.parse(obj);
-});
+	
 	
 	
 	var locations = {
@@ -272,16 +323,17 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 	$('form input[type=file]').change(function(){
 		$(this).siblings("label").html($(this).val());
      
-	 var file = this.files[0];
+	var file = this.files[0];
     $.ajax({
   type: "POST",
-  url: "https://42onrffs5b.execute-api.us-east-1.amazonaws.com/v1/upload",
+  url: 'https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/upload/'+$("clientID").val()+'/'+$("clientName").val(),
   data: file,
   success: function(data){ alert("success");},
   dataType: "binary",
   contentType: "application/pdf",
   processData: false
 });
+
     });
 	
 	$(".btnDownload").click(function(){
@@ -301,6 +353,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
     for (i = 48; i < 58; i++) a.push(i);    
     if (!(a.indexOf(k)>=0)) e.preventDefault();  
 });	
+
 	$("#userProfileID").click(function(){
 		var valBoolean = [0,0,0,0,0,0,0,0,0];		
 		var formData = {
@@ -312,7 +365,9 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 		"E-Mail":$("#userNm").val(),
 		"Phone":$("#phoneNum").val(),
 		"Password":$("#passwordUser").val(),
-"Target_Plateform":$("#assessmentPlatform").val()			
+"Target_Plateform":$("#assessmentPlatform").val(),
+"Start_Date":$("#datepick1").val(),
+"End_Date":$("#datepick2").val()			
 	}
 	
 	if(	$("#assessmentName").val() == "")
@@ -416,9 +471,18 @@ else{
   url: "https://wzldawy7n6.execute-api.us-east-1.amazonaws.com/Dev/user",
   data:JSON.stringify(formData),
   success: function(data){
-	  $(".successMsg, .popUpCartBg").show();
-  $("#userSetupPage input").val("");
-  console.log(obj);
+		$.ajax({
+				  type: "POST",
+				  url: 'https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/folders/' + $("#clientName").val() + '/' + $("#firstName").val() + '_' + $("#lastName").val(),
+				  data:JSON.stringify(formData),
+				  success: function(data){
+					  $(".successMsg, .popUpCartBg").show();
+				  $("#userSetupPage input").val("");
+				  console.log(obj);
+				  },
+				  dataType: "json",
+				  contentType : "application/json"
+				});
   },
   dataType: "json",
   contentType : "application/json"
@@ -444,21 +508,12 @@ $(".btnDownload2").click(function (e) {
     e.preventDefault();
 });
 
-	setTimeout(function(){$("#preloader").hide() }, 1000);
+	setTimeout(function(){}, 1000);
 	$(".popUpCart").hide();
-	  $(".popUpCartBg").hide();															
-	  var table = $('#example').DataTable({
-      'columnDefs': [{
-         'targets': 0,
-         'searchable':false,
-         'orderable':false,
-         'className': 'dt-body-center',
-         'render': function (data, type, full, meta){
-             return '<input type="checkbox" name="id[]" value="' 
-                + $('<div/>').text(data).html() + '">';
-         }
-      }]
-   });
+	$(".popUpCartBg").hide();															
+	
+	
+   
    
    var piitable = $('#piiTable').DataTable({
       'columnDefs': [{
@@ -529,8 +584,7 @@ $(".btnDownload2").click(function (e) {
 $(".pageCover").hide();
 $(".adminPage").show();
 
-
-$(".clkBtn").click(function(){
+$(document).on("click",".clkBtn",function() {
 	if($(this).attr("data-next") == "memLoginPage")
 	{
 		$(".adminMenu").hide();$(".memMenu").hide();
@@ -1088,7 +1142,7 @@ Highcharts.chart('assessmentBar', {
 						 $(".pageCover,.admMenu,#schemaInputs").hide();
 						 $("#adminDashboard,.loginUserName").show();
 						 $(".adminMenu").show();$(".memMenu").hide();
-						 $(".loginUserName .loginUserDetails div").html('<b>'+obj[i].First_Name+', '+obj[i].Last_Name+'</b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name:</b> '+ obj[i].Client_Name);
+						 $(".loginUserName .loginUserDetails div").html('<b><span class="frst_name">'+obj[i].First_Name+'</span>, <span class="lst_name">'+obj[i].Last_Name+'</span></b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name: </b><span class="clnt_name">'+ obj[i].Client_Name+'</span>'+'<br><b>Assessment Name: </b><span class="Asst_name_name">'+obj[i].Assessment_Name+'</span>');
 						 $(".firstLetter").html(obj[i].First_Name.charAt(0)+obj[i].Last_Name.charAt(0));
 	  
 	  for (var j = 0; j < adminObj.length; j++){
@@ -1096,7 +1150,7 @@ Highcharts.chart('assessmentBar', {
 		if ((adminObj[j].EMail == emailVal)){ 
 						 				
 						 $('.admMenu,#schemaInputs').show();
-						$(".loginUserName .loginUserDetails div").html('<b>'+obj[i].First_Name+', '+obj[i].Last_Name+'</b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name:</b> '+'Not Added in List');
+						$(".loginUserName .loginUserDetails div").html('<b><span class="frst_name">'+obj[i].First_Name+'</span>, <span class="lst_name">'+obj[i].Last_Name+'</span></b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name: </b><span class="clnt_name">'+ obj[i].Client_Name+'</span>'+'<br><b>Assessment Name: </b><span class="Asst_name_name">'+obj[i].Assessment_Name+'</span>');
 						 				 
 						  return true;
 		  }
