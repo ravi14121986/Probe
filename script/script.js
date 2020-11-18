@@ -1151,7 +1151,7 @@ Highcharts.chart('assessmentBar', {
 						 				
 						 $('.admMenu,#schemaInputs').show();
 						$(".loginUserName .loginUserDetails div").html('<b><span class="frst_name">'+obj[i].First_Name+'</span>, <span class="lst_name">'+obj[i].Last_Name+'</span></b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name: </b><span class="clnt_name">'+ obj[i].Client_Name+'</span>'+'<br><b>Assessment Name: </b><span class="Asst_name_name">'+obj[i].Assessment_Name+'</span>');
-						 				 
+						 	 $("#adminDashboard").hide();			 
 						  return true;
 		  }
 	}
