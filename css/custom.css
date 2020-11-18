@@ -306,7 +306,7 @@ background-size: 22px 22px;}
 	position:relative;
 	border-radius:8px;
 	display:none;}
-	.loginUserName .loginUserDetails span{width: 14px;
+	.loginUserName .loginUserDetails span.arrw{width: 14px;
     height: 8px;
     background: url(../images/topArrow.png) no-repeat;
     background-size: 100% 100%;
