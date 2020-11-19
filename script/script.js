@@ -326,7 +326,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 	var file = this.files[0];
     $.ajax({
   type: "POST",
-  url: 'https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/upload/'+$("clientID").val()+'/'+$("clientName").val(),
+  url: 'https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/upload/'+$(".clnt_name").html()+'/'+$(".frst_name").html()+'_'+$(".lst_name").html(),
   data: file,
   success: function(data){ alert("success");},
   dataType: "binary",
@@ -1151,7 +1151,7 @@ Highcharts.chart('assessmentBar', {
 						 				
 						 $('.admMenu,#schemaInputs').show();
 						$(".loginUserName .loginUserDetails div").html('<b><span class="frst_name">'+obj[i].First_Name+'</span>, <span class="lst_name">'+obj[i].Last_Name+'</span></b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name: </b><span class="clnt_name">'+ obj[i].Client_Name+'</span>'+'<br><b>Assessment Name: </b><span class="Asst_name_name">'+obj[i].Assessment_Name+'</span>');
-						 	 $("#adminDashboard").hide();			 
+						 	 $("#adminDashboard,.loginUserName").hide();			 
 						  return true;
 		  }
 	}
