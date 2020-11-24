@@ -128,7 +128,7 @@ font-size: 24px;
 }
 .checkboxF .form-check{float:left;margin:0 20px 0 0;}
 #sensitivedata table{width:60%; min-width:600px;}
-.w280px{width:280px;}
+.w280px{width:280px;overflow:hidden;}
 .FLname div{width:49%; float:left;}
 .FLname div:nth-child(1){margin:0 2% 0 0}
 .hostTable table td{padding:5px;}
@@ -143,6 +143,8 @@ font-size: 24px;
 	min-width: 150px;
     text-align: left;
 }
+.btnDownload.disabled, button.disabled, a.disabled{opacity:0.3!important;cursor:default!important;}
+input[disabled="disabled"]{color:#bebdbd;border: 1px solid #ccc!important;}
 .codePDFstyle{width: 200px!important;
     margin: 0 auto 20px auto;}
 #codeComplexityform{    position: relative;
@@ -169,6 +171,7 @@ font-size: 24px;
 .btnDownload:hover,.btnDownload2:hover {
   background-color: #007bff;
 }
+.btnDownload.disabled:hover,.btnDownload2.disabled:hover{background-color: #dbdbdb;opacity:0.3;}
 .downloadIcon{
 	background: url(../images/download.png) no-repeat;
     width: 14px;
@@ -204,7 +207,7 @@ font-size: 24px;
     border-bottom: 1px solid #c6d7e9;
 	width:270px;
 }
-.subMenu{display:none;}
+.subMenu,.dbBox{display:none;}
 .subMenu a{background: #0e3949;
     border-bottom: 1px solid #4d758b;
     font-size: 16px;}
@@ -732,6 +735,7 @@ border-radius:15px;border:2px solid #027cff;}
     padding: 3px 18px;
     border-radius: 6px;z-index:9;    text-decoration: none;}
 	.legacyTechlgyCover .addNew:hover{background:#005cbf;}
+	.legacyTechlgyCover .addNew.disabled:hover{background: #007bff;}
 	#legacyTechTotal .tdBG div{
 	width: 140px;
     height: 140px;
