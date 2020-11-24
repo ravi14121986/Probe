@@ -45,7 +45,7 @@ $(function(){
     });
 });
 </script> --> 
-   <div id="preloader"><div id="status">&nbsp;</div></div>
+<div id="preloader"><div id="status">&nbsp;</div></div>
 <div class="popUpCartBg"></div>
 <div class="assessmentPop">
 <div class="assessmentPopInner">
@@ -455,25 +455,29 @@ $(function(){
 				
 				</td>
 				</tr>
+				<tr><td></td>
+					<td>
+					<div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>PII Data Table</button></div>
+<div class="w280px floatL"><div class="custom-file">
+    <input type="file" class="custom-file-input" id="piiDataUpload" required>
+    <label class="custom-file-label" for="piiDataUpload">Choose file...</label>
+	<a href="#">Upload</a>
+  </div>
+ </div><br class="clrB">
+					</td>
+				</tr>
+				<tr><td></td>
+				<td align="left">
+					<div class="singleBtn">
+			<button type="button" id="sensitiveDataSubmit" class="btn btn-primary btn-block">Submit</button>	
+		</div>
+				</td>
+				</tr>
 			</table>
 			</form>
 
-    <div class="dragdrop">
-		<div class="exampleDD dragFileIcon brdNone">
-			<div id="drop_zone">Drag and Drop files here to Upload<br>
-			<output id="file_list2"></output>
-			</div>
-			
-		</div>
-		<div class="or">or</div>
-		<div class="exampleDD">
-			<input type="file" id="files1" name="files1[]" multiple />
-			<output id="file_list1"></output>
-		</div>
-    </div>
-	<div class="singleBtn mrg20Auto">
-			<button type="button" id="sensitiveDataSubmit" class="btn btn-primary btn-block">Submit</button>	
-		</div>
+    
+	
 </div>
 <div id="roiCalculator" class="roiCalculator bg pageCover">
 		<h5><span>ROI Calculator</span></h5>
@@ -711,8 +715,8 @@ else{output.innerHTML = d;}
 <td>Allow tool to connect to your Instance or manually upload information</td>
 <td>
 	<div class="radioBtn">
-	<input name="workloadDatabaseR" type="radio" value="Yes" id="instantDB1"/><label class="form-check-label" for="instantDB1">Yes</label>
-	<input name="workloadDatabaseR" type="radio" value="No" id="instantDB2"/><label class="form-check-label" for="instantDB2">No</label>
+	<input name="workloadDatabaseR" type="radio" class="dbCheck" value="Yes" id="instantDB1"/><label class="form-check-label" for="instantDB1">Yes</label>
+	<input name="workloadDatabaseR" type="radio" class="dbCheck" value="No" id="instantDB2" checked/><label class="form-check-label" for="instantDB2">No</label>
 	</div>
 </td>
 </tr>
@@ -744,7 +748,7 @@ else{output.innerHTML = d;}
 </td>
 </tr>
 
-<tr>
+<tr class="workloadDatabaseR dbBox">
 <td class="vAlignT">Please Provide DB Connection String</td>
  
 <td>
@@ -792,8 +796,8 @@ else{output.innerHTML = d;}
 <td width="40%">Can we connect to ETL Code Repository</td>
 <td>
 <div class="radioBtn">
-	<input name="ETL_R" type="radio" value="Yes" id="etlRep1"/><label class="form-check-label" for="etlRep1">Yes</label>
-	<input name="ETL_R" type="radio" value="No" id="etlRep2"/><label class="form-check-label" for="etlRep2">No</label>
+	<input name="ETL_R" type="radio" class="dbCheck" value="Yes" id="etlRep1"/><label class="form-check-label" for="etlRep1">Yes</label>
+	<input name="ETL_R" type="radio" class="dbCheck" value="No" id="etlRep2" checked/><label class="form-check-label" for="etlRep2">No</label>
 	</div>
 </td>
 </tr>
@@ -802,14 +806,14 @@ else{output.innerHTML = d;}
 <tr>
 <td>Download Template to provide input<br /></td>
 <td class="floatDiv">
-<div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i>ETL Volumetrics</button></div>
+<div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i>ETL Jobs</button></div>
 <div class="w280px"><div class="custom-file">
     <input type="file" class="custom-file-input" id="ETLupload" required>
     <label class="custom-file-label" for="ETLupload">Choose file...</label>
 	<a href="#">Upload</a>
   </div>
  </div><br class="clrB">
-<div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i>Workload Details</button></div>
+<div class="mrgBR10"><button class="btnDownload disabled"><i class="downloadIcon"></i>Workload Details</button></div>
 <div class="w280px">
 	<div class="custom-file">
     <input type="file" class="custom-file-input" id="workloadETLUpload" required>
@@ -820,7 +824,7 @@ else{output.innerHTML = d;}
 </td>
 </tr>
 
-<tr>
+<tr class="ETL_R dbBox">
 <td class="vAlignT">Please Provide ETL Server Details
  
 <td>
@@ -852,8 +856,8 @@ else{output.innerHTML = d;}
 <td>Can we connect to BI Tool Repository</td>
 <td>
 <div class="radioBtn">
-	<input name="BiTool_R" type="radio" value="Yes" id="biTool1"/><label class="form-check-label" for="biTool1">Yes</label>
-	<input name="BiTool_R" type="radio" value="No" id="biTool2"/><label class="form-check-label" for="biTool2">No</label>
+	<input name="BiTool_R" type="radio" class="dbCheck" value="Yes" id="biTool1"/><label class="form-check-label" for="biTool1">Yes</label>
+	<input name="BiTool_R" type="radio" class="dbCheck" value="No" id="biTool2" checked/><label class="form-check-label" for="biTool2">No</label>
 	</div>
 </td>
 </tr>
@@ -861,7 +865,7 @@ else{output.innerHTML = d;}
 <tr>
 <td class="vAlignT">Download Template to provide input</td>
 <td class="floatDiv">
-<div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i> BI Volumetrics</button></div>
+<div class="mrgBR10"><button class="btnDownload disabled"><i class="downloadIcon"></i> BI Volumetrics</button></div>
 <div class="w280px">
 	<div class="custom-file">
     <input type="file" class="custom-file-input" id="BIupload" required>
@@ -869,7 +873,7 @@ else{output.innerHTML = d;}
 	<a href="#">Upload</a>
   </div>
 </div><br class="clrB">
-<div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i> Workload Details</button></div>
+<div class="mrgBR10"><button class="btnDownload disabled"><i class="downloadIcon"></i> Workload Details</button></div>
 <div class="w280px">
 	<div class="custom-file">
     <input type="file" class="custom-file-input" id="workloadBIupload" required>
@@ -880,7 +884,7 @@ else{output.innerHTML = d;}
 </td>
 </tr>
 
-<tr>
+<tr class="BiTool_R dbBox">
 <td class="vAlignT">Please Provide BI Server Details</td>
  
 <td>
@@ -1092,8 +1096,8 @@ else{output.innerHTML = d;}
 <td>Allow tool to connect to your instance or manually upload information</td>
 <td>
 	<div class="radioBtn">
-	<input name="ConnectSchemaDatabase" type="radio" value="Yes" id="instantSchemaDB1"/><label class="form-check-label" for="instantSchemaDB1">Yes</label>
-	<input name="ConnectSchemaDatabase" type="radio" value="No" id="instantSchemaDB2"/><label class="form-check-label" for="instantSchemaDB2">No</label>
+	<input name="ConnectSchemaDatabase" type="radio" class="dbCheck" value="Yes" id="instantSchemaDB1"/><label class="form-check-label" for="instantSchemaDB1">Yes</label>
+	<input name="ConnectSchemaDatabase" type="radio" class="dbCheck" value="No" id="instantSchemaDB2" checked/><label class="form-check-label" for="instantSchemaDB2">No</label>
 	</div>
 </td>
 </tr>
@@ -1123,7 +1127,7 @@ else{output.innerHTML = d;}
  </div>
 </td>
 </tr>
-<tr>
+<tr class="ConnectSchemaDatabase dbBox">
 <td class="vAlignT">Please Provide DB Connection String</td>
  
 <td>
@@ -1705,95 +1709,6 @@ var docs;
 
       }
     </script>
-	
-	<script>
-	
-// SIMPLEST
-function handleFileSelect1(evt) {
-    var files = evt.target.files; // FileList object
-    // files is a FileList of File objects. List some properties.
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-        output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-        f.size, ' bytes, last modified: ',
-        f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-            '</li>');
-    }
-    document.getElementById('file_list1').innerHTML = '<ul>' + output.join('') + '</ul>';
-	alert(files[1]);
-}
-document.getElementById('files1').addEventListener('change', handleFileSelect1, false);
-
-
-
-
-
-// DROP ZONE
-function handleFileSelect2(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    var files = evt.dataTransfer.files; // FileList object.
-    // files is a FileList of File objects. List some properties.
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-        output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-        f.size, ' bytes, last modified: ',
-        f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-            '</li>');
-    }
-    document.getElementById('file_list2').innerHTML = '<ul>' + output.join('') + '</ul>';
-}
-
-function handleDragOver(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
-}
-
-// Setup the Drag n' Drop listeners.
-var dropZone = document.getElementById('drop_zone');
-dropZone.addEventListener('dragover', handleDragOver, false);
-dropZone.addEventListener('drop', handleFileSelect2, false);
-
-
-
-
-
-// PROGRESS BAR
-var reader;
-var progress = document.querySelector('.percent');
-
-function updateProgress(evt) {
-    // evt is a ProgressEvent.
-    if (evt.lengthComputable) {
-        var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
-        // Increase the progress bar length.
-        if (percentLoaded < 100) {
-            progress.style.width = percentLoaded + '%';
-            progress.textContent = percentLoaded + '%';
-        }
-    }
-}
-
-function abortRead() {
-    reader.abort();
-}
-
-function errorHandler(evt) {
-    switch (evt.target.error.code) {
-        case evt.target.error.NOT_FOUND_ERR:
-            alert('File Not Found!');
-            break;
-        case evt.target.error.NOT_READABLE_ERR:
-            alert('File is not readable');
-            break;
-        case evt.target.error.ABORT_ERR:
-            break; // noop
-        default:
-            alert('An error occurred reading this file.');
-    }
-}
-	</script>
 	<script>
 	piechart('piechart1','Total Tables','Total Views','Total Indices','',0,0,0,'');
 	piechart('piechart2','Total Materialized Views','Total Triggers','','',0,0,'','');
