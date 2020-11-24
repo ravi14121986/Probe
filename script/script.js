@@ -360,7 +360,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": 'https://ec2-54-210-87-86.compute-1.amazonaws.com:5000/upload/'+ $(".clnt_name").text() + '/' + $(".Asst_name_name").text(),
+      "url": 'http://ec2-54-210-87-86.compute-1.amazonaws.com:5000/upload/'+ $(".clnt_name").text() + '/' + $(".Asst_name_name").text(),
       "method": "POST",
       "processData": false,
       "contentType": false,
