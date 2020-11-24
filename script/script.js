@@ -24,6 +24,18 @@ var objUser;
 
 $(document).ready(function() {
 	
+	$('.dbCheck:radio[type="radio"]').change(function(){
+		var dbCheck = $(this).attr("name");
+    if($(this).val() == 'Yes'){      	
+	   $('.'+dbCheck).show();
+    }
+	else{
+		$('.'+dbCheck).hide();
+		
+	}
+});
+	
+	
 	$.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users", function(data, status){
     obj = JSON.stringify(data);
 	obj = JSON.parse(obj);
@@ -281,6 +293,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 		"Legacy_Labor_Cost":$("#legacyID1").val(),
 		
 	}*/
+	if(!$(this).hasClass("disabled")){
 	var legacyLebarSum = 0;
   $(".legacyLebarC1").each(function(){legacyLebarSum += parseFloat($(this).val());});
   $('#legacyID1').val('$ ' + legacyLebarSum);
@@ -293,7 +306,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
   var legacyMiscSum = 0;
   $(".legacyMiscC1").each(function(){legacyMiscSum += parseFloat($(this).val());});
   $('#legacyID4').val('$ ' + legacyMiscSum);
-	
+	}
 	/*$.ajax({
   type: "POST",
   url: "https://ty25i7u6ib.execute-api.us-east-1.amazonaws.com/dev1/LegacyCost-dev",
@@ -321,14 +334,14 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 		$(this).parent().siblings(".pieTable").show();
 	});
 	
-	
+	/*
 	$('form input[type=file]').change(function(){
 		$(this).siblings("label").html($(this).val());
-     
 	var file = this.files[0];
+	alert(file);
     $.ajax({
   type: "POST",
-  url: 'https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/upload/'+$(".clnt_name").html()+'/'+$(".frst_name").html()+'_'+$(".lst_name").html(),
+  url: 'http://ec2-54-210-87-86.compute-1.amazonaws.com:5000/upload',
   data: file,
   success: function(data){ alert("success");},
   dataType: "binary",
@@ -336,9 +349,40 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
   processData: false
 });
 
+    });*/
+	
+	$('form input[type=file]').on('change', function(){
+	$(this).siblings("label").html($(this).val());
+    var file = this.files[0];
+    var form = new FormData();
+    form.append("file", file);
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": 'http://ec2-54-210-87-86.compute-1.amazonaws.com:5000/upload/'+ $(".clnt_name").text() + '/' + $(".Asst_name_name").text(),
+      "method": "POST",
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form
+    };
+
+    $.ajax(settings).done(function (response) {
+      console.log(response);
     });
+  });
+	
+	
+	
+	
+	
+	
+	
 	
 	$(".btnDownload").click(function(){
+		if(!$(this).hasClass("disabled")){
+			alert("eneter");
 		labelNameDL = $(this).find("span").html();
         $.ajax({
             type: 'GET',
@@ -349,6 +393,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
             }
         });
     return false;
+		}
     });
 	$('input[name="phone"]').keypress(function(e) {
     var a = [];  var k = e.which;    
@@ -475,7 +520,7 @@ else{
   success: function(data){
 		$.ajax({
 				  type: "POST",
-				  url: 'https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/folders/' + $("#clientName").val() + '/' + $("#firstName").val() + '_' + $("#lastName").val(),
+				  url: 'https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/folders/' + $("#clientName").val() + '/' + $("#assessmentName").val(),
 				  data:JSON.stringify(formData),
 				  success: function(data){
 					  $(".successMsg, .popUpCartBg").show();
@@ -545,6 +590,7 @@ $(".btnDownload2").click(function (e) {
    });
  
     $(document).on("click",".addNew",function() {
+		if(!$(this).hasClass("disabled")){
         legacyTechlgy.row.add( [
             dropDown1,
             dropDown2,
@@ -554,7 +600,7 @@ $(".btnDownload2").click(function (e) {
 			inputColumn4,
 			inputColumn6
       ] ).draw( false );
- 
+		}
        
     } );
 	/* For User Creation */
@@ -1157,6 +1203,20 @@ Highcharts.chart('assessmentBar', {
 						  return true;
 		  }
 	}
+	
+	for (var k = 0; k < clientObj.length; k++){
+						 
+		if ((clientObj[k].EMail == emailVal)){ 
+		$('#legacyTechlgy input[type="text"]').attr("disabled","disabled");
+		$('.addNew').addClass("disabled");
+		$('#LCEsubmit').addClass("disabled");
+		$('#legacyTechlgy .inputColumn6 a').removeClass('deleteRow');
+		}
+	}
+	
+	
+	
+	
 	}
   else{
 	  $(".errorAdmin").show();
