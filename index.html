@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title>:: Probe Tool ::</title>
-	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 	<link rel="stylesheet" type="text/css" href="css/custom.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -195,7 +194,7 @@ $(function(){
   <a href="#" class="mMenu">Return on Investments</a>
 	  <div class="subMenu">
 	  <a href="#" class="clkBtn" data-next="roiCalculator"><i></i>ROI</a>
-	  <!--<a href="#"><i></i>Cloud Cost Estimator</a>-->
+	  <a href="#" class="clkBtn" data-next="cCostEstimator"><i></i>Cloud Cost Estimator</a>
 	  <a href="#"class="clkBtn" data-next="lCostEstimator"><i></i>Legacy Cost Estimator</a>
 	  </div>
   <a href="#" class="mMenu admMenu">Administration</a>
@@ -231,6 +230,107 @@ $(function(){
 		</div>
 		<div id="correct" style="color:gray;"></div>
 	</div>
+	
+	<div id="cCostEstimator" class="cCostEstimator bg pageCover">
+		<h5>Legacy Cost Estimator</h5>
+		<div class="cCostEstimatorCover bsh">
+		<form action="" method="post" id="cCostform">
+			
+				<div class="costTechlgyCover"><a href="#" class="addNewCloud">Add New Row</a>
+	<table id="cloudTechlgy" class="cloudTechlgy" cellpadding="6">
+				<thead>
+				<tr>
+				<th>Environment</th>
+				<th width="20%">Solution Component/Service</th>
+				<th width="18%">Technologies</th>
+				<th class="cloudCOstH">Volume/Sizing</th>
+				<th class="cloudCOstH">Services</th>
+				<th>Compute Capacity</th>
+				<th>ActiveComputeTime</th>
+				<th>Storage</th>
+				<th>3rd Party License</th>
+				<th>Annual Cost</th>
+				<th></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				<td class="costTech1">
+					<select class="form-control">
+						<option>Production</option>
+						<option>UAT</option>
+						<option>QA</option>
+						<option>SIT</option>
+						<option>Dev</option>
+					</select>				
+				</td>
+				<td class="costTech2">
+				<select class="form-control costDD1">
+					<option>Ingestion</option>
+					<option>Data Lake</option>
+					<option>Transformation</option>
+					<option>Datawarehouse</option>
+					<option>Data Governance</option>
+					<option>Datamart</option>
+					<option>Analytics</option>	
+				</select>
+				</td>
+				<td class="costTech3">
+					<select class="form-control legacyDatabase costDD2">
+					<option>Kinesis, Lambda</option>
+					<option>S3, Snowflake</option>
+					<option>Snowflake, Databricks</option>
+					<option>Snowflake</option>
+					<option>EDC, Axon, IDQ, Collibra</option>
+					<option>Tableau, Presto, Power BI</option>
+					<option>R, Jupyter, SparkMLlib</option>
+					</select>
+				</td>
+				<td class="cloudCOstH costTech4">
+				<input type="text" name="" maxlength="30" value="0" class="form-control" />
+				</td>
+				<td class="cloudCOstH costTech5">
+				<input type="text" name="" maxlength="30" value="0" class="form-control" />
+				</td>
+				<td class="costTech6">
+				<select class="form-control">
+				<option>8 vCPU, 32GB RAM</option>
+				<option>24 vCPU, 256GB RAM</option>
+				<option>48 vCPU, 512GB RAM</option>
+				<option>12 vCPU, 128GB RAM</option>
+				<option>24 vCPU, 256GB RAM</option>
+				</select>
+				</td>
+				<td class="costTech7"><input type="text" name="" maxlength="30" value="0" class="form-control" />
+				</td>
+				<td class="costTech8">
+				<select class="form-control">
+					<option>100 TB</option>
+					<option>60 TB</option>
+					<option>20TB</option>
+				</select>
+				</td>
+				<td class="costTech9">
+						<select class="form-control">
+						<option>Cloud Provider</option>
+
+						<option>Client Managed</option>
+						</select>
+				</td>
+				<td class="costTech10"><input type="text" name="" maxlength="30" value="0" class="form-control" /></td>
+				<td class="costTech11"><a href="#" class="deleteRow3"></a></td>
+				</tr>
+   </tbody>
+				</table>
+				</div>
+				</form>
+				
+				<button id="CCEsubmit" class="btn btn-primary btn-block">Submit</button>
+				</div>
+		</div>
+	
+	
+	
 	<div id="lCostEstimator" class="lCostEstimator bg pageCover">
 		<h5>Legacy Cost Estimator</h5>
 		<div class="lCostEstimatorCover bsh">
@@ -458,7 +558,7 @@ $(function(){
 				</tr>
 				<tr><td></td>
 					<td>
-					<div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>PII Data Table</button></div>
+					<div class="mrgBR10 floatL"><button class="btnDownload" onclick="downloadFunc('PI_Collection.xlsx')"><i class="downloadIcon"></i>PII Data Table</button></div>
 <div class="w280px floatL"><div class="custom-file">
     <input type="file" class="custom-file-input" id="piiDataUpload" required>
     <label class="custom-file-label" for="piiDataUpload">Choose file...</label>
@@ -725,7 +825,7 @@ else{output.innerHTML = d;}
 <tr>
 <td>Download Template or Upload files</td>
 <td>
-<div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>DM Volumetrics</button></div>
+<div class="mrgBR10 floatL"><button class="btnDownload" onclick="downloadFunc('DM_volumetrics.py')"><i class="downloadIcon"></i>DM Volumetrics</button></div>
 <div class="w280px floatL"><div class="custom-file">
     <input type="file" class="custom-file-input" id="dmUpload" required>
     <label class="custom-file-label" for="dmUpload">Choose file...</label>
@@ -739,7 +839,7 @@ else{output.innerHTML = d;}
 	<a href="#">Upload</a>
   </div>
  </div><br class="clrB"> -->
- <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Workload Details</button></div>
+ <div class="mrgBR10 floatL"><button class="btnDownload" onclick="downloadFunc('Workload.py')"><i class="downloadIcon"></i>Workload Details</button></div>
 <div class="w280px floatL"><div class="custom-file">
     <input type="file" class="custom-file-input" id="workloadUpload" required>
     <label class="custom-file-label" for="workloadUpload">Choose file...</label>
@@ -807,7 +907,7 @@ else{output.innerHTML = d;}
 <tr>
 <td>Download Template to provide input<br /></td>
 <td class="floatDiv">
-<div class="mrgBR10"><button class="btnDownload"><i class="downloadIcon"></i>ETL Jobs</button></div>
+<div class="mrgBR10"><button class="btnDownload" onclick="downloadFunc('wkf_CLMIQ_QUAL_RULES_EXTRCT.xml')"><i class="downloadIcon"></i>ETL Jobs</button></div>
 <div class="w280px"><div class="custom-file">
     <input type="file" class="custom-file-input" id="ETLupload" required>
     <label class="custom-file-label" for="ETLupload">Choose file...</label>
@@ -1105,21 +1205,21 @@ else{output.innerHTML = d;}
 <tr>
 <td>Select File to Upload with DDLs or download files</td>
 <td>
-<div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Tables DDL</button></div>
+<div class="mrgBR10 floatL"><button class="btnDownload" onclick="downloadFunc('sample_table_ddl.sql')"><i class="downloadIcon"></i>Tables DDL</button></div>
 <div class="w280px floatL"><div class="custom-file">
     <input type="file" class="custom-file-input" id="tableDDLUpload" required>
     <label class="custom-file-label" for="tableDDLUpload">Choose file...</label>
 	<a href="#">Upload</a>
   </div>
  </div><br class="clrB">
- <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Views DDL</button></div>
+ <div class="mrgBR10 floatL"><button class="btnDownload" onclick="downloadFunc('sample_view_ddl.sql')"><i class="downloadIcon"></i>Views DDL</button></div>
 <div class="w280px floatL"><div class="custom-file">
     <input type="file" class="custom-file-input" id="viewDDLUpload" required>
     <label class="custom-file-label" for="tableDDLUpload">Choose file...</label>
 	<a href="#">Upload</a>
   </div>
  </div><br class="clrB">
- <div class="mrgBR10 floatL"><button class="btnDownload"><i class="downloadIcon"></i>Stored Codes DDL</button></div>
+ <div class="mrgBR10 floatL"><button class="btnDownload" onclick="downloadFunc('Sample_StoredProc_ddl.sql')"><i class="downloadIcon"></i>Stored Codes DDL</button></div>
 <div class="w280px floatL"><div class="custom-file">
     <input type="file" class="custom-file-input" id="storeDDLUpload" required>
     <label class="custom-file-label" for="storeDDLUpload">Choose file...</label>
