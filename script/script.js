@@ -285,6 +285,25 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
         $locations.html(html)
     });
 	
+	var costTechy = {
+        'Ingestion': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
+        'Data Lake': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
+        'Transformation': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
+        'Datawarehouse': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
+        'Data Governance': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
+        'Datamart': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
+        'Analytics': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
+    }
+    
+    $(document).on("change",".costDD1",function() {
+		var $locations = $(this).parent().next('td').children('.costDD2');
+        var country = $(this).val(), lcns = costTechy[country] || [];
+        var html = $.map(lcns, function(lcn){
+            return '<option value="' + lcn + '">' + lcn + '</option>'
+        }).join('');
+        $locations.html(html)
+    });
+	
 	
 	$(document).on("click","#LCEsubmit",function() {
 		
@@ -378,23 +397,24 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 	
 	
 	
-	
+	/*
 	
 	$(".btnDownload").click(function(){
+		var fName = $(this).attr("data-fName");
 		if(!$(this).hasClass("disabled")){
-			alert("eneter");
 		labelNameDL = $(this).find("span").html();
         $.ajax({
             type: 'GET',
-            url: 'https://q3c3ix92v1.execute-api.us-east-1.amazonaws.com/v1/teradatavantage-usfs?file=assesment.pdf',
+            url: 'https://q3c3ix92v1.execute-api.us-east-1.amazonaws.com/v1/teradatavantage-usfs?file='+fName,
             success:function(data){
+				alert("success")
              var dataArr = JSON.parse(data);
 			 window.open(dataArr.URL);
             }
         });
     return false;
 		}
-    });
+    }); */
 	$('input[name="phone"]').keypress(function(e) {
     var a = [];  var k = e.which;    
     for (i = 48; i < 58; i++) a.push(i);    
@@ -603,6 +623,45 @@ $(".btnDownload2").click(function (e) {
 		}
        
     } );
+   var costTech1 = $(".costTech1").html();
+   var costTech2 = $(".costTech2").html();
+   var costTech3 = $(".costTech3").html();
+   var costTech4 = $(".costTech4").html();
+   var costTech5 = $(".costTech5").html();
+   var costTech6 = $(".costTech6").html();
+   var costTech7 = $(".costTech7").html();
+   var costTech8 = $(".costTech8").html();
+   var costTech9 = $(".costTech9").html();
+   var costTech10 = $(".costTech10").html();
+   var costTech11 = $(".costTech11").html();
+   
+	 var cloudTechlgy = $('#cloudTechlgy').DataTable({
+      'columnDefs': [{
+         'targets': 0,
+         'orderable':false,
+         'className': 'dt-body-center'
+      }]
+   });
+ 
+    $(document).on("click",".addNewCloud",function() {
+		if(!$(this).hasClass("disabled")){
+        cloudTechlgy.row.add( [
+			costTech1,
+            costTech2,
+            costTech3,
+            costTech4,
+            costTech5,
+            costTech6,
+			costTech7,
+			costTech8,
+			costTech9,
+			costTech10,
+			costTech11
+      ] ).draw( false );
+		}
+       
+    } );
+	
 	/* For User Creation */
 	var userDropdown1 = $(".userDropdown1").html();
 	var userDropdown2 = $(".userDropdown2").html();
@@ -622,8 +681,12 @@ $(".btnDownload2").click(function (e) {
 	$(document).on("click",".deleteRow",function() {
 		 legacyTechlgy.row($(this).parents('tr')).remove().draw();
 	 });
+	 
 	 $(document).on("click",".deleteRow2",function() {
 		 assessmentTbl.row($(this).parents('tr')).remove().draw();
+	 });
+	 $(document).on("click",".deleteRow3",function() {
+		 cloudTechlgy.row($(this).parents('tr')).remove().draw();
 	 });
 	
       $('.errorEmail').hide();
@@ -1207,10 +1270,11 @@ Highcharts.chart('assessmentBar', {
 	for (var k = 0; k < clientObj.length; k++){
 						 
 		if ((clientObj[k].EMail == emailVal)){ 
-		$('#legacyTechlgy input[type="text"]').attr("disabled","disabled");
-		$('.addNew').addClass("disabled");
-		$('#LCEsubmit').addClass("disabled");
-		$('#legacyTechlgy .inputColumn6 a').removeClass('deleteRow');
+		$(".cloudCOstH").addClass("cloudCOstHide");
+		$('#cloudTechlgy input[type="text"]').attr("disabled","disabled");
+		$('.addNewCloud').addClass("disabled");
+		$('#CCEsubmit').addClass("disabled");
+		$('.costTech11').removeClass('deleteRow3');
 		}
 	}
 	
@@ -1582,5 +1646,12 @@ Highcharts.chart('cumulativeR', {
 });
 }
 
-
+function downloadFunc(files){
+    	var anchor=document.createElement('a');
+    	anchor.setAttribute('href','plugin/'+files);
+    	anchor.setAttribute('download','');
+    	document.body.appendChild(anchor);
+    	anchor.click();
+    	anchor.parentNode.removeChild(anchor);
+  }
 
