@@ -378,7 +378,8 @@ position: absolute;
 	#dashboardform .tabBtn, #ROIform .tabBtn{    margin: 0 auto;
     float: none;}
 	.legacyDatabase{min-width:130px;}
-	#LCEsubmit{width:200px;margin:0 auto;}
+	#LCEsubmit,#CCEsubmit{width:200px;margin:0 auto;}
+	.cloudCOstHide{display:none;}
 	.datatableCover{
 		    width: 90%;
     margin: 30px auto;
@@ -699,7 +700,7 @@ border-radius:15px;border:2px solid #027cff;}
 	.heatMapDropDown{
 		float: right;
     margin: 31px 5px 0 0}
-	.deleteRow,.deleteRow2{background: #fff url(../images/dustbin.png) no-repeat;
+	.deleteRow,.deleteRow2,.deleteRow3{background: #fff url(../images/dustbin.png) no-repeat;
     width: 20px;
     height: 26px;
     background-size: 100% 100%;
@@ -717,12 +718,13 @@ border-radius:15px;border:2px solid #027cff;}
     color: #000;
     border: 1px solid #fff;
     vertical-align: middle;}
-	#legacyTechlgy_filter{display:none;}
-	.legacyTechlgyCover{position: relative;
+	#legacyTechlgy_filter,#cloudTechlgy_filter{display:none;}
+	.legacyTechlgyCover, .costTechlgyCover{position: relative;
     margin: 25px 0 0 0;
     float: left;
     width: 100%;}
-	.legacyTechlgyCover .addNew{position: absolute;
+	.legacyTechlgyCover .addNew, .costTechlgyCover .addNewCloud{
+	position: absolute;
     right: 3px;
     background: #007bff;
     color: #fff;
@@ -734,8 +736,8 @@ border-radius:15px;border:2px solid #027cff;}
     color: #fff;
     padding: 3px 18px;
     border-radius: 6px;z-index:9;    text-decoration: none;}
-	.legacyTechlgyCover .addNew:hover{background:#005cbf;}
-	.legacyTechlgyCover .addNew.disabled:hover{background: #007bff;}
+	.legacyTechlgyCover .addNew:hover, .costTechlgyCover .addNewCloud:hover{background:#005cbf;}
+	.legacyTechlgyCover .addNew.disabled:hover, .costTechlgyCover .addNewCloud.disabled:hover{background: #007bff;}
 	#legacyTechTotal .tdBG div{
 	width: 140px;
     height: 140px;
@@ -963,17 +965,18 @@ input:checked + .chkSlider:before {
 #lCostEstimator .rangeNum span:nth-child(3){width:32px;}
 #lCostEstimator .rangeNum span:nth-child(4){width:33px;}
 #lCostEstimator table{width:100%;}
-#lCostEstimator .legacyTechlgy th{
+#lCostEstimator .legacyTechlgy th, #cCostEstimator .cloudTechlgy th{
 		background: #00c4ff;
     border: 1px solid #fff;
     font-family: verdana;
     font-size: 13px;
 	}
-#lCostEstimator .legacyTechlgy td{
+#lCostEstimator .legacyTechlgy td, #cCostEstimator .cloudTechlgy td{
 		background:#fff;
 		border:1px solid #04b3ff;
 	}
-	.lCostEstimatorCover{width: 90%;
+	#legacyTechlgy, #cloudTechlgy{margin: 0 0 15px 0;}
+	.lCostEstimatorCover,.cCostEstimatorCover{width: 90%;
     background: #fff;
     min-width: 980px;
     margin: 30px auto;}
