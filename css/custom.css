@@ -976,7 +976,7 @@ input:checked + .chkSlider:before {
 		border:1px solid #04b3ff;
 	}
 	#legacyTechlgy, #cloudTechlgy{margin: 0 0 15px 0;}
-	.lCostEstimatorCover,.cCostEstimatorCover{width: 90%;
+	.lCostEstimatorCover,.cCostEstimatorCover{width: 98%;
     background: #fff;
     min-width: 980px;
     margin: 30px auto;}
