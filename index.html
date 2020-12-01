@@ -892,7 +892,14 @@ else{output.innerHTML = d;}
 <h5>ETL Code, BI Analysis</h5>
 <form action="" method="post" id="inputPage2form"> 
 <table align="center" cellpadding = "6">
- 
+ <tr><td>
+ Select ETL Technology</td>
+ <td>
+ <select name="etlTechDW" id="etlTechDW" class="form-control wd300">
+<option value="Informatica">Informatica</option>
+<option value="Data Stage">Data Stage</option>
+</select>
+</td></tr>
 <tr>
 <td width="40%">Can we connect to ETL Code Repository</td>
 <td>
@@ -924,7 +931,17 @@ else{output.innerHTML = d;}
 </div>
 </td>
 </tr>
-
+<tr><td>
+ Select BI Technology</td>
+ <td>
+ <select name="biTechDW" id="biTechDW" class="form-control wd300">
+<option value="SSRS">SSRS</option>
+<option value="Cognos">Cognos</option>
+<option value="Businness Objects">Businness Objects</option>
+<option value="Jasper">Jasper</option>
+<option value="Other">Other</option>
+</select>
+</td></tr>
 <tr class="ETL_R dbBox">
 <td class="vAlignT">Please Provide ETL Server Details
  
