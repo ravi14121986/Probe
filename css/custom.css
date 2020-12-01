@@ -155,6 +155,9 @@ input[disabled="disabled"]{color:#bebdbd;border: 1px solid #ccc!important;}
 	#topTables .topHD{background: #2ecef2;
     padding: 10px;
     font-weight: bold;}
+	table.dataTable thead th, table.dataTable thead td{
+		    padding: 10px 8px;
+	}
 #codeComplexityform table{width:100%!important;}
 	.codeComplexityCover{position: absolute;
     top: -72px;
