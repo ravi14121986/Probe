@@ -12,6 +12,9 @@
 	<script src="json/CPUutilization.js"></script>
 	<script src="json/codeComplexity.js"></script>
 	<script src="script/json.js"></script>
+	<script src="script/small.js"></script>
+	<script src="script/medium.js"></script>
+	<script src="script/large.js"></script>
 	<script src="script/script.js"></script>
 	<script src="script/bootstrap-datepicker.js"></script>
 	<link rel="stylesheet" type="text/css" href="plugin/datatable/datatables.min.css"/>
@@ -236,96 +239,143 @@ $(function(){
 		<div class="cCostEstimatorCover bsh">
 		<form action="" method="post" id="cCostform">
 			
-				<div class="costTechlgyCover"><a href="#" class="addNewCloud">Add New Row</a>
+				<div class="costTechlgyCover">
 	<table id="cloudTechlgy" class="cloudTechlgy responsive" cellpadding="6">
 				<thead>
 				<tr>
-				<th>Environment</th>
-				<th width="20%">Solution Component / Service</th>
-				<th width="18%">Technologies</th>
-				<th class="cloudCOstH">Volume / Sizing</th>
-				<th class="cloudCOstH">Services</th>
-				<th>Compute Capacity</th>
-				<th>Active Compute Time</th>
-				<th>Storage</th>
-				<th>3rd Party License</th>
-				<th>Annual Cost</th>
-				<th></th>
+				<th width="15%">Legacy Technology Stack</th>
+				<th width="10%">Size</th>
+				<th width="15%">Cloud Platform</th>
+				<th width="20%">Years to Full Scale</th>
+				<th width="15%">Cloud Cost</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr>
-				<td class="costTech1">
-					<select class="form-control">
-						<option>Production</option>
-						<option>UAT</option>
-						<option>QA</option>
-						<option>SIT</option>
-						<option>Dev</option>
-					</select>				
+				<td>
+					<b>ETL Workload	</b>			
 				</td>
-				<td class="costTech2">
-				<select class="form-control costDD1">
-					<option>Ingestion</option>
-					<option>Data Lake</option>
-					<option>Transformation</option>
-					<option>Datawarehouse</option>
-					<option>Data Governance</option>
-					<option>Datamart</option>
-					<option>Analytics</option>	
-				</select>
+				<td class="size">
+				<div class="slidecontainer">
+  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size1">  
+</div>
+<div class="rangeNum"><span>S</span><span>M</span><span>L</span></div>
 				</td>
-				<td class="costTech3">
-					<select class="form-control legacyDatabase costDD2">
-					<option>Kinesis, Lambda</option>
-					<option>S3, Snowflake</option>
-					<option>Snowflake, Databricks</option>
-					<option>Snowflake</option>
-					<option>EDC, Axon, IDQ, Collibra</option>
-					<option>Tableau, Presto, Power BI</option>
-					<option>R, Jupyter, SparkMLlib</option>
-					</select>
-				</td>
-				<td class="cloudCOstH costTech4">
-				<input type="text" name="" maxlength="30" value="0" class="form-control" />
-				</td>
-				<td class="cloudCOstH costTech5">
-				<input type="text" name="" maxlength="30" value="0" class="form-control" />
-				</td>
-				<td class="costTech6">
+				<td>
 				<select class="form-control">
-				<option>8 vCPU, 32GB RAM</option>
-				<option>24 vCPU, 256GB RAM</option>
-				<option>48 vCPU, 512GB RAM</option>
-				<option>12 vCPU, 128GB RAM</option>
-				<option>24 vCPU, 256GB RAM</option>
+				<option>Azure</option>
+				<option>AWS</option>				
+				<option>GCP</option>
 				</select>
 				</td>
-				<td class="costTech7"><input type="text" name="" maxlength="30" value="0" class="form-control" />
+				<td class="yearOfScale">
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range1">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td class="costTech8">
+				<td>
+<input type="text" id="cldCostValue1" name="cldCostValue1" maxlength="30" value="" class="form-control" readonly/>
+<input type="hidden" id="cldCostValue_hidden1" value=""/>
+				</td>
+				</tr>
+				
+				<tr>
+				<td>
+					<b>Storage	</b>			
+				</td>
+				<td class="size">
+				<div class="slidecontainer">
+  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size2">  
+</div>
+<div class="rangeNum"><span>S</span><span>M</span><span>L</span></div>
+				</td>
+				<td>
 				<select class="form-control">
-					<option>100 TB</option>
-					<option>60 TB</option>
-					<option>20TB</option>
+				<option>Azure</option>
+				<option>AWS</option>
+				<option>GCP</option>
 				</select>
 				</td>
-				<td class="costTech9">
-						<select class="form-control">
-						<option>Cloud Provider</option>
-
-						<option>Client Managed</option>
-						</select>
+				<td class="yearOfScale">
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range2">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
-				<td class="costTech10"><input type="text" name="" maxlength="30" value="0" class="form-control" /></td>
-				<td class="costTech11"><a href="#" class="deleteRow3"></a></td>
+				<td>
+<input type="text" id="cldCostValue2" name="cldCostValue2" maxlength="30" value="" class="form-control" readonly/>
+<input type="hidden" id="cldCostValue_hidden2" value=""/>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<b>Analytics Workload	</b>			
+				</td>
+				<td class="size">
+				<div class="slidecontainer">
+  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size3">  
+</div>
+<div class="rangeNum"><span>S</span><span>M</span><span>L</span></div>
+				</td>
+				<td>
+				<select class="form-control">
+				<option>Azure</option>
+				<option>AWS</option>
+				<option>GCP</option>
+				</select>
+				</td>
+				<td class="yearOfScale">
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range3">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td>
+<input type="text" id="cldCostValue3" name="cldCostValue3" maxlength="30" value="" class="form-control" readonly/>
+<input type="hidden" id="cldCostValue_hidden3" value=""/>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<b>Advance Analytics	</b>			
+				</td>
+				<td class="size">
+				<div class="slidecontainer">
+  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size4">  
+</div>
+<div class="rangeNum"><span>S</span><span>M</span><span>L</span></div>
+				</td>
+				<td>
+				<select class="form-control">
+				<option>Azure</option>
+				<option>AWS</option>
+				<option>GCP</option>
+				</select>
+				</td>
+				<td class="yearOfScale">
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range4">  
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td>
+<input type="text" id="cldCostValue4" name="cldCostValue4" maxlength="30" value="" class="form-control" readonly/>
+<input type="hidden" id="cldCostValue_hidden4" value=""/>
+				</td>
 				</tr>
    </tbody>
 				</table>
 				</div>
 				</form>
 				
-				<button id="CCEsubmit" class="btn btn-primary btn-block">Submit</button>
+				<button id="CCEsubmit" class="btn btn-primary btn-block">Calculate</button>
+				<br><br>
+				<div class="cce_containercover bsh hgCover">
+<figure class="cce_container highcharts-figure">
+    <div id="cce_container"></div>
+</figure>
+	</div>
 				</div>
 		</div>
 	
