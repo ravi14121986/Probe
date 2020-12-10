@@ -55,6 +55,14 @@ $(document).ready(function() {
 $.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/PriceSmall", function(data, status){
     smallObj = JSON.stringify(data);
 	smallObj = JSON.parse(smallObj);
+	
+ cceType();
+ cce_range("1");cce_range("2");cce_range("3");cce_range("4");
+  cce_size('1');cce_size('2');cce_size('3');cce_size('4');
+ $("#cldCostValue1").val(type1);
+ $("#cldCostValue2").val(type2);
+ $("#cldCostValue3").val(type3);
+ $("#cldCostValue4").val(type4);
 });
 $.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/PriceMedium", function(data, status){
     mediumObj = JSON.stringify(data);
@@ -952,20 +960,13 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 	}
   });
   
- 
-  cce_range("1");cce_range("2");cce_range("3");cce_range("4");
-  cce_size('1');cce_size('2');cce_size('3');cce_size('4');
-  
-
  $(document).on("click","#CCEsubmit",function() {
 	 $(".cce_containercover.bsh").show();
 	 cce_graph();
  });
- cceType();
- $("#cldCostValue1").val(type1);
- $("#cldCostValue2").val(type2);
- $("#cldCostValue3").val(type3);
- $("#cldCostValue4").val(type4);
+ 
+ 
+  
  });
  
  /* document ready end */
