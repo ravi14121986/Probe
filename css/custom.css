@@ -512,11 +512,24 @@ border-radius: 12px 12px 0 0;}
 }
 
 
-
+.cce_container.highcharts-figure,#cce_container{width:800px!important;max-width:800px!important;}
+.cce_containercover.bsh{
+		    width: 820px;
+    height: 420px;
+    margin: 0 auto 20px auto;
+	display:none;
+	}
 
 .slidecontainer {
   width: 300px;
 }
+#cloudTechlgy .size .slidecontainer{
+	width:100%;
+}
+#cloudTechlgy td b{color: #005474;font-weight:500;}
+#cloudTechlgy td{vertical-align:middle;}
+
+Table#cloudTechlgy{width:100%;}	
 
 .slider {
   -webkit-appearance: none;
@@ -785,6 +798,9 @@ border-radius:15px;border:2px solid #027cff;}
 	 .rangeNum span:nth-child(2){width:71px;}
 	 .rangeNum span:nth-child(3){width:70px;}
 	 .rangeNum span:nth-child(4){width:75px;}
+	 #cloudTechlgy td.size .rangeNum span{width:33.33%!important;text-align:center;}
+	 #cloudTechlgy td.size .rangeNum span:first-child{text-align:left;}
+	 #cloudTechlgy td.size .rangeNum span:last-child{text-align:right;}	 
 	 .roiPDFCover{display:none;}
 	 .opacityHalf{opacity:0.2;    cursor: default!important;}
 	 #csv1{white-space: pre-wrap;}
