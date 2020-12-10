@@ -19,9 +19,13 @@ var year5line;
 var labelNameDL;
 var obj;
 var objUser;
+var smallObj;
+var mediumObj;
+var largeObj;
  var elogin
-
-
+ var cce_slider1;
+var cce_output1;
+var type="type",type1,type2,type3,type4;
 $(document).ready(function() {
 	
 	$('.dbCheck:radio[type="radio"]').change(function(){
@@ -40,6 +44,25 @@ $(document).ready(function() {
     obj = JSON.stringify(data);
 	obj = JSON.parse(obj);
 	$("#preloader").hide();
+});
+
+
+
+
+
+
+
+$.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/PriceSmall", function(data, status){
+    smallObj = JSON.stringify(data);
+	smallObj = JSON.parse(smallObj);
+});
+$.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/PriceMedium", function(data, status){
+    mediumObj = JSON.stringify(data);
+	mediumObj = JSON.parse(mediumObj);
+});
+$.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/PriceHigh", function(data, status){
+    largeObj = JSON.stringify(data);
+	largeObj = JSON.parse(largeObj);
 });
 
 var assessmentTable = $('#example').DataTable({
@@ -285,26 +308,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
         $locations.html(html)
     });
 	
-	var costTechy = {
-        'Ingestion': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
-        'Data Lake': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
-        'Transformation': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
-        'Datawarehouse': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
-        'Data Governance': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
-        'Datamart': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
-        'Analytics': ['Kinesis, Lambda','S3, Snowflake','Snowflake, Databricks','Snowflake', 'EDC, Axon, IDQ, Collibra', 'Tableau, Presto, Power BI','R, Jupyter, SparkMLlib'],
-    }
-    
-    $(document).on("change",".costDD1",function() {
-		var $locations = $(this).parent().next('td').children('.costDD2');
-        var country = $(this).val(), lcns = costTechy[country] || [];
-        var html = $.map(lcns, function(lcn){
-            return '<option value="' + lcn + '">' + lcn + '</option>'
-        }).join('');
-        $locations.html(html)
-    });
-	
-	
+		
 	$(document).on("click","#LCEsubmit",function() {
 		
 		/*var formData = {
@@ -623,44 +627,7 @@ $(".btnDownload2").click(function (e) {
 		}
        
     } );
-   var costTech1 = $(".costTech1").html();
-   var costTech2 = $(".costTech2").html();
-   var costTech3 = $(".costTech3").html();
-   var costTech4 = $(".costTech4").html();
-   var costTech5 = $(".costTech5").html();
-   var costTech6 = $(".costTech6").html();
-   var costTech7 = $(".costTech7").html();
-   var costTech8 = $(".costTech8").html();
-   var costTech9 = $(".costTech9").html();
-   var costTech10 = $(".costTech10").html();
-   var costTech11 = $(".costTech11").html();
    
-	 var cloudTechlgy = $('#cloudTechlgy').DataTable({
-      'columnDefs': [{
-         'targets': 0,
-         'orderable':false,
-         'className': 'dt-body-center'
-      }]
-   });
- 
-    $(document).on("click",".addNewCloud",function() {
-		if(!$(this).hasClass("disabled")){
-        cloudTechlgy.row.add( [
-			costTech1,
-            costTech2,
-            costTech3,
-            costTech4,
-            costTech5,
-            costTech6,
-			costTech7,
-			costTech8,
-			costTech9,
-			costTech10,
-			costTech11
-      ] ).draw( false );
-		}
-       
-    } );
 	
 	/* For User Creation */
 	var userDropdown1 = $(".userDropdown1").html();
@@ -985,10 +952,23 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 	}
   });
   
+ 
+  cce_range("1");cce_range("2");cce_range("3");cce_range("4");
+  cce_size('1');cce_size('2');cce_size('3');cce_size('4');
   
-  
-  
+
+ $(document).on("click","#CCEsubmit",function() {
+	 $(".cce_containercover.bsh").show();
+	 cce_graph();
  });
+ cceType();
+ $("#cldCostValue1").val(type1);
+ $("#cldCostValue2").val(type2);
+ $("#cldCostValue3").val(type3);
+ $("#cldCostValue4").val(type4);
+ });
+ 
+ /* document ready end */
  function codeComplexityFn()
  {
 	 for(i=0;i<ends;i++)
@@ -1655,3 +1635,138 @@ function downloadFunc(files){
     	anchor.parentNode.removeChild(anchor);
   }
 
+
+function cce_range(rownum){
+var cce_slider1 = document.getElementById('CCE_Range'+rownum);
+var cce_output1 = document.getElementById('cldCostValue'+rownum);
+
+cce_slider1.oninput = function() {
+cce_output1.value = $('#cldCostValue_hidden'+rownum).val();
+var d = 100/this.value;
+
+var c = cce_output1.value * d/100;
+
+if(this.value == 3){cce_output1.value = cce_output1.value * 30/100;;}
+else{cce_output1.value = c;} 
+}
+}
+
+function cce_size(rownum){
+	var cce_slider1 = document.getElementById('CCE_Range'+rownum);
+	var cce_output1 = document.getElementById('cldCostValue'+rownum);
+var cce_slider2 = document.getElementById('cce_Size'+rownum);
+var cce_output2 = document.getElementById('cldCostValue'+rownum);
+var hVal;
+cce_slider2.oninput = function() {
+	
+	cceType();
+	if(rownum == 1){hVal = type1;}if(rownum == 2){hVal = type2;}if(rownum == 3){hVal = type3;}if(rownum == 4){hVal = type4;}
+if(this.value == 1){$('#cldCostValue_hidden'+rownum).val(hVal);}
+if(this.value == 2){$('#cldCostValue_hidden'+rownum).val(hVal);}
+if(this.value == 3){$('#cldCostValue_hidden'+rownum).val(hVal);}
+cce_slider1.value = 1;
+cce_output1.value = $('#cldCostValue_hidden'+rownum).val();
+}
+}
+
+
+
+function cce_graph(){	
+	var y1,y2,y3,y4,y5;
+	
+	cceType();
+	var finalData1 = [type1,type1*50/100,type1*30/100,type1*25/100,type1*20/100];
+	var finalData2 = [type2,type2*50/100,type2*30/100,type2*25/100,type2*20/100];
+	var finalData3 = [type3,type3*50/100,type3*30/100,type3*25/100,type3*20/100];
+	var finalData4 = [type4,type4*50/100,type4*30/100,type4*25/100,type4*20/100];
+	var totalyear1 = finalData1[0]+finalData2[0]+finalData3[0]+finalData4[0];
+	var totalyear2 = finalData1[1]+finalData2[1]+finalData3[1]+finalData4[1];
+	var totalyear3 = finalData1[2]+finalData2[2]+finalData3[2]+finalData4[2];
+	var totalyear4 = finalData1[3]+finalData2[3]+finalData3[3]+finalData4[3];
+	var totalyear5 = finalData1[4]+finalData2[4]+finalData3[4]+finalData4[4];
+	
+Highcharts.chart('cce_container', {
+    title: {
+        text: 'CCE Model'
+    },
+    xAxis: {
+        categories: ['Year1', 'Year2', 'Year3', 'Year4', 'Year5']
+    },
+	yAxis: {
+        title: {
+            text: 'Dollars'
+        }
+    },
+    series: [{
+        type: 'column',
+        name: 'ETL Workload',
+        data: finalData1
+    }, {
+        type: 'column',
+        name: 'Storage',
+        data: finalData2
+    }, {
+        type: 'column',
+        name: 'Analytics Workload',
+        data: finalData3
+    },{
+        type: 'column',
+        name: 'Advance Analytics',
+        data: finalData4
+    }, {
+        type: 'spline',
+        name: 'Total',
+        data: [totalyear1,totalyear2,totalyear3,totalyear4,totalyear5],
+        marker: {
+            lineWidth: 2,
+            lineColor: Highcharts.getOptions().colors[4],
+            fillColor: 'white'
+        }
+    }]
+});
+
+}
+
+function cceType(){
+	type1=0;type2=0;type3=0;type4=0;
+	if($("#cce_Size1").val() == 1){
+	for (var i = 0; i < smallObj.length; i++){if (smallObj[i].Type == "ETL Workload"){type1 =  type1 + parseInt(smallObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden1').val(type1);}
+	if($("#cce_Size1").val() == 2){
+	for (var i = 0; i < mediumObj.length; i++){if (mediumObj[i].Type == "ETL Workload"){type1 =  type1 + parseInt(mediumObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden1').val(type1);}
+	if($("#cce_Size1").val() == 3){
+	for (var i = 0; i < largeObj.length; i++){if (largeObj[i].Type == "ETL Workload"){type1 =  type1 + parseInt(largeObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden1').val(type1);}
+	
+	if($("#cce_Size2").val() == 1){
+    for (var i = 0; i < smallObj.length; i++){if (smallObj[i].Type == "Storage"){type2 =  type2 + parseInt(smallObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden2').val(type2);}
+	if($("#cce_Size2").val() == 2){
+    for (var i = 0; i < mediumObj.length; i++){if (mediumObj[i].Type == "Storage"){type2 =  type2 + parseInt(mediumObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden2').val(type2);}
+	if($("#cce_Size2").val() == 3){
+    for (var i = 0; i < largeObj.length; i++){if (largeObj[i].Type == "Storage"){type2 =  type2 + parseInt(largeObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden2').val(type2);}
+	
+	  if($("#cce_Size3").val() == 1){
+	for (var i = 0; i < smallObj.length; i++){if (smallObj[i].Type == "Analytics Workload"){type3 =  type3 + parseInt(smallObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden3').val(type3);}
+	 if($("#cce_Size3").val() == 2){
+	for (var i = 0; i < mediumObj.length; i++){if (mediumObj[i].Type == "Analytics Workload"){type3 =  type3 + parseInt(mediumObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden3').val(type3);}
+	 if($("#cce_Size3").val() == 3){
+	for (var i = 0; i < largeObj.length; i++){if (largeObj[i].Type == "Analytics Workload"){type3 =  type3 + parseInt(largeObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden3').val(type3);}
+	
+	if($("#cce_Size4").val() == 1){	  
+	for (var i = 0; i < smallObj.length; i++){if (smallObj[i].Type == "Advance Analytics"){type4 =  type4 + parseInt(smallObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden4').val(type4);}
+	if($("#cce_Size4").val() == 2){	  
+	for (var i = 0; i < mediumObj.length; i++){if (mediumObj[i].Type == "Advance Analytics"){type4 =  type4 + parseInt(mediumObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden4').val(type4);}
+	if($("#cce_Size4").val() == 3){	  
+	for (var i = 0; i < largeObj.length; i++){if (largeObj[i].Type == "Advance Analytics"){type4 =  type4 + parseInt(largeObj[i].Price_with_License);}}
+	$('#cldCostValue_hidden4').val(type4);}
+	
+}
