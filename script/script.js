@@ -47,11 +47,6 @@ $(document).ready(function() {
 });
 
 
-
-
-
-
-
 $.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/PriceSmall", function(data, status){
     smallObj = JSON.stringify(data);
 	smallObj = JSON.parse(smallObj);
