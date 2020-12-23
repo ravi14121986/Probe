@@ -148,18 +148,23 @@ button.disabled, a.disabled{opacity:0.3!important;cursor:default!important;}
 input[disabled="disabled"]{color:#bebdbd;border: 1px solid #ccc!important;}
 .codePDFstyle{width: 200px!important;
     margin: 0 auto 20px auto;}
-#codeComplexityform{    position: relative;
-    height: 1210px;min-width: 1200px;}
-	.topTablesCover{float:left;width:100%;text-align:center;background:#fff;}
-	#topFunctions,#topRawProjects{width:530px;}
+#codeComplexityform,#ETLcodeComplexityform{    position: relative;
+    height: 1235px;min-width: 1200px;}
+	.topTablesCover,.topTablesCoverETL{float: left;
+    width: 100%;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #2ecef2;
+    border-radius: 8px;}
+	#topFunctions,#topRawProjects,#topFunctionsETL,#topTransETL,#topReferencedObjects,#topFunctionsETL_sql{width:530px;}
 	#topTables .topHD{background: #2ecef2;
     padding: 10px;
     font-weight: bold;}
 	table.dataTable thead th, table.dataTable thead td{
 		    padding: 10px 8px!important;
 	}
-#codeComplexityform table{width:100%!important;}
-	.codeComplexityCover{position: absolute;
+#codeComplexityform table,#ETLcodeComplexityform table{width:100%!important;}
+	.codeComplexityCover,.ETLcodeComplexityCover{position: absolute;
     top: -72px;
     margin-left: -555px;
     left: 50%;
