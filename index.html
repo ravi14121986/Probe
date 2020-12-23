@@ -192,6 +192,7 @@ $(function(){
 	  <a href="#" class="clkBtn" data-next="codeComplexity"><i></i>Code Complexity Analysis</a>
 	 <!-- <a href="#"><i></i>Data Quality report</a>
 	  <a href="#"><i></i>Data Profiling</a> -->
+	  <a href="#" class="clkBtn" data-next="etlComplexity"><i></i>ETL Complexity</a>
 	  <a href="#" class="clkBtn" data-next="piiScreen"><i></i>PII Analysis</a>
 	  </div>
   <a href="#" class="mMenu">Return on Investments</a>
@@ -1432,7 +1433,88 @@ else{output.innerHTML = d;}
  <button onclick="pdftest('codeComplexityTbl');" class="btn btn-primary codePDFstyle btn-block">Export PDF</button>
 </div>
 
+<div id="etlComplexity" class="bg etlComplexity pageCover">
 
+		<h5></h5>
+<form action="" method="post" id="ETLcodeComplexityform">
+ <div class="ETLcodeComplexityCover">
+<table id="ETLComplexityTbl" align="center" cellpadding = "10" class="mrgT20 wd1000px">
+ <tr><td colspan="3"><span class="codepdfHDText">ETL Complexity Analysis<span></td></tr>
+<tr>
+<td class="vAlignT positionR">
+<div class="cmpHD">Job Complexity Categorization</div>
+<span class="pieIcon pieIcon1"><a href="#"></a></span><span class="pieIcon pieIcon2 active"><a href="#"></a></span>
+<div class="pieChart"><figure class="highcharts-figure"><div id="ETLpiechart4" style="width:350px;height:250px;"></div></figure></div>
+<div class="pieTable">
+<span class="cmpLable">LOW</span><span class="cmpVal">15</span><br>
+<span class="cmpLable">MEDIUM</span><span class="cmpVal">15</span><br>
+<span class="cmpLable">COMPLEX</span><span class="cmpVal">7</span><br>
+<span class="cmpLable">VERY COMPLEX</span><span class="cmpVal">8</span>
+</div>
+</td>
+<td class="lmh positionR">
+<div class="cmpHD">Job Complexity - SQL</div>
+<span class="pieIcon pieIcon1"><a href="#"></a></span><span class="pieIcon pieIcon2 active"><a href="#"></a></span>
+<div class="pieChart"><figure class="highcharts-figure"><div id="ETLpiechart6" style="width:350px;height:250px;"></div></figure></div>
+<div class="pieTable">
+<span class="cmpLable">TABLE_DDL</span><span class="cmpVal">0</span><br>
+<span class="cmpLable">LOW</span><span class="cmpVal">312</span><br>
+<span class="cmpLable">MEDIUM</span><span class="cmpVal">0</span><br>
+<span class="cmpLable">COMPLEX</span><span class="cmpVal">0</span>
+</div>
+</td>
+<td class="positionR" width="33.33%">
+<div style="width:350px;">
+<span class="cmpLable">Total Mappings</span><span class="cmpVal">45</span><br><br><br>
+<span class="cmpLable">Total Nodes</span><span class="cmpVal">776</span><br><br><br>
+<span class="cmpLable">Total Number of SQLs</span><span class="cmpVal">330</span>
+</div>
+</td>
+</tr>
+</table>
+<table id="topTablesETL" align="center" cellpadding="10" class="mrgT10">
+<tr>
+<td>
+<div class="topTablesCoverETL">
+<div class="topHD">Top 10 Functions</div>
+<figure class="highcharts-figure">
+    <div id="topFunctionsETL"></div>
+</figure>
+</div>
+</td>
+<td>
+<div class="topTablesCoverETL">
+<div class="topHD">Top 10 Transformations</div>
+<figure class="highcharts-figure">
+    <div id="topTransETL"></div>
+</figure>
+</div>
+</td>
+</tr>
+
+<tr>
+<td>
+<div class="topTablesCoverETL">
+<div class="topHD">Top 10 SQL Functions</div>
+<figure class="highcharts-figure">
+    <div id="topFunctionsETL_sql"></div>
+</figure>
+</div>
+</td>
+<td>
+<div class="topTablesCoverETL">
+<div class="topHD">Top 10 Referenced Objects</div>
+<figure class="highcharts-figure">
+    <div id="topReferencedObjects"></div>
+</figure>
+</div>
+</td>
+</tr>
+</table>
+</div>
+ </form>
+ <button onclick="pdftest('codeComplexityTbl');" class="btn btn-primary codePDFstyle btn-block">Export PDF</button>
+</div>
 
 <div id="piiScreen" class="piiscreen bg pageCover">
 		<h5>PII Analysis</h5>
@@ -1882,8 +1964,10 @@ var docs;
 	piechart('piechart2','Total Materialized Views','Total Triggers','','',0,0,'','');
 	piechart('piechart3','Low Complexity','Medium Complexity','High Complexity','',619,143,19,'');
 	piechart('piechart4','Total Packages','Total Procedures','Total Functions','Total Lines of Code',0,783,0,339666);
+	piechart('ETLpiechart4','Low','Medium','Complex','Very Complex',15,15,7,8);
 	piechart('piechart5','Total Loops & Cursors','Total Conditionals','Total Dynamic SQLs','',69,374,3136,0);
 	piechart('piechart6','Low Complexity','Medium Complexity','High Complexity','',619,143,19,'');
+	piechart('ETLpiechart6','TABLE_DDL','Low','Medium','Complex',0,312,0,0);
 	function piechart(ID,l1,l2,l3,l4,lval1,lval2,lval3,lval4){
 	var arr = [{name: l1,y: lval1}, {name: l2,y: lval2}, {name: l3,y: lval3},{name: l4,y: lval4}];
 	
@@ -1926,27 +2010,95 @@ Highcharts.chart(ID, {
 	</script>
 	<script>
 	var chart = Highcharts.chart('topFunctions', {
-
-    title: {
+	title: {
         text: ''
     },
-
-    subtitle: {
+	subtitle: {
         text: ''
     },
-
-    xAxis: {
+	xAxis: {
         categories: ['UPPER', 'NVL', 'TO_CHAR', 'TRIM', 'MAX', 'TO_DATE', 'DECODE', 'LPAD', 'RTRIM', 'USING']
-    },
-
-    series: [{
+    }, 
+	series: [{
         type: 'column',
         colorByPoint: true,
         data: [4696, 4110, 1760, 1239, 1097, 1035, 822, 484, 469, 461],
         showInLegend: false
     }]
+	});
+	
+	var chart = Highcharts.chart('topFunctionsETL', {
+	title: {
+        text: ''
+    },
+	subtitle: {
+        text: ''
+    },
+	xAxis: {
+        categories: ['IIF','ISNULL','TO_CHAR','LPAD','TO_INTEGER','TO_DATE','DECODE','SUBSTR','UPPER','RTRIM']
+    }, 
+	series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [493,328,266,208,98,48,39,29,28,19],
+        showInLegend: false
+    }]
+	});
+	
 
-});
+	var chart = Highcharts.chart('topFunctionsETL_sql', {
+	title: {
+        text: ''
+    },
+	subtitle: {
+        text: ''
+    },
+	xAxis: {
+        categories: ['TO_DATE','NVL','TRUNC','IN','SUM','DECODE','FULL','TO_CHAR','MAX','UPPER']
+    }, 
+	series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [138,89,73,63,59,43,41,40,29,24],
+        showInLegend: false
+    }]
+	});
+	
+	var chart = Highcharts.chart('topReferencedObjects', {
+	title: {
+        text: ''
+    },
+	subtitle: {
+        text: ''
+    },
+	xAxis: {
+        categories: ['POLICY_DIM','TRVN_JOB_CONTROL','DUAL','EASE_DATE_RANGE','AUDIT_DIM','DISCLM.WRK_CHANGED_CLAIMS_FOR_WCDD','PULSE_STAGE.VC_DDS_MU_APPLCNT_OUTCM_INTFC','PULSE_STAGE.VC_DDS_MU_APPLICANT','ALL','AUDIT_DIM_SALES']
+    }, 
+	series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [12,12,10,10,9,9,8,8,7,6],
+        showInLegend: false
+    }]
+	});
+	
+	var chart = Highcharts.chart('topTransETL', {
+	title: {
+        text: ''
+    },
+	subtitle: {
+        text: ''
+    },
+	xAxis: {
+        categories: ['Lookup Procedure','Target Definition','Source Definition','Source Qualifier','Update Strategy','Filter','Joiner','Sequence','Sorter','Expression']
+    }, 
+	series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [301,105,98,50,47,38,30,18,14,13],
+        showInLegend: false
+    }]
+	});
 
 var chart = Highcharts.chart('topRawProjects', {
 
