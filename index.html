@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+--
 <html>
 <head>
 	<title>:: Probe Tool ::</title>
@@ -18,7 +19,7 @@
 	<script src="script/script.js"></script>
 	<script src="script/bootstrap-datepicker.js"></script>
 	<link rel="stylesheet" type="text/css" href="plugin/datatable/datatables.min.css"/>
- 
+
 <script type="text/javascript" src="plugin/datatable/datatables.min.js"></script>
 
 <script src="plugin/highchart/highcharts.js"></script>
@@ -42,12 +43,12 @@
 
 $(function(){
     $.get('https://kst7yuo1x9.execute-api.us-east-1.amazonaws.com/dev/hello', function(data){
-	
+
         $('#ajaxID').append(data['message']);
 		console.log(data);
     });
 });
-</script> --> 
+</script> -->
 <div id="preloader"><div id="status">&nbsp;</div></div>
 <div class="popUpCartBg"></div>
 <div class="assessmentPop">
@@ -187,7 +188,7 @@ $(function(){
 	  <a href="#" class="clkBtn" data-next="inputPage2"><i></i>ETL Code, BI Analysis</a>
 	  <!--<a href="#" class="clkBtn" data-next="inputPage3"><i></i>Data Quality Analysis</a>-->
 	  </div>
-  <a href="#" class="mMenu">Dashboard</a>   
+  <a href="#" class="mMenu">Dashboard</a>
 	  <div class="subMenu">
 	  <a href="#" class="clkBtn Workloads" data-next="adminDashboard"><i></i>Workloads</a>
 	  <a href="#" class="clkBtn" data-next="codeComplexity"><i></i>Code Complexity Analysis</a>
@@ -206,7 +207,7 @@ $(function(){
 	  <div class="subMenu">
 	  <a href="#" class="clkBtn" data-next="userSetupPage"><i></i>Create User Profile</a>
 	  </div>
-</div>	
+</div>
 <a href="#" class="openbtn adminMenu"></a>
 
 <div id="mySidepanel2" class="sidepanel memMenu">
@@ -218,29 +219,29 @@ $(function(){
 </div>
 <button class="openbtn2 memMenu">☰</button>
 
-<div class="adminPage pageCover" data-next="schemaInputs">	
+<div class="adminPage pageCover" data-next="schemaInputs">
 	<div class="jumpText">Jump start your Cloud Migration Journey with us!!</div>
 		<div class="loginBox" >
 			<h5>Login</h5>
 			<form action="" method="post" id="loginform">
-			<span class="err errorAdmin">Username or Password was incorrect</span>	
-			<input type="email" data-error="err" name="EMail" id="emailLogin" class="emailLogin form-control" placeholder="Enter email">	
-			<span class="err invalid_email">Email-id is invalid</span>	
-			<span class="err errorEmail">Enter your email-id here</span>			
+			<span class="err errorAdmin">Username or Password was incorrect</span>
+			<input type="email" data-error="err" name="EMail" id="emailLogin" class="emailLogin form-control" placeholder="Enter email">
+			<span class="err invalid_email">Email-id is invalid</span>
+			<span class="err errorEmail">Enter your email-id here</span>
 			<input type="password" name="Password"id="passwordLogin" class="form-control mrgT10 passwordLogin" placeholder="Password">
-			
-			<button type="button" id="submitMemLogin" class="btn btn-primary btn-block mrgT10">Submit</button>	
+
+			<button type="button" id="submitMemLogin" class="btn btn-primary btn-block mrgT10">Submit</button>
 			<div id="correct" style="color:gray;"></div>
 			</form>
 		</div>
 		<div id="correct" style="color:gray;"></div>
 	</div>
-	
+
 	<div id="cCostEstimator" class="cCostEstimator bg pageCover">
 		<h5>Cloud Cost Estimator</h5>
 		<div class="cCostEstimatorCover bsh">
 		<form action="" method="post" id="cCostform">
-			
+
 				<div class="costTechlgyCover">
 	<table id="cloudTechlgy" class="cloudTechlgy responsive" cellpadding="6">
 				<thead>
@@ -255,40 +256,11 @@ $(function(){
 				<tbody>
 				<tr>
 				<td>
-					<b>ETL Workload	</b>			
+					<b>ETL Workload	</b>
 				</td>
 				<td class="size">
 				<div class="slidecontainer">
-  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size1">  
-</div>
-<div class="rangeNum"><span>S</span><span>M</span><span>L</span></div>
-				</td>
-				<td>
-				<select class="form-control">
-				<option>Azure</option>
-				<option>AWS</option>				
-				<option>GCP</option>
-				</select>
-				</td>
-				<td class="yearOfScale">
-				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range1">  
-</div>
-<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
-				</td>
-				<td>
-<input type="text" id="cldCostValue1" name="cldCostValue1" maxlength="30" value="" class="form-control" readonly/>
-<input type="hidden" id="cldCostValue_hidden1" value=""/>
-				</td>
-				</tr>
-				
-				<tr>
-				<td>
-					<b>Storage	</b>			
-				</td>
-				<td class="size">
-				<div class="slidecontainer">
-  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size2">  
+  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size1">
 </div>
 <div class="rangeNum"><span>S</span><span>M</span><span>L</span></div>
 				</td>
@@ -301,7 +273,36 @@ $(function(){
 				</td>
 				<td class="yearOfScale">
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range2">  
+  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range1">
+</div>
+<div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+				</td>
+				<td>
+<input type="text" id="cldCostValue1" name="cldCostValue1" maxlength="30" value="" class="form-control" readonly/>
+<input type="hidden" id="cldCostValue_hidden1" value=""/>
+				</td>
+				</tr>
+
+				<tr>
+				<td>
+					<b>Storage	</b>
+				</td>
+				<td class="size">
+				<div class="slidecontainer">
+  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size2">
+</div>
+<div class="rangeNum"><span>S</span><span>M</span><span>L</span></div>
+				</td>
+				<td>
+				<select class="form-control">
+				<option>Azure</option>
+				<option>AWS</option>
+				<option>GCP</option>
+				</select>
+				</td>
+				<td class="yearOfScale">
+				<div class="slidecontainer">
+  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range2">
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
@@ -312,11 +313,11 @@ $(function(){
 				</tr>
 				<tr>
 				<td>
-					<b>Analytics Workload	</b>			
+					<b>Analytics Workload	</b>
 				</td>
 				<td class="size">
 				<div class="slidecontainer">
-  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size3">  
+  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size3">
 </div>
 <div class="rangeNum"><span>S</span><span>M</span><span>L</span></div>
 				</td>
@@ -329,7 +330,7 @@ $(function(){
 				</td>
 				<td class="yearOfScale">
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range3">  
+  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range3">
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
@@ -340,11 +341,11 @@ $(function(){
 				</tr>
 				<tr>
 				<td>
-					<b>Advance Analytics	</b>			
+					<b>Advance Analytics	</b>
 				</td>
 				<td class="size">
 				<div class="slidecontainer">
-  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size4">  
+  <input type="range" min="1" max="3" value="1" class="slider" id="cce_Size4">
 </div>
 <div class="rangeNum"><span>S</span><span>M</span><span>L</span></div>
 				</td>
@@ -357,7 +358,7 @@ $(function(){
 				</td>
 				<td class="yearOfScale">
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range4">  
+  <input type="range" min="1" max="5" value="1" class="slider" id="CCE_Range4">
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
@@ -370,7 +371,7 @@ $(function(){
 				</table>
 				</div>
 				</form>
-				
+
 				<button id="CCEsubmit" class="btn btn-primary btn-block">Calculate</button>
 				<br><br>
 				<div class="cce_containercover bsh hgCover">
@@ -380,14 +381,14 @@ $(function(){
 	</div>
 				</div>
 		</div>
-	
-	
-	
+
+
+
 	<div id="lCostEstimator" class="lCostEstimator bg pageCover">
 		<h5>Legacy Cost Estimator</h5>
 		<div class="lCostEstimatorCover bsh">
 		<form action="" method="post" id="lCostform">
-			<table cellpadding = "6" align="center" class="mrgBT20" id="legacyTechTotal"> 
+			<table cellpadding = "6" align="center" class="mrgBT20" id="legacyTechTotal">
 				<tr>
 				<td width="60%" class="tdBG"><div class="laborCost">Total Legacy Labor Cost</div></td>
 				<td class="tdBG"><div class="hardwareCost">Total Legacy H/W Cost</div></td>
@@ -397,7 +398,7 @@ $(function(){
 				<tr>
 				<td class="parnt">
 				<input type="text" name="Legacy Labor Cost" id="legacyID1" maxlength="30" value="0" class="lLaborCost form-control wd300" readonly/>
-				</td>				
+				</td>
 				<td class="parnt">
 				<input type="text" name="Legacy H/W Cost" id="legacyID2" maxlength="30" value="0" class="lHWCost form-control wd300" readonly/>
 				</td>
@@ -456,7 +457,7 @@ $(function(){
 				</table>
 				</div>
 				</form>
-				
+
 				<button id="LCEsubmit" class="btn btn-primary btn-block">Submit</button>
 				</div>
 		</div>
@@ -473,8 +474,8 @@ $(function(){
             </tr>
         </thead>
         <tbody>
-           
-             
+
+
 			</tbody>
 </table></div>
 
@@ -486,7 +487,7 @@ $(function(){
 			<a href="#">On-Premise DW platform to Snowflake on Azure</a>
 			<a href="#">On-Premise DW platform to Google BigQuer</a>
 			<a href="#">On-Premise DW platform to Azure SQL Data Warehouse</a>
-			
+
 		</div>
 		<div class="tabBtn"><button type="button" data-next="memLoginPage" class="btn clkBtn btn-primary btn-block mrgT10">Submit</button></div>
 		</div>-->
@@ -539,7 +540,7 @@ $(function(){
 <div id="SDanalysis"class="SDanalysis bg pageCover">
 <h5><span>Sensitive Data Analysis</span></h5>
 <form action="" method="post" id="sensitivedata">
-			<table align="center" cellpadding = "6" class="mrgT20"> 
+			<table align="center" cellpadding = "6" class="mrgT20">
 				<tr>
 				<td width="40%">Regulatory Compliance</td>
 				<td class="checkboxF">
@@ -595,7 +596,7 @@ $(function(){
 				<div><input type="text" name="GroupID" placeholder="Test" id="Non-Prod-Test" maxlength="50" class="form-control" /></div>
 				</td>
 				</tr>
-				
+
 				<tr>
 				<td>Enter Data Catalogue </td>
 				<td>
@@ -605,7 +606,7 @@ $(function(){
 						<option value="dataStage">Data Stage</option>
 						<option value="other CSV">Other ( CSV)</value>
 					</select>
-				
+
 				</td>
 				</tr>
 				<tr><td></td>
@@ -622,21 +623,21 @@ $(function(){
 				<tr><td></td>
 				<td align="left">
 					<div class="singleBtn">
-			<button type="button" id="sensitiveDataSubmit" class="btn btn-primary btn-block">Submit</button>	
+			<button type="button" id="sensitiveDataSubmit" class="btn btn-primary btn-block">Submit</button>
 		</div>
 				</td>
 				</tr>
 			</table>
 			</form>
 
-    
-	
+
+
 </div>
 <div id="roiCalculator" class="roiCalculator bg pageCover">
 		<h5><span>ROI Calculator</span></h5>
 		<div class="roiCalculatorCover bsh">
 		<form action="" method="post" id="ROIform">
-			<table align="center" cellpadding = "6" class="mrgT20"> 
+			<table align="center" cellpadding = "6" class="mrgT20">
 				<tr>
 				<td width="40%">Migration Pattern</td>
 				<td>
@@ -658,7 +659,7 @@ $(function(){
 				<td>Years to Sunset</td>
 				<td>
 				<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">  
+  <input type="range" min="1" max="5" value="2" class="slider" id="myRange">
 </div>
 <div class="rangeNum"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
 				</td>
@@ -677,7 +678,7 @@ output.innerHTML = slider.value;
 slider.oninput = function() {
 var d = 100/this.value;
 if(this.value == 3){output.innerHTML = 30;}
-else{output.innerHTML = d;} 
+else{output.innerHTML = d;}
 }
 </script>
 				</td>
@@ -698,8 +699,8 @@ else{output.innerHTML = d;}
 				</tr>
 				<tr>
 				<td colspan="2">
-				<div class="tabs tabs50">			
-			<div class="tabBtn"><button type="button" class="btn totalROI btn-primary btn-block mrgT10 active">Calculate</button></div>	
+				<div class="tabs tabs50">
+			<div class="tabBtn"><button type="button" class="btn totalROI btn-primary btn-block mrgT10 active">Calculate</button></div>
 		</div>
 				</td>
 				</tr>
@@ -744,7 +745,7 @@ else{output.innerHTML = d;}
 	<button type="button" class="btn btn-primary btn-block">Close</button>
 	</div>
 			<form action="" method="post" id="dashboardform">
-			<table align="center" cellpadding = "6" class="mrgT20"> 
+			<table align="center" cellpadding = "6" class="mrgT20">
 				<tr>
 				<td width="30%">Name of Assessment</td>
 				<td class="positionR">
@@ -810,21 +811,21 @@ else{output.innerHTML = d;}
 				</select>
 				</td>
 				</tr> -->
-				
+
 				<tr>
 				<td colspan="200">
 				<div class="tabs tabs50">
-			
-			<div class="tabBtn"><button type="button" id="userProfileID" class="btn btn-primary btn-block mrgT10 active">Submit</button></div>	
+
+			<div class="tabBtn"><button type="button" id="userProfileID" class="btn btn-primary btn-block mrgT10 active">Submit</button></div>
 		</div>
 				</td>
 				</tr>
-				
+
 			</table>
 			</form>
-		
+
 	</div>
-	
+
 
 <div class="loginUserName">
 <div class="firstLetter">VS</div>
@@ -836,9 +837,9 @@ else{output.innerHTML = d;}
 <div id="inputPage1" class="bg inputPage1 pageCover">
 		<h5>Workload Assessment</h5>
 <form action="" method="post" id="inputPage1form">
- 
+
 <table align="center" cellpadding = "6" class="mrgT20">
- 
+
 <tr>
 <td width="40%">Select Current Technology Platform</td>
 <td>
@@ -903,7 +904,7 @@ else{output.innerHTML = d;}
 
 <tr class="workloadDatabaseR dbBox">
 <td class="vAlignT">Please Provide DB Connection String</td>
- 
+
 <td>
 	<div class="hostTable">
 	<table>
@@ -911,12 +912,12 @@ else{output.innerHTML = d;}
 	<td >Host Name</td>
 	<td><input type="text" id="workloadHostname" name="DB Host name" maxlength="30" class="form-control wd300" /></td>
 	</tr>
-	 
+
 	<tr>
 	<td>User Name</td>
 	<td><input type="text" id="workloadUsername" name="DB UserName" maxlength="30" class="form-control wd300" /></td>
 	</tr>
-	 
+
 	<tr>
 	<td>Password</td>
 	<td><input type="password" id="workloadPassword" name="DB Password" maxlength="30" class="form-control wd300" /></td>
@@ -925,12 +926,12 @@ else{output.innerHTML = d;}
 	</div>
 </td>
 </tr>
- 
+
 <tr>
 <td></td>
 <td align="left">
 <div class="singleBtn">
-			<button type="button" id="workloadSubmit" class="btn btn-primary btn-block mrgT10">Submit</button>	
+			<button type="button" id="workloadSubmit" class="btn btn-primary btn-block mrgT10">Submit</button>
 		</div>
 </td>
 </tr>
@@ -942,7 +943,7 @@ else{output.innerHTML = d;}
 
 <div id="inputPage2" class="inputPage2 bg pageCover">
 <h5>ETL Code, BI Analysis</h5>
-<form action="" method="post" id="inputPage2form"> 
+<form action="" method="post" id="inputPage2form">
 <table align="center" cellpadding = "6">
  <tr><td>
  Select ETL Technology</td>
@@ -996,7 +997,7 @@ else{output.innerHTML = d;}
 </td></tr>
 <tr class="ETL_R dbBox">
 <td class="vAlignT">Please Provide ETL Server Details
- 
+
 <td>
 	<div class="hostTable">
 	<table>
@@ -1004,18 +1005,18 @@ else{output.innerHTML = d;}
 	<td>Host Name</td>
 	<td><input type="text" name="ETL Host name" id="ETL_Hostname" maxlength="30" class="form-control wd300"/></td>
 	</tr>
-	 
+
 	<tr>
 	<td>User Name</td>
 	<td><input type="text" name="ETL UserName" id="ETL_UserName" maxlength="30" class="form-control wd300"/></td>
 	</tr>
-	 
+
 	<tr>
 	<td>Password</td>
 	<td><input type="password" name="ETL Password" id="ETL_Password" maxlength="30" class="form-control wd300"/></td>
 	</tr>
-	 
-	 
+
+
 	</table>
 	 </div>
 </td>
@@ -1056,7 +1057,7 @@ else{output.innerHTML = d;}
 
 <tr class="BiTool_R dbBox">
 <td class="vAlignT">Please Provide BI Server Details</td>
- 
+
 <td>
 	<div class="hostTable">
 	<table>
@@ -1064,18 +1065,18 @@ else{output.innerHTML = d;}
 	<td>Host Name</td>
 	<td><input type="text" name="BI Host name" id="BI_Hostname" maxlength="30" class="form-control wd300"/></td>
 	</tr>
-	 
+
 	<tr>
 	<td>User Name</td>
 	<td><input type="text" name="BI UserName" id="BI_UserName" maxlength="30" class="form-control wd300"/></td>
 	</tr>
-	 
+
 	<tr>
 	<td>Password</td>
 	<td><input type="password" name="BI Password" id="BI_Password" maxlength="30" class="form-control wd300"/></td>
 	</tr>
-	 
-	 
+
+
 	</table>
 	 </div>
 </td>
@@ -1085,7 +1086,7 @@ else{output.innerHTML = d;}
 <td></td>
 <td align="left">
 <div class="singleBtn">
-			<button type="button" id="ETL_BI_Submit" class="btn btn-primary btn-block mrgT10">Submit</button>	
+			<button type="button" id="ETL_BI_Submit" class="btn btn-primary btn-block mrgT10">Submit</button>
 		</div>
 </td>
 </tr>
@@ -1095,9 +1096,9 @@ else{output.innerHTML = d;}
 <div id="inputPage3" class="inputPage3 bg pageCover">
 <h5>Data Quality Analysis</h5>
 <form action="" method="post" id="inputPage3form">
- 
+
 <table align="center" cellpadding = "6">
- 
+
 <tr>
 <td width="40%">What defines success for Migration?</td>
 <td><input type="text" name="Success Host name" maxlength="30"  id="successMigration" class="form-control wd300"/></td>
@@ -1127,7 +1128,7 @@ else{output.innerHTML = d;}
 </td>
 </tr>
 
- 
+
 <tr>
 <td>What is the data retention policy?<br /></td>
 <td>
@@ -1139,7 +1140,7 @@ else{output.innerHTML = d;}
 <option value="6 years">6 years</option>
 </select>
 </td>
-</tr> 
+</tr>
 
 <tr>
 <td>What is the data archival policy?<br /></td>
@@ -1206,7 +1207,7 @@ else{output.innerHTML = d;}
 </select>
 </td>
 </tr>
-  
+
 
 <tr>
 <td>Can you provide architecture diagram</td>
@@ -1234,7 +1235,7 @@ else{output.innerHTML = d;}
 <td></td>
 <td align="left">
 <div class="singleBtn">
-			<button type="button" id="qualityAsubmit" class="btn btn-primary btn-block mrgT10">Submit</button>	
+			<button type="button" id="qualityAsubmit" class="btn btn-primary btn-block mrgT10">Submit</button>
 		</div>
 </td>
 </tr>
@@ -1245,9 +1246,9 @@ else{output.innerHTML = d;}
 <div id="schemaInputs" class="bg schemaInputs pageCover">
 		<h5>Schema and Stored Code Inputs</h5>
 <form action="" method="post" id="schemaInputsform">
- 
+
 <table align="center" cellpadding = "6" class="mrgT20">
- 
+
 <tr>
 <td width="40%">Select Database Technology</td>
 <td>
@@ -1299,7 +1300,7 @@ else{output.innerHTML = d;}
 </tr>
 <tr class="ConnectSchemaDatabase dbBox">
 <td class="vAlignT">Please Provide DB Connection String</td>
- 
+
 <td>
 	<div class="hostTable">
 	<table>
@@ -1307,12 +1308,12 @@ else{output.innerHTML = d;}
 	<td >Host Name</td>
 	<td><input type="text" id="schemaHostName" name="DB Host Name" maxlength="30" class="form-control wd300" /></td>
 	</tr>
-	 
+
 	<tr>
 	<td>User Name</td>
 	<td><input type="text" id="schemaUserName" name="DB UserName" maxlength="30" class="form-control wd300" /></td>
 	</tr>
-	 
+
 	<tr>
 	<td>Password</td>
 	<td><input type="password" id="schemaPassword" name="DB Password" maxlength="30" class="form-control wd300" /></td>
@@ -1325,10 +1326,10 @@ else{output.innerHTML = d;}
 <td></td>
 <td align="left">
 <div class="singleBtn">
-			<button type="button" id="schemaSubmit" class="btn btn-primary btn-block mrgT10">Submit</button>	
+			<button type="button" id="schemaSubmit" class="btn btn-primary btn-block mrgT10">Submit</button>
 		</div>
 </tr>
- 
+
 </table>
  </form>
 </div>
@@ -1527,15 +1528,15 @@ else{output.innerHTML = d;}
                 <th>PII Field Name</th>
                 <th>Table Name</th>
                 <th>Mandatory Field</th>
-                
+
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td></td>
                 <td>Full Name</td><td>T_ACCT</td><td>N</td>
-                
-     
+
+
             </tr>
              <tr><td></td><td>Home Address</td><td>T_ADDR</td><td>Y</td></tr>
 			 <tr><td></td><td>E-Mail Address</td><td>T_ACCT</td><td>Y</td></tr>
@@ -1546,8 +1547,8 @@ else{output.innerHTML = d;}
 			 <tr><td></td><td>Date of Birth</td><td>T_ACCT</td><td>N</td></tr>
 			 <tr><td></td><td>Telephone Number</td><td>T_ACCT</td><td>Y</td></tr>
 			 <tr><td></td><td>Mobile Number</td><td>T_ACCT</td><td>N</td></tr>
-			
-			 
+
+
 			</tbody>
 </table></div>
 
@@ -1559,7 +1560,7 @@ else{output.innerHTML = d;}
 			<a href="#">On-Premise DW platform to Snowflake on Azure</a>
 			<a href="#">On-Premise DW platform to Google BigQuer</a>
 			<a href="#">On-Premise DW platform to Azure SQL Data Warehouse</a>
-			
+
 		</div>
 		<div class="tabBtn"><button type="button" data-next="memLoginPage" class="btn clkBtn btn-primary btn-block mrgT10">Submit</button></div>
 		</div>-->
@@ -1577,7 +1578,7 @@ var bubbleVal1 = [
             [4, 11, 14]
         ];
 		var bubbleVal2 = [
-            
+
             [6, 9, 10]
         ];
 		var bubbleVal3 = [
@@ -1604,7 +1605,7 @@ var bubbleVal1 = [
 		var bubbleVal10 = [
 			[5, 5, 5]
         ];
-		
+
 Highcharts.chart('container', {
 
     chart: {
@@ -1844,7 +1845,7 @@ heatmapCSVtext("#csv29",120,135,24,cpudata);
 heatmapCSVtext("#csv30",135,150,24,cpudata);
 </script>
 <script>
-legacyCostChart();				
+legacyCostChart();
 		estimateCostChart();
 		yearonyearCost();
 		roimodelChart();
@@ -1863,7 +1864,7 @@ for(j=0;j<hrsPerday;j++)
 {
  arr.push(jsonVal[i][j]);
  }
- 
+
  var ArrMax = Math.max.apply(Math, arr);
 var ArrMin = Math.min.apply(Math, arr);
 var total = 0;
@@ -1880,7 +1881,7 @@ ggg[2]=avg;
 ggg[3]=avgMax;
 ggg[4]=ArrMax;
 finalAr.push(ggg);
- }  
+ }
 
 Highcharts.chart('assessmentEnvelope', {
 
@@ -1946,9 +1947,9 @@ var docs;
           jsPDF: {orientation: 'landscape', unit: 'in', format: 'letter', compressPDF: true}
         });
 		docs.save('test.pdf');
-		 var pdf = btoa(docs); 
-		
-		 
+		 var pdf = btoa(docs);
+
+
 		 $.ajax({
   type: "POST",
   url: "https://42onrffs5b.execute-api.us-east-1.amazonaws.com/v1/upload",
@@ -1971,7 +1972,7 @@ var docs;
 	piechart('ETLpiechart6','TABLE_DDL','Low','Medium','Complex',0,312,0,0);
 	function piechart(ID,l1,l2,l3,l4,lval1,lval2,lval3,lval4){
 	var arr = [{name: l1,y: lval1}, {name: l2,y: lval2}, {name: l3,y: lval3},{name: l4,y: lval4}];
-	
+
 	// Build the chart
 Highcharts.chart(ID, {
     chart: {
@@ -2019,7 +2020,7 @@ Highcharts.chart(ID, {
     },
 	xAxis: {
         categories: ['UPPER', 'NVL', 'TO_CHAR', 'TRIM', 'MAX', 'TO_DATE', 'DECODE', 'LPAD', 'RTRIM', 'USING']
-    }, 
+    },
 	series: [{
         type: 'column',
         colorByPoint: true,
@@ -2027,7 +2028,7 @@ Highcharts.chart(ID, {
         showInLegend: false
     }]
 	});
-	
+
 	var chart = Highcharts.chart('topFunctionsETL', {
 	title: {
         text: ''
@@ -2037,7 +2038,7 @@ Highcharts.chart(ID, {
     },
 	xAxis: {
         categories: ['IIF','ISNULL','TO_CHAR','LPAD','TO_INTEGER','TO_DATE','DECODE','SUBSTR','UPPER','RTRIM']
-    }, 
+    },
 	series: [{
         type: 'column',
         colorByPoint: true,
@@ -2045,7 +2046,7 @@ Highcharts.chart(ID, {
         showInLegend: false
     }]
 	});
-	
+
 
 	var chart = Highcharts.chart('topFunctionsETL_sql', {
 	title: {
@@ -2056,7 +2057,7 @@ Highcharts.chart(ID, {
     },
 	xAxis: {
         categories: ['TO_DATE','NVL','TRUNC','IN','SUM','DECODE','FULL','TO_CHAR','MAX','UPPER']
-    }, 
+    },
 	series: [{
         type: 'column',
         colorByPoint: true,
@@ -2064,7 +2065,7 @@ Highcharts.chart(ID, {
         showInLegend: false
     }]
 	});
-	
+
 	var chart = Highcharts.chart('topReferencedObjects', {
 	title: {
         text: ''
@@ -2074,7 +2075,7 @@ Highcharts.chart(ID, {
     },
 	xAxis: {
         categories: ['POLICY_DIM','TRVN_JOB_CONTROL','DUAL','EASE_DATE_RANGE','AUDIT_DIM','DISCLM.WRK_CHANGED_CLAIMS_FOR_WCDD','PULSE_STAGE.VC_DDS_MU_APPLCNT_OUTCM_INTFC','PULSE_STAGE.VC_DDS_MU_APPLICANT','ALL','AUDIT_DIM_SALES']
-    }, 
+    },
 	series: [{
         type: 'column',
         colorByPoint: true,
@@ -2082,7 +2083,7 @@ Highcharts.chart(ID, {
         showInLegend: false
     }]
 	});
-	
+
 	var chart = Highcharts.chart('topTransETL', {
 	title: {
         text: ''
@@ -2092,7 +2093,7 @@ Highcharts.chart(ID, {
     },
 	xAxis: {
         categories: ['Lookup Procedure','Target Definition','Source Definition','Source Qualifier','Update Strategy','Filter','Joiner','Sequence','Sorter','Expression']
-    }, 
+    },
 	series: [{
         type: 'column',
         colorByPoint: true,
