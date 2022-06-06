@@ -800,6 +800,20 @@ $(".mMenu").click(function(){
 
 
   });
+  $('#RegisterMemLogin').click(function(){
+      var email = $('.emailLogin').val();
+
+      if(email== ''){
+        $('.errorEmail').show();
+        return false;
+      }
+      else if(IsEmail(email)==false){
+        $('.invalid_email').show();
+        return false;
+      }
+
+
+    });
 
 
 
