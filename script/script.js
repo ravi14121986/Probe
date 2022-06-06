@@ -807,7 +807,7 @@ $(".mMenu").click(function(){
         $('.errorEmail').show();
         return false;
       }
-      else if(IsEmail(email)==false){
+      else if(IsRegisterEmail(email)==false){
         $('.invalid_email').show();
         return false;
       }
@@ -1312,6 +1312,15 @@ Highcharts.chart('assessmentBar', {
 }
 
   }
+}
+
+function IsRegisterEmail(email) {
+
+ var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+ if(!regex.test(email)) {
+ $(".emailLogin").addClass("errOutline");
+   return false;
+ }
 }
 
 function renderIcons() {
