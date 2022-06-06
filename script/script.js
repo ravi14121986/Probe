@@ -80,7 +80,7 @@ var assessmentTable = $('#example').DataTable({
    $(document).on("click","#RegisterMemLogin",function() {
 
 		username = document.getElementById("emailLogin").value;
-		password =  document.getElementById("passwordInputRegister").value;
+		password =  document.getElementById("passwordLogin").value;
 
 		poolData = {
 				UserPoolId : _config.cognito.userPoolId, // Your user pool id here
