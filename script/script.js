@@ -77,6 +77,10 @@ var assessmentTable = $('#example').DataTable({
       }]
    });
 
+   var username;
+   var password;
+   var poolData;
+
    $(document).on("click","#RegisterMemLogin",function() {
 
 		username = document.getElementById("emailLogin").value;
