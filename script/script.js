@@ -90,7 +90,7 @@ var assessmentTable = $('#example').DataTable({
 				UserPoolId : 'us-east-2_DBeQjintx', // Your user pool id here
 				ClientId : '4o2mevgm48b28jrkg1orm9r78j' // Your client id here
 			};
-    document.getElementById("titleheader").innerHTML = "pooldata value is " + poolData;
+
 		var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 		var attributeList = [];
@@ -109,6 +109,8 @@ var assessmentTable = $('#example').DataTable({
 				alert(err.message || JSON.stringify(err));
 				return;
 			}
+
+      document.getElementById("titleheader").innerHTML = "result is " + result + "result.user" + result.user;
 			cognitoUser = result.user;
 			console.log('user name is ' + cognitoUser.getUsername());
 			//change elements of page
