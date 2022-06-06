@@ -87,7 +87,7 @@ var assessmentTable = $('#example').DataTable({
 		password =  document.getElementById("passwordLogin").value;
 
     poolData = {
-				UserPoolId : _config.cognito.UserPoolId, // Your user pool id here
+				UserPoolId : _config.cognito.userPoolId, // Your user pool id here
 				ClientId : _config.cognito.clientId // Your client id here
 			};
 
