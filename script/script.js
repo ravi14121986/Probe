@@ -91,6 +91,7 @@ var assessmentTable = $('#example').DataTable({
 				ClientId : _config.cognito.clientId // Your client id here
 			};
 
+    document.getElementById("titleheader").innerHTML = "pooldata is " + JSON.stringify(poolData);
     var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 		var attributeList = [];
@@ -110,7 +111,7 @@ var assessmentTable = $('#example').DataTable({
 				return;
 			}
 
-      document.getElementById("titleheader").innerHTML = "result is " + result + "result.user" + result.user;
+
 			cognitoUser = result.user;
 			console.log('user name is ' + cognitoUser.getUsername());
 			//change elements of page
