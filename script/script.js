@@ -77,47 +77,40 @@ var assessmentTable = $('#example').DataTable({
       }]
    });
 
-   var username;
-   		var password;
-   		var personalname;
-   		var poolData;
 
+	$(document).on("click","#submitMemLogin",function() {
 
+		elogin = $("#emailLogin").val();
+		$.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
+     objUser = JSON.stringify(data);
+	 objUser= JSON.parse(objUser);
+	 if((elogin === "vasu@cg.com")||(elogin === "admin@cg.com")){
+	for (var i = 0; i < obj.length; i++){
+   assessmentTable.row.add( [
+           '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ obj[i].Assessment_Name + '</a>',
+            obj[i].Client_Name,
+            obj[i].Start_Date,
+            obj[i].End_Date
+      ] ).draw( true );
+   }
+		}
 
-	$(document).on("click","#submitMemLogin",function () {
+		if((elogin != "vasu@cg.com")&&(elogin != "admin@cg.com")){
+	$("#example tbody").html("");
+   assessmentTable.row.add( [
+            '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ objUser.Assessment_Name + '</a>',
+            objUser.Client_Name,
+            objUser.Start_Date,
+            objUser.End_Date
+      ] ).draw( true );
+   }
 
-var authenticationData = {
-      Username : document.getElementById("inputUsername").value,
-      Password : document.getElementById("inputPassword").value,
-  };
-
-  var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
-
-var poolData = {
-      UserPoolId : _config.cognito.userPoolId, // Your user pool id here
-      ClientId : _config.cognito.clientId, // Your client id here
-  };
-
-  var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-
-  var userData = {
-      Username : document.getElementById("inputUsername").value,
-      Pool : userPool,
-  };
-
-  var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-
-cognitoUser.authenticateUser(authenticationDetails, {
-      onSuccess: function (result) {
-    var accessToken = result.getAccessToken().getJwtToken();
-    console.log(accessToken);
-      },
-
-      onFailure: function(err) {
-          alert(err.message || JSON.stringify(err));
-      },
-  });
 });
+
+
+
+
+	});
 
 $(document).on("click",".logOut",function() {
 	location.reload();
@@ -381,7 +374,6 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
   contentType: "application/pdf",
   processData: false
 });
-
     });*/
 
 	$('form input[type=file]').on('change', function(){
@@ -759,8 +751,20 @@ $(".mMenu").click(function(){
 		 $(".displayJson .box5").append(formData5);
 
 	  });
+	  $('#submitMemLogin').click(function(){
+        var email = $('.emailLogin').val();
 
-    
+        if(email== ''){
+          $('.errorEmail').show();
+          return false;
+        }
+        else if(IsEmail(email)==false){
+          $('.invalid_email').show();
+          return false;
+        }
+
+
+  });
 
 
 
