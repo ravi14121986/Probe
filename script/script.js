@@ -87,8 +87,8 @@ var assessmentTable = $('#example').DataTable({
 		password =  document.getElementById("passwordLogin").value;
 
     poolData = {
-				UserPoolId : _config.cognito.userPoolId, // Your user pool id here
-				ClientId : _config.cognito.clientId // Your client id here
+				UserPoolId : 'us-east-2_DBeQjintx', // Your user pool id here
+				ClientId : '4o2mevgm48b28jrkg1orm9r78j' // Your client id here
 			};
     document.getElementById("titleheader").innerHTML = "pooldata value is " + poolData;
 		var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
