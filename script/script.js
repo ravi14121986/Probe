@@ -149,7 +149,7 @@ var assessmentTable = $('#example').DataTable({
 
 	cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-        document.getElementById("titleheader").innerHTML = "Success authentication" + result;
+        document.getElementById("titleheader").innerHTML = "Success authentication" + JSON.stringify(result);
 
         },
 
