@@ -150,8 +150,13 @@ var assessmentTable = $('#example').DataTable({
 
     cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
-
-          },
+              elogin = $("#emailLogin").val();
+              $.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
+              var objUser = JSON.stringify(data);
+              var objUser= JSON.parse(objUser);
+              document.getElementById("titleheader").innerHTML = "data" + JSON.stringify(objUser);
+          };
+        },
             onFailure: function(err) {
                 alert(err.message || JSON.stringify(err));
             },
