@@ -150,8 +150,7 @@ var assessmentTable = $('#example').DataTable({
 
     cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
-              
-            };
+
           },
             onFailure: function(err) {
                 alert(err.message || JSON.stringify(err));
