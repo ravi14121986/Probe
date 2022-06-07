@@ -7,8 +7,8 @@ var adminObj = [
 
 var clientObj = [
 {"EMail": "dilip@cg.com", "Password": "Dilip01$"},
-  {"EMail": "devang@cg.com", "Password": "Devang0$"}
-  
+  {"EMail": "devang@cg.com", "Password": "Devang0$"},
+  {"EMail": "adithya@cg.com", "Password": "Adithya$"}
   
 ];
  
