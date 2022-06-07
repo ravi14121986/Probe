@@ -149,8 +149,13 @@ var assessmentTable = $('#example').DataTable({
 
 	cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-        document.getElementById("titleheader").innerHTML = "Success authentication" + JSON.stringify(result);
-
+        document.getElementById("titleheader").innerHTML = "Success authentication";
+        assessmentTable.row.add( [
+           '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ username.Assessment_Name + '</a>',
+            username.Client_Name,
+            username.Start_Date,
+            username.End_Date
+      ] ).draw( true );
         },
 
         onFailure: function(err) {
