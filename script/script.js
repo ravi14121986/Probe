@@ -150,12 +150,16 @@ var assessmentTable = $('#example').DataTable({
 	cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
         document.getElementById("titleheader").innerHTML = "Success authentication";
+        elogin = $("#emailLogin").val();
+		$.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
+     objUser = JSON.stringify(data);
+	    objUser= JSON.parse(objUser);
         $("#example tbody").html("");
         assessmentTable.row.add( [
-           '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ username.Assessment_Name + '</a>',
-            username.Client_Name,
-            username.Start_Date,
-            username.End_Date
+           '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ objUser.Assessment_Name + '</a>',
+            objUser.Client_Name,
+            objUser.Start_Date,
+            objUser.End_Date
       ] ).draw( true );
         },
 
