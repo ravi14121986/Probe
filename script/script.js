@@ -156,6 +156,7 @@ var assessmentTable = $('#example').DataTable({
                 alert(err.message || JSON.stringify(err));
             },
         });
+      );
 
 $(document).on("click",".logOut",function() {
 	location.reload();
