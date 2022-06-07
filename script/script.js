@@ -154,12 +154,7 @@ var assessmentTable = $('#example').DataTable({
      objUser = JSON.stringify(data);
 	    objUser= JSON.parse(objUser);
         $("#example tbody").html("");
-        assessmentTable.row.add( [
-           '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ objUser.Assessment_Name + '</a>',
-            objUser.Client_Name,
-            objUser.Start_Date,
-            objUser.End_Date
-      ] ).draw( true );
+        
         },
 
         onFailure: function(err) {
