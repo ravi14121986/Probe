@@ -149,7 +149,7 @@ var assessmentTable = $('#example').DataTable({
 
 	cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-        document.getElementById("titleheader").innerHTML = "Success authentication";
+        document.getElementById("titleheader").innerHTML = "Success authentication" + result;
 
         },
 
@@ -798,20 +798,7 @@ $(".mMenu").click(function(){
 		 $(".displayJson .box5").append(formData5);
 
 	  });
-	  $('#submitMemLogin').click(function(){
-        var email = $('.emailLogin').val();
 
-        if(email== ''){
-          $('.errorEmail').show();
-          return false;
-        }
-        else if(IsEmail(email)==false){
-          $('.invalid_email').show();
-          return false;
-        }
-
-
-  });
   $('#RegisterMemLogin').click(function(){
       var email = $('.emailLogin').val();
 
