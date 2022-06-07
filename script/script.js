@@ -148,7 +148,6 @@ var assessmentTable = $('#example').DataTable({
     var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 
 	cognitoUser.authenticateUser(authenticationDetails, {
-    document.getElementById("titleheader").innerHTML = "result is" + result;
         onSuccess: function (result) {
           $("#example tbody").html("");
    assessmentTable.row.add( [
