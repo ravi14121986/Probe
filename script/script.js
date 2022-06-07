@@ -153,8 +153,8 @@ var assessmentTable = $('#example').DataTable({
 		$.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
      objUser = JSON.stringify(data);
 	    objUser= JSON.parse(objUser);
-        $("#example tbody").html("");
         
+
         },
 
         onFailure: function(err) {
