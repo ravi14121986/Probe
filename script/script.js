@@ -149,7 +149,6 @@ var assessmentTable = $('#example').DataTable({
 
 	cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-        document.getElementById("titleheader").innerHTML = "Success authentication";
         elogin = $("#emailLogin").val();
 		$.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
      objUser = JSON.stringify(data);
