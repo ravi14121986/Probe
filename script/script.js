@@ -123,37 +123,46 @@ var assessmentTable = $('#example').DataTable({
 
 	$(document).on("click","#submitMemLogin",function() {
 
-		elogin = $("#emailLogin").val();
-		$.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
-     objUser = JSON.stringify(data);
-	 objUser= JSON.parse(objUser);
-	 if((elogin === "vasu@cg.com")||(elogin === "admin@cg.com")){
-	for (var i = 0; i < obj.length; i++){
+    username = document.getElementById("emailLogin").value;
+		password =  document.getElementById("passwordLogin").value;
+
+    var authenticationData = {
+        Username : document.getElementById("emailLogin").value,
+        Password : document.getElementById("passwordLogin").value,
+    };
+
+    var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+
+	var poolData = {
+        UserPoolId : _config.cognito.userPoolId, // Your user pool id here
+        ClientId : _config.cognito.clientId, // Your client id here
+    };
+
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+    var userData = {
+        Username : document.getElementById("emailLogin").value,
+        Pool : userPool,
+    };
+
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+	cognitoUser.authenticateUser(authenticationDetails, {
+        onSuccess: function (result) {
+          $("#example tbody").html("");
    assessmentTable.row.add( [
-           '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ obj[i].Assessment_Name + '</a>',
-            obj[i].Client_Name,
-            obj[i].Start_Date,
-            obj[i].End_Date
+            '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ username.Assessment_Name + '</a>',
+            username.Client_Name,
+            username.Start_Date,
+            username.End_Date
       ] ).draw( true );
-   }
-		}
+        },
 
-		if((elogin != "vasu@cg.com")&&(elogin != "admin@cg.com")){
-	$("#example tbody").html("");
-   assessmentTable.row.add( [
-            '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ objUser.Assessment_Name + '</a>',
-            objUser.Client_Name,
-            objUser.Start_Date,
-            objUser.End_Date
-      ] ).draw( true );
-   }
-
-});
-
-
-
-
-	});
+        onFailure: function(err) {
+            alert(err.message || JSON.stringify(err));
+        },
+    });
+  });
 
 $(document).on("click",".logOut",function() {
 	location.reload();
