@@ -155,13 +155,7 @@ var assessmentTable = $('#example').DataTable({
                 var objUser = JSON.stringify(data);
                 objUser= JSON.parse(objUser);
                 document.getElementById("titleheader").innerHTML = "data" + JSON.stringify(objUser);
-                $("#example tbody").html("");
-   assessmentTable.row.add( [
-            '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ 'Assess-1' + '</a>',
-            'Barclays-PLC',
-            '06/01/2022',
-            '06/30/2022'
-      ] ).draw( true );
+                
             $("pageCover").hide();
             $("adminDashboard").show();
             $("mySidepanel").show();
