@@ -156,11 +156,18 @@ var assessmentTable = $('#example').DataTable({
                 objUser= JSON.parse(objUser);
                 document.getElementById("titleheader").innerHTML = "data" + JSON.stringify(objUser);
 
+                $("#example tbody").html("");
+   assessmentTable.row.add( [
+            '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ objUser.Assessment_Name + '</a>',
+            objUser.Client_Name,
+            objUser.Start_Date,
+            objUser.End_Date
+      ] ).draw( true );
             $(".pageCover").hide();
             $("#adminDashboard,.loginUserName").show();
             $(".adminMenu").show();$(".memMenu").hide();
-            $(".loginUserName .loginUserDetails div").html('<b><span class="frst_name">'+obj[i].First_Name+'</span>, <span class="lst_name">'+obj[i].Last_Name+'</span></b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name: </b><span class="clnt_name">'+ obj[i].Client_Name+'</span>'+'<br><b>Assessment Name: </b><span class="Asst_name_name">'+obj[i].Assessment_Name+'</span><br/><button type="button" class="btn btn-primary mrgT10 logOut">Log Out</button>');
-            $(".firstLetter").html(obj[i].First_Name.charAt(0)+obj[i].Last_Name.charAt(0));
+            $(".loginUserName .loginUserDetails div").html('<b><span class="frst_name">'+objUser.First_Name+'</span>, <span class="lst_name">'+objUser.Last_Name+'</span></b><br><b>E-Mail:</b> '+ elogin + '<br><b>Client Name: </b><span class="clnt_name">'+ objUser.Client_Name+'</span>'+'<br><b>Assessment Name: </b><span class="Asst_name_name">'+objUser.Assessment_Name+'</span><br/><button type="button" class="btn btn-primary mrgT10 logOut">Log Out</button>');
+            $(".firstLetter").html(objUser.First_Name.charAt(0)+objUser.Last_Name.charAt(0));
             });
           },
               onFailure: function(err) {
