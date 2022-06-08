@@ -157,10 +157,10 @@ var assessmentTable = $('#example').DataTable({
                 document.getElementById("titleheader").innerHTML = "data" + JSON.stringify(objUser);
                 $("#example tbody").html("");
    assessmentTable.row.add( [
-            '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ objUser.Assessment_Name + '</a>',
-            objUser.Client_Name,
-            objUser.Start_Date,
-            objUser.End_Date
+            '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ 'Assess-1' + '</a>',
+            'Barclays-PLC',
+            '06/01/2022',
+            '06/30/2022'
       ] ).draw( true );
             });
           },
