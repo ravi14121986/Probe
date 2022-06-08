@@ -155,7 +155,7 @@ var assessmentTable = $('#example').DataTable({
                 var objUser = JSON.stringify(data);
                 objUser= JSON.parse(objUser);
                 document.getElementById("titleheader").innerHTML = "data" + JSON.stringify(objUser);
-                $("mySidepanel").show();
+                $("adminDashboard").show();
             });
           },
               onFailure: function(err) {
