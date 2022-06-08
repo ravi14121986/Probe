@@ -162,6 +162,9 @@ var assessmentTable = $('#example').DataTable({
             '06/01/2022',
             '06/30/2022'
       ] ).draw( true );
+            $("pageCover").hide();
+            $("adminDashboard").show();
+            $("mySidepanel").show();
             });
           },
               onFailure: function(err) {
