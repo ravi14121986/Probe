@@ -27,19 +27,19 @@ var largeObj;
 var cce_output1;
 var type="type",type1,type2,type3,type4;
 $(document).ready(function() {
-	
+
 	$('.dbCheck:radio[type="radio"]').change(function(){
 		var dbCheck = $(this).attr("name");
-    if($(this).val() == 'Yes'){      	
+    if($(this).val() == 'Yes'){
 	   $('.'+dbCheck).show();
     }
 	else{
 		$('.'+dbCheck).hide();
-		
+
 	}
 });
-	
-	
+
+
 	$.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users", function(data, status){
     obj = JSON.stringify(data);
 	obj = JSON.parse(obj);
@@ -50,7 +50,7 @@ $(document).ready(function() {
 $.get("https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/PriceSmall", function(data, status){
     smallObj = JSON.stringify(data);
 	smallObj = JSON.parse(smallObj);
-	
+
  cceType();
  cce_range("1");cce_range("2");cce_range("3");cce_range("4");
   cce_size('1');cce_size('2');cce_size('3');cce_size('4');
@@ -77,50 +77,114 @@ var assessmentTable = $('#example').DataTable({
       }]
    });
 
-	
-	$(document).on("click","#submitMemLogin",function() {
-		
-		elogin = $("#emailLogin").val();
-		$.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
-     objUser = JSON.stringify(data);
-	 objUser= JSON.parse(objUser);
-	 if((elogin === "vasu@cg.com")||(elogin === "admin@cg.com")){
-	for (var i = 0; i < obj.length; i++){
-   assessmentTable.row.add( [
-           '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ obj[i].Assessment_Name + '</a>',
-            obj[i].Client_Name,
-            obj[i].Start_Date,
-            obj[i].End_Date
-      ] ).draw( true );
-   }
-		}
-		
-		if((elogin != "vasu@cg.com")&&(elogin != "admin@cg.com")){
-	$("#example tbody").html("");
+   var username;
+   var password;
+   var poolData;
+   var elogin;
+
+   $(document).on("click","#RegisterMemLogin",function() {
+
+		username = document.getElementById("emailLogin").value;
+		password =  document.getElementById("passwordLogin").value;
+
+    poolData = {
+				UserPoolId : _config.cognito.userPoolId, // Your user pool id here
+				ClientId : _config.cognito.clientId // Your client id here
+			};
+
+    document.getElementById("titleheader").innerHTML = "pooldata is " + JSON.stringify(poolData);
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+		var attributeList = [];
+
+		var dataEmail = {
+			Name : 'email',
+			Value : username, //get from form field
+		};
+
+		var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
+
+		attributeList.push(attributeEmail);
+
+		userPool.signUp(username, password, attributeList, null, function(err, result){
+			if (err) {
+				alert(err.message || JSON.stringify(err));
+				return;
+			}
+
+
+			cognitoUser = result.user;
+			console.log('user name is ' + cognitoUser.getUsername());
+			//change elements of page
+			document.getElementById("titleheader").innerHTML = "Check your email for a verification link";
+
+		});
+	  }
+ 		);
+
+    $(document).on("click","#submitMemLogin",function() {
+
+      username = document.getElementById("emailLogin").value;
+  		password =  document.getElementById("passwordLogin").value;
+
+      var authenticationData = {
+          Username : document.getElementById("emailLogin").value,
+          Password : document.getElementById("passwordLogin").value,
+      };
+
+      var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+
+  	var poolData = {
+          UserPoolId : _config.cognito.userPoolId, // Your user pool id here
+          ClientId : _config.cognito.clientId, // Your client id here
+      };
+
+      var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+      var userData = {
+          Username : document.getElementById("emailLogin").value,
+          Pool : userPool,
+      };
+
+      var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+      cognitoUser.authenticateUser(authenticationDetails, {
+              onSuccess: function (result) {
+                elogin = $("#emailLogin").val();
+                $.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
+                var objUser = JSON.stringify(data);
+                objUser= JSON.parse(objUser);
+                document.getElementById("titleheader").innerHTML = "data" + JSON.stringify(objUser);
+
+                $("#example tbody").html("");
    assessmentTable.row.add( [
             '<a href="#" class="clkBtn" data-next="dashboardScreen" >'+ objUser.Assessment_Name + '</a>',
             objUser.Client_Name,
             objUser.Start_Date,
             objUser.End_Date
       ] ).draw( true );
-   }
-	
-});
+            $(".pageCover").hide();
+            $("#adminDashboard,.loginUserName").show();
+            $(".adminMenu").show();$(".memMenu").hide();
+            $(".loginUserName .loginUserDetails div").html('<b><span class="frst_name">'+objUser.First_Name+'</span>, <span class="lst_name">'+objUser.Last_Name+'</span></b><br><b>E-Mail:</b> '+ elogin + '<br><b>Client Name: </b><span class="clnt_name">'+ objUser.Client_Name+'</span>'+'<br><b>Assessment Name: </b><span class="Asst_name_name">'+objUser.Assessment_Name+'</span><br/><button type="button" class="btn btn-primary mrgT10 logOut">Log Out</button>');
+            $(".firstLetter").html(objUser.First_Name.charAt(0)+objUser.Last_Name.charAt(0));
+            });
+          },
+              onFailure: function(err) {
+                  alert(err.message || JSON.stringify(err));
+              },
+          });
+        });
 
-		
-	 
-		
-	});
-	
 $(document).on("click",".logOut",function() {
 	location.reload();
 });
-	
-	
+
+
 	$(document).on("click",".loginUserName .firstLetter",function() {
 		$(".loginUserDetails").toggle();
 	});
-	
+
 	$(document).on("click","#schemaSubmit",function() {
 	var rValue = $('input[name="ConnectSchemaDatabase"]:checked').val();
 	var schemaData = {
@@ -129,7 +193,7 @@ $(document).on("click",".logOut",function() {
 		"Allow tool to connect to your instance":rValue,
 		"Host Name":$("#schemaHostName").val(),
 		"User Name":$("#schemaUserName").val(),
-		"Password":$("#schemaPassword").val()		
+		"Password":$("#schemaPassword").val()
 	}
 	$.ajax({
   type: "POST",
@@ -142,8 +206,8 @@ $(document).on("click",".logOut",function() {
   contentType : "application/json"
 });
 	});
-	
-	
+
+
 	$(document).on("click","#workloadSubmit",function() {
 	var rValue = $('input[name="workloadDatabaseR"]:checked').val();
 	var schemaData = {
@@ -153,7 +217,7 @@ $(document).on("click",".logOut",function() {
 		"Allow tool to connect to your instance":rValue,
 		"Host Name":$("#workloadHostname").val(),
 		"User Name":$("#workloadUsername").val(),
-		"Password":$("#workloadPassword").val()		
+		"Password":$("#workloadPassword").val()
 	}
 	$.ajax({
   type: "POST",
@@ -166,8 +230,8 @@ $(document).on("click",".logOut",function() {
   contentType : "application/json"
 });
 	});
-	
-	
+
+
 	$(document).on("click","#ETL_BI_Submit",function() {
 	var etlValue = $('input[name="ETL_R"]:checked').val();
 	var biValue = $('input[name="BiTool_R"]:checked').val();
@@ -180,7 +244,7 @@ $(document).on("click",".logOut",function() {
 		"Connect to BI Tool Repository?":biValue,
 		"BI Host Name":$("#BI_Hostname").val(),
 		"BI User Name":$("#BI_UserName").val(),
-		"BI Password":$("#BI_Password").val()			
+		"BI Password":$("#BI_Password").val()
 	}
 	$.ajax({
   type: "POST",
@@ -193,8 +257,8 @@ $(document).on("click",".logOut",function() {
   contentType : "application/json"
 });
 	});
-	
-	
+
+
 	$(document).on("click","#sensitiveDataSubmit",function() {
 	var PCIcheck = $('#PCIcheck:checked').val();
 	var SOC1check = $('#SOC1check:checked').val();
@@ -213,9 +277,9 @@ $(document).on("click",".logOut",function() {
 		"Number of Sensitive API Access":$("#API_Access").val(),
 		"Number of Sensitive Tools":$("#sensitiveTools").val(),
 "Non-Prod Environments":$("#Non-Prod-Dev").val(),
-		"Non-Prod Test":$("#Non-Prod-Test").val(),		
+		"Non-Prod Test":$("#Non-Prod-Test").val(),
 		"Sensitive Data Catalogue":$("#sensitive_Data_Catalogue").val()
-		
+
 	}
 	$.ajax({
   type: "POST",
@@ -228,7 +292,7 @@ $(document).on("click",".logOut",function() {
   contentType : "application/json"
 });
 	});
-	
+
 
 	$(document).on("click","#qualityAsubmit",function() {
 	var schemaData = {
@@ -241,7 +305,7 @@ $(document).on("click",".logOut",function() {
 		"Prod Capacity":$("#prodCapacity").val(),
 "License Units":$("#licenseUnits").val(),
 "Expected Growth":$("#expectedGrowth").val(),
-"ETL Tools":$("#ETL_Tools_Quality").val()		
+"ETL Tools":$("#ETL_Tools_Quality").val()
 	}
 	$.ajax({
   type: "POST",
@@ -254,7 +318,7 @@ $(document).on("click",".logOut",function() {
   contentType : "application/json"
 });
 	});
-	
+
 $('#datepick1').datepicker({
 });
 $('#datepick2').datepicker({
@@ -265,7 +329,7 @@ $(document).on("click","#assessmentTblSubmit",function() {
 	$("#clientName").val($("#clientNamePop").val());
 	$("#firstName").val($("#firstNamePop").val());
 	$("#lastName").val($("#lastNamePOP").val());
-	
+
 	$(".assessmentPop").hide();
 	$(".popUpCartBg").hide();
 });
@@ -288,9 +352,9 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
          'className': 'dt-body-center'
       }]
    });
-	
-	
-	
+
+
+
 	var locations = {
         'Legacy EDW Technology': ['Teradata','Netezza','Exadata','Greenplum', 'Oracle', 'SQL Server'],
         'Legacy ETL Technology': ['Informatica Power Center','Talend','Datastage','AWS Glue'],
@@ -301,7 +365,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
         'Legacy Data Lineage': ['Collibra','Waterline','Informatica Power Center'],
 		'Legacy Data Quality': ['Informatica Data Quality','Datastage Quality'],
     }
-    
+
     $(document).on("change",".legacyDD1",function() {
 		var $locations = $(this).parent().next('td').children('.legacyDD2');
         var country = $(this).val(), lcns = locations[country] || [];
@@ -310,14 +374,14 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
         }).join('');
         $locations.html(html)
     });
-	
-		
+
+
 	$(document).on("click","#LCEsubmit",function() {
-		
+
 		/*var formData = {
 		"id":$("#emailLogin").val(),
 		"Legacy_Labor_Cost":$("#legacyID1").val(),
-		
+
 	}*/
 	if(!$(this).hasClass("disabled")){
 	var legacyLebarSum = 0;
@@ -351,7 +415,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 		$(this).parent().removeClass("active");
 		$(this).parent().siblings(".pieIcon2").addClass("active");
 		$(this).parent().siblings(".pieChart").show();
-		$(this).parent().siblings(".pieTable").hide();		
+		$(this).parent().siblings(".pieTable").hide();
 	});
 	$(document).on("click",".pieIcon2.active a",function() {
 		$(this).parent().removeClass("active")
@@ -359,7 +423,7 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 		$(this).parent().siblings(".pieChart").hide();
 		$(this).parent().siblings(".pieTable").show();
 	});
-	
+
 	/*
 	$('form input[type=file]').change(function(){
 		$(this).siblings("label").html($(this).val());
@@ -374,9 +438,8 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
   contentType: "application/pdf",
   processData: false
 });
-
     });*/
-	
+
 	$('form input[type=file]').on('change', function(){
 	$(this).siblings("label").html($(this).val());
     var file = this.files[0];
@@ -398,14 +461,14 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
       console.log(response);
     });
   });
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	/*
-	
+
 	$(".btnDownload").click(function(){
 		var fName = $(this).attr("data-fName");
 		if(!$(this).hasClass("disabled")){
@@ -423,13 +486,13 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 		}
     }); */
 	$('input[name="phone"]').keypress(function(e) {
-    var a = [];  var k = e.which;    
-    for (i = 48; i < 58; i++) a.push(i);    
-    if (!(a.indexOf(k)>=0)) e.preventDefault();  
-});	
+    var a = [];  var k = e.which;
+    for (i = 48; i < 58; i++) a.push(i);
+    if (!(a.indexOf(k)>=0)) e.preventDefault();
+});
 
 	$("#userProfileID").click(function(){
-		var valBoolean = [0,0,0,0,0,0,0,0,0];		
+		var valBoolean = [0,0,0,0,0,0,0,0,0];
 		var formData = {
 		"ID":$("#userNm").val(),
 		"Assessment_Name":$("#assessmentName").val(),
@@ -441,9 +504,9 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 		"Password":$("#passwordUser").val(),
 "Target_Plateform":$("#assessmentPlatform").val(),
 "Start_Date":$("#datepick1").val(),
-"End_Date":$("#datepick2").val()			
+"End_Date":$("#datepick2").val()
 	}
-	
+
 	if(	$("#assessmentName").val() == "")
 	{
 	$("#assessmentName").siblings(".error").html("Please Enter Assessment Name");
@@ -461,21 +524,21 @@ var assessmentTbl = $('#assessmentTbl').DataTable({
 		valBoolean[1] = 1;
 	}
 	if($("#firstName").val() == ""){
-		$("#firstName").siblings(".error").html("Please Enter First Name");	
+		$("#firstName").siblings(".error").html("Please Enter First Name");
 	}
 	else if(!$("#firstName").val() == ""){
 		$("#firstName").siblings(".error").html("");
-valBoolean[2] = 1;		
+valBoolean[2] = 1;
 	}
 	if($("#lastName").val() == ""){
 		$("#lastName").siblings(".error").html("Please Enter Last Name");
 	}
 	else if(!$("#lastName").val() == ""){
-		$("#lastName").siblings(".error").html("");	
+		$("#lastName").siblings(".error").html("");
 		valBoolean[3] = 1;
 	}
 
-	
+
 	var mob = /^[1-9]{1}[0-9]{9}$/;
 	var currentValue = $("#phoneNum").val();
 	if(mob.test(currentValue) == false && currentValue.length < 10 && currentValue.length > 0 ){
@@ -484,14 +547,14 @@ valBoolean[2] = 1;
 else if(currentValue == "")
 {
 	$("#phoneNum").siblings(".error").html("Please Enter Phone Number");
-}	
+}
 else{
 		$("#phoneNum").siblings(".error").html("");
 		valBoolean[4] = 1;
 	}
-	
-	
-	
+
+
+
 	var regexEmail = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   if(!regexEmail.test($("#userNm").val())) {
   $("#userNm").siblings(".error").html("Please Enter Valid Email");
@@ -502,10 +565,10 @@ else{
 		$("#userNm").siblings(".error").html("");
 		valBoolean[5] = 1;
 	}
-	
-	
+
+
 	var pRE = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})/, pRE2 = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})/
-            var pssWord1 = $('#passwordOne').val();            
+            var pssWord1 = $('#passwordOne').val();
         if( !pRE.test(pssWord1)) {
            $("#passwordOne").siblings(".error").html("Use at least 8 characters and mix of letters (uppercase and lowercase), numbers and symbols");
         }else if(pssWord1 == "")
@@ -533,9 +596,9 @@ else{
 		else if((pssWord1 == pssWord2)&& pssWord1.length > 0 && pssWord2.length > 0 ){
 		$("#passwordUser").siblings(".error").html("");
 		valBoolean[8] = 1;
-		
+
 	}
-	
+
 	if(valBoolean.includes(0))
 {console.log("failed");
 }
@@ -562,16 +625,16 @@ else{
   contentType : "application/json"
 });
 	}
-	
+
 	});
-	
+
 	$(document).on("click",".successMsg button",function() {
 		$(".successMsg, .popUpCartBg").hide();
 	});
 	$(".custom-file a").click(function () {
              $(".custom-file input").trigger('click');
         });
-	
+
 /*	$(".btnDownload").click(function (e) {
     window.open('data:application/vnd.ms-excel,' + $('#inputPage2form').html());
     e.preventDefault();
@@ -584,11 +647,11 @@ $(".btnDownload2").click(function (e) {
 
 	setTimeout(function(){}, 1000);
 	$(".popUpCart").hide();
-	$(".popUpCartBg").hide();															
-	
-	
-   
-   
+	$(".popUpCartBg").hide();
+
+
+
+
    var piitable = $('#piiTable').DataTable({
       'columnDefs': [{
          'targets': 0,
@@ -596,7 +659,7 @@ $(".btnDownload2").click(function (e) {
          'orderable':false,
          'className': 'dt-body-center',
          'render': function (data, type, full, meta){
-             return '<input type="checkbox" name="id[]" value="' 
+             return '<input type="checkbox" name="id[]" value="'
                 + $('<div/>').text(data).html() + '">';
          }
       }]
@@ -615,7 +678,7 @@ $(".btnDownload2").click(function (e) {
          'className': 'dt-body-center'
       }]
    });
- 
+
     $(document).on("click",".addNew",function() {
 		if(!$(this).hasClass("disabled")){
         legacyTechlgy.row.add( [
@@ -628,10 +691,10 @@ $(".btnDownload2").click(function (e) {
 			inputColumn6
       ] ).draw( false );
 		}
-       
+
     } );
-   
-	
+
+
 	/* For User Creation */
 	var userDropdown1 = $(".userDropdown1").html();
 	var userDropdown2 = $(".userDropdown2").html();
@@ -643,22 +706,22 @@ $(".btnDownload2").click(function (e) {
             userDropdown2,
 			userTargetTech,
 			userDelete
-            
+
       ] ).draw( false );
- 
-       
+
+
     } );
 	$(document).on("click",".deleteRow",function() {
 		 legacyTechlgy.row($(this).parents('tr')).remove().draw();
 	 });
-	 
+
 	 $(document).on("click",".deleteRow2",function() {
 		 assessmentTbl.row($(this).parents('tr')).remove().draw();
 	 });
 	 $(document).on("click",".deleteRow3",function() {
 		 cloudTechlgy.row($(this).parents('tr')).remove().draw();
 	 });
-	
+
       $('.errorEmail').hide();
 	  $('.invalid_email').hide();
 	  $(".errorAdmin").hide();
@@ -674,7 +737,7 @@ $(document).on("click",".clkBtn",function() {
 	{
 		$(".adminMenu").hide();$(".memMenu").show();
 	}
-	
+
 var clkBtn = $(this).attr("data-next");
 $(".pageCover").hide();
 $("#"+clkBtn).show();
@@ -685,16 +748,16 @@ $(".openbtn, .menuBtn, .subMenu a").click(function(){
 
 
 $(".mMenu").click(function(){
-	
+
 	if($(this).hasClass("active"))
 	{
-	
+
 	$(this).next(".subMenu").slideUp(300,function(){
-	$(this).prev().removeClass("active");	
+	$(this).prev().removeClass("active");
 	});
-	
+
 	}
-	
+
 	if(!$(this).hasClass("active"))
 	{
 		$(".mMenu").next(".subMenu").slideUp(300);
@@ -702,43 +765,43 @@ $(".mMenu").click(function(){
 			$(".mMenu").removeClass("active");
 			$(this).prev().addClass("active");
 		});
-		
+
 	}
-	
+
 });
-	  
+
 	  $("input").focus(function(){
 	  $(this).removeClass("errOutline");
 	  var attr = $(this).attr('data-error');
 	  $("."+attr).hide();
 	  $(".errorAdmin").hide();
 	  });
-	  
-	  
+
+
 	  $('.tabs button').click(function(){
 	  $('.tabs button').removeClass("active");
 	  $(this).addClass("active");
 	  });
-	  
-	  
-      
+
+
+
   $(".jsonClose").click(function(){
 	  $(".displayJson").hide();
   });
-  
+
   $(document).on("click",".totalROI",function() {
-	  $(".roiPDFCover").show();	  
+	  $(".roiPDFCover").show();
         legacyCostChart();
 		estimateCostChart();
-		yearonyearCost();		
+		yearonyearCost();
 		roimodelChart();
 		cumulativeRfn();
-		
+
     });
-  
-  
+
+
   $(".finalBtn").click(function(){
-		  
+
 		  var formData1 = JSON.stringify($("#loginform").serializeArray());
 		  var formData2 = JSON.stringify($("#memLoginform").serializeArray());
 		  var formData3 = JSON.stringify($("#inputPage1form").serializeArray());
@@ -750,30 +813,31 @@ $(".mMenu").click(function(){
 		 $(".displayJson .box3").append(formData3);
 		 $(".displayJson .box4").append(formData4);
 		 $(".displayJson .box5").append(formData5);
- 
+
 	  });
-	  $('#submitMemLogin').click(function(){        
-        var email = $('.emailLogin').val();
-        
-        if(email== ''){
-          $('.errorEmail').show();
-          return false;
-        }
-        else if(IsEmail(email)==false){
-          $('.invalid_email').show();			
-          return false;
-        }
-		
-		
-  });
-  
-  
+
+  $('#RegisterMemLogin').click(function(){
+      var email = $('.emailLogin').val();
+
+      if(email== ''){
+        $('.errorEmail').show();
+        return false;
+      }
+      else if(IsRegisterEmail(email)==false){
+        $('.invalid_email').show();
+        return false;
+      }
+
+
+    });
+
+
 
 
   var dev = [3106, 222, 2, 1238, 11,439,43086,368];
  var qa = [2994, 231, 3, 1578, 15,674,100,312];
  var sit = [3312, 197, 1, 1497, 9,554,43124,401];
- var prod = [3197, 274, 4, 1254, 10,395,43634,361]; 
+ var prod = [3197, 274, 4, 1254, 10,395,43634,361];
  var bDev =  [4231, 215, 6, 1824, 21,498,48798,458];
  var bUAT =  [2879, 125, 9, 1524, 16,487,50648,547];
  var bPRD =  [5487, 658, 26, 2365, 14,659,43634,456];
@@ -784,14 +848,14 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_DEV',2442,379,3586,8126);
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1','NUMBER OF AMPS');
 	envelopeChartfn(0,15,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_DEV");
-	
-  $(document).on("click",".highcharts-series-0",function() {	  
+
+  $(document).on("click",".highcharts-series-0",function() {
    assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_DEV',2442,379,3586,8126);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
 	assessmentHeatmap('NUMBER OF AMPS - TD_BIM_FR_TRNG_DB_DEV','csv1','NUMBER OF AMPS');
 	envelopeChartfn(0,15,24,ampsData,"Number of Amps - TD_BIM_FR_TRNG_DB_DEV");
-	
+
 	}else if($("#heatMapMenu").val() == "CONCURRENT USERS"){
 		assessmentHeatmap('CONCURRENT USERS - TD_BIM_FR_TRNG_DB_DEV','csv11','CONCURRENT USERS');
 		envelopeChartfn(0,15,24,concurrentdata,"Concurrent Users - TD_BIM_FR_TRNG_DB_DEV");
@@ -800,7 +864,7 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(0,15,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_DEV");
 	}
   });
-   $(document).on("click",".highcharts-series-1",function() {	  
+   $(document).on("click",".highcharts-series-1",function() {
    assessmentBarFn(qa,'TD_BIM_FR_TRNG_DB_QA');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_QA',2641,345,3614,9874);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
@@ -814,7 +878,7 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(15,30,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_QA");
 	}
   });
-   $(document).on("click",".highcharts-series-2",function() {	  
+   $(document).on("click",".highcharts-series-2",function() {
    assessmentBarFn(sit,'TD_BIM_FR_TRNG_DB_SIT');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_SIT',2800,224,3796,9564);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
@@ -828,7 +892,7 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(30,45,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_SIT");
 	}
   });
-   $(document).on("click",".highcharts-series-3",function() {	  
+   $(document).on("click",".highcharts-series-3",function() {
    assessmentBarFn(prod,'TD_BIM_FR_TRNG_DB_PROD');
     assessmentCircleFn('TD_BIM_FR_TRNG_DB_PROD',3421,401,4214,12465);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
@@ -842,10 +906,10 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(45,60,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_PROD");
 	}
   });
-  
-  
-  
-  $(document).on("click",".highcharts-series-4",function() {	  
+
+
+
+  $(document).on("click",".highcharts-series-4",function() {
    assessmentBarFn(bDev,'Billing_Dev');
     assessmentCircleFn('Billing_Dev',2214,287,4126,10325);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
@@ -859,8 +923,8 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(60,75,24,cpudata,"CPU Utilization - Billing_Dev");
 	}
   });
-  
-  $(document).on("click",".highcharts-series-5",function() {	  
+
+  $(document).on("click",".highcharts-series-5",function() {
    assessmentBarFn(bUAT,'Billing_UAT');
     assessmentCircleFn('Billing_UAT',2564,354,3200,9856);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
@@ -874,8 +938,8 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(75,90,24,cpudata,"CPU Utilization - Billing_UAT");
 	}
   });
-  
-  $(document).on("click",".highcharts-series-6",function() {	  
+
+  $(document).on("click",".highcharts-series-6",function() {
    assessmentBarFn(bPRD,'Billing_PRD');
     assessmentCircleFn('Billing_PRD',2354,425,3100,9451);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
@@ -889,7 +953,7 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(90,105,24,cpudata,"CPU Utilization - Billing_PRD");
 	}
   });
-  $(document).on("click",".highcharts-series-7",function() {	  
+  $(document).on("click",".highcharts-series-7",function() {
    assessmentBarFn(policy,'Policy');
     assessmentCircleFn('Policy',3214,487,3641,8978);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
@@ -903,7 +967,7 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(105,120,24,cpudata,"CPU Utilization - Policy");
 	}
   });
-  $(document).on("click",".highcharts-series-8",function() {	  
+  $(document).on("click",".highcharts-series-8",function() {
    assessmentBarFn(claims,'Claims');
     assessmentCircleFn('Claims',3154,312,3956,8654);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
@@ -917,7 +981,7 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(120,135,24,cpudata,"CPU Utilization - Claims");
 	}
   });
-  $(document).on("click",".highcharts-series-9",function() {	  
+  $(document).on("click",".highcharts-series-9",function() {
    assessmentBarFn(members,'Members');
     assessmentCircleFn('Members',2879,285,4236,11324);
 	if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
@@ -931,11 +995,11 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(135,150,24,cpudata,"CPU Utilization - Members");
 	}
   });
-  
-  
-  
-  
-  
+
+
+
+
+
   $("#heatMapMenu").change(function(){
     if($("#heatMapMenu").val() == "NUMBER OF AMPS"){
 		assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
@@ -954,16 +1018,16 @@ assessmentBarFn(dev,'TD_BIM_FR_TRNG_DB_DEV');
 		envelopeChartfn(0,15,24,cpudata,"CPU Utilization - TD_BIM_FR_TRNG_DB_DEV");
 	}
   });
-  
+
  $(document).on("click","#CCEsubmit",function() {
 	 $(".cce_containercover.bsh").show();
 	 cce_graph();
  });
- 
- 
-  
+
+
+
  });
- 
+
  /* document ready end */
  function codeComplexityFn()
  {
@@ -984,7 +1048,7 @@ for(j=0;j<days;j++)
 
  $(id).append('\n'+'2020-'+stringMonth+'-'+z+','+j+','+csvData[i][j]);
  }
- }  
+ }
 $(id).html($(id).text());
  }
  function assessmentHeatmap(hdTitle,ids,tooltip)
@@ -1213,9 +1277,9 @@ Highcharts.chart('assessmentBar', {
  });
  }
  var adminValidate = true;
- 
+
  function IsEmail(email) {
-	
+
   var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   if(!regex.test(email)) {
   $(".emailLogin").addClass("errOutline");
@@ -1231,21 +1295,21 @@ Highcharts.chart('assessmentBar', {
 						 $(".adminMenu").show();$(".memMenu").hide();
 						 $(".loginUserName .loginUserDetails div").html('<b><span class="frst_name">'+obj[i].First_Name+'</span>, <span class="lst_name">'+obj[i].Last_Name+'</span></b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name: </b><span class="clnt_name">'+ obj[i].Client_Name+'</span>'+'<br><b>Assessment Name: </b><span class="Asst_name_name">'+obj[i].Assessment_Name+'</span><br/><button type="button" class="btn btn-primary mrgT10 logOut">Log Out</button>');
 						 $(".firstLetter").html(obj[i].First_Name.charAt(0)+obj[i].Last_Name.charAt(0));
-	  
+
 	  for (var j = 0; j < adminObj.length; j++){
-						 
-		if ((adminObj[j].EMail == emailVal)){ 
-						 				
+
+		if ((adminObj[j].EMail == emailVal)){
+
 						 $('.admMenu,#schemaInputs').show();
 						$(".loginUserName .loginUserDetails div").html('<b><span class="frst_name">'+obj[i].First_Name+'</span>, <span class="lst_name">'+obj[i].Last_Name+'</span></b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name: </b><span class="clnt_name">'+ obj[i].Client_Name+'</span>'+'<br><b>Assessment Name: </b><span class="Asst_name_name">'+obj[i].Assessment_Name+'</span><br/><button type="button" class="btn btn-primary mrgT10 logOut">Log Out</button>');
-						 	 $("#adminDashboard").hide();			 
+						 	 $("#adminDashboard").hide();
 						  return true;
 		  }
 	}
-	
+
 	for (var k = 0; k < clientObj.length; k++){
-						 
-		if ((clientObj[k].EMail == emailVal)){ 
+
+		if ((clientObj[k].EMail == emailVal)){
 		$(".cloudCOstH").addClass("cloudCOstHide");
 		$('#cloudTechlgy input[type="text"]').attr("disabled","disabled");
 		$('.addNewCloud').addClass("disabled");
@@ -1253,17 +1317,26 @@ Highcharts.chart('assessmentBar', {
 		$('.costTech11').removeClass('deleteRow3');
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	}
   else{
 	  $(".errorAdmin").show();
 	}
 }
-	
+
   }
+}
+
+function IsRegisterEmail(email) {
+
+ var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+ if(!regex.test(email)) {
+ $(".emailLogin").addClass("errOutline");
+   return false;
+ }
 }
 
 function renderIcons() {
@@ -1329,7 +1402,7 @@ function renderIcons() {
 function legacyCostChart()
 {var finalData;
 var txtVal = $(".legacyCost").val();
-var legacycostVal = $(".legacyCost").val();	  
+var legacycostVal = $(".legacyCost").val();
 var caseVal = $('#myRange').val();
 var caseVal2 = $('#myRange').val();
 var lineDerived = legacycostVal;
@@ -1389,7 +1462,7 @@ $(".legacyCostVal").text("$"+txtVal);
 function estimateCostChart()
 {var finalData;
 var yearTarget = $('#myRange').val();
-var estimatecostVal = $(".estimatedCloudCost").val();	  
+var estimatecostVal = $(".estimatedCloudCost").val();
 var yearTrgt = $("#slideVal").html()/100;
 year1 = 1 * (estimatecostVal*yearTrgt);
 year2 = 2 * (estimatecostVal*yearTrgt);
@@ -1643,7 +1716,7 @@ var d = 100/this.value;
 var c = cce_output1.value * d/100;
 
 if(this.value == 3){cce_output1.value = cce_output1.value * 30/100;;}
-else{cce_output1.value = c;} 
+else{cce_output1.value = c;}
 }
 }
 
@@ -1654,7 +1727,7 @@ var cce_slider2 = document.getElementById('cce_Size'+rownum);
 var cce_output2 = document.getElementById('cldCostValue'+rownum);
 var hVal;
 cce_slider2.oninput = function() {
-	
+
 	cceType();
 	if(rownum == 1){hVal = type1;}if(rownum == 2){hVal = type2;}if(rownum == 3){hVal = type3;}if(rownum == 4){hVal = type4;}
 if(this.value == 1){$('#cldCostValue_hidden'+rownum).val(hVal);}
@@ -1667,9 +1740,9 @@ cce_output1.value = $('#cldCostValue_hidden'+rownum).val();
 
 
 
-function cce_graph(){	
+function cce_graph(){
 	var y1,y2,y3,y4,y5;
-	
+
 	cceType();
 	var finalData1 = [type1,type1*50/100,type1*30/100,type1*25/100,type1*20/100];
 	var finalData2 = [type2,type2*50/100,type2*30/100,type2*25/100,type2*20/100];
@@ -1680,7 +1753,7 @@ function cce_graph(){
 	var totalyear3 = finalData1[2]+finalData2[2]+finalData3[2]+finalData4[2];
 	var totalyear4 = finalData1[3]+finalData2[3]+finalData3[3]+finalData4[3];
 	var totalyear5 = finalData1[4]+finalData2[4]+finalData3[4]+finalData4[4];
-	
+
 Highcharts.chart('cce_container', {
     title: {
         text: 'CCE Model'
@@ -1734,7 +1807,7 @@ function cceType(){
 	if($("#cce_Size1").val() == 3){
 	for (var i = 0; i < largeObj.length; i++){if (largeObj[i].Type == "ETL Workload"){type1 =  type1 + parseInt(largeObj[i].Price_with_License);}}
 	$('#cldCostValue_hidden1').val(type1);}
-	
+
 	if($("#cce_Size2").val() == 1){
     for (var i = 0; i < smallObj.length; i++){if (smallObj[i].Type == "Storage"){type2 =  type2 + parseInt(smallObj[i].Price_with_License);}}
 	$('#cldCostValue_hidden2').val(type2);}
@@ -1744,7 +1817,7 @@ function cceType(){
 	if($("#cce_Size2").val() == 3){
     for (var i = 0; i < largeObj.length; i++){if (largeObj[i].Type == "Storage"){type2 =  type2 + parseInt(largeObj[i].Price_with_License);}}
 	$('#cldCostValue_hidden2').val(type2);}
-	
+
 	  if($("#cce_Size3").val() == 1){
 	for (var i = 0; i < smallObj.length; i++){if (smallObj[i].Type == "Analytics Workload"){type3 =  type3 + parseInt(smallObj[i].Price_with_License);}}
 	$('#cldCostValue_hidden3').val(type3);}
@@ -1754,15 +1827,15 @@ function cceType(){
 	 if($("#cce_Size3").val() == 3){
 	for (var i = 0; i < largeObj.length; i++){if (largeObj[i].Type == "Analytics Workload"){type3 =  type3 + parseInt(largeObj[i].Price_with_License);}}
 	$('#cldCostValue_hidden3').val(type3);}
-	
-	if($("#cce_Size4").val() == 1){	  
+
+	if($("#cce_Size4").val() == 1){
 	for (var i = 0; i < smallObj.length; i++){if (smallObj[i].Type == "Advance Analytics"){type4 =  type4 + parseInt(smallObj[i].Price_with_License);}}
 	$('#cldCostValue_hidden4').val(type4);}
-	if($("#cce_Size4").val() == 2){	  
+	if($("#cce_Size4").val() == 2){
 	for (var i = 0; i < mediumObj.length; i++){if (mediumObj[i].Type == "Advance Analytics"){type4 =  type4 + parseInt(mediumObj[i].Price_with_License);}}
 	$('#cldCostValue_hidden4').val(type4);}
-	if($("#cce_Size4").val() == 3){	  
+	if($("#cce_Size4").val() == 3){
 	for (var i = 0; i < largeObj.length; i++){if (largeObj[i].Type == "Advance Analytics"){type4 =  type4 + parseInt(largeObj[i].Price_with_License);}}
 	$('#cldCostValue_hidden4').val(type4);}
-	
+
 }
