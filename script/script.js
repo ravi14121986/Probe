@@ -155,10 +155,12 @@ var assessmentTable = $('#example').DataTable({
                 var objUser = JSON.stringify(data);
                 objUser= JSON.parse(objUser);
                 document.getElementById("titleheader").innerHTML = "data" + JSON.stringify(objUser);
-                
-            $("pageCover").hide();
-            $("adminDashboard").show();
-            $("mySidepanel").show();
+
+            $(".pageCover").hide();
+            $("#adminDashboard,.loginUserName").show();
+            $(".adminMenu").show();$(".memMenu").hide();
+            $(".loginUserName .loginUserDetails div").html('<b><span class="frst_name">'+obj[i].First_Name+'</span>, <span class="lst_name">'+obj[i].Last_Name+'</span></b><br><b>E-Mail:</b> '+ emailVal + '<br><b>Client Name: </b><span class="clnt_name">'+ obj[i].Client_Name+'</span>'+'<br><b>Assessment Name: </b><span class="Asst_name_name">'+obj[i].Assessment_Name+'</span><br/><button type="button" class="btn btn-primary mrgT10 logOut">Log Out</button>');
+            $(".firstLetter").html(obj[i].First_Name.charAt(0)+obj[i].Last_Name.charAt(0));
             });
           },
               onFailure: function(err) {
