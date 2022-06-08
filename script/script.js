@@ -122,46 +122,46 @@ var assessmentTable = $('#example').DataTable({
 	  }
  		);
 
-	$(document).on("click","#submitMemLogin",function() {
+    $(document).on("click","#submitMemLogin",function() {
 
-    username = document.getElementById("emailLogin").value;
-		password =  document.getElementById("passwordLogin").value;
+      username = document.getElementById("emailLogin").value;
+  		password =  document.getElementById("passwordLogin").value;
 
-    var authenticationData = {
-        Username : document.getElementById("emailLogin").value,
-        Password : document.getElementById("passwordLogin").value,
-    };
+      var authenticationData = {
+          Username : document.getElementById("emailLogin").value,
+          Password : document.getElementById("passwordLogin").value,
+      };
 
-    var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+      var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
 
-	var poolData = {
-        UserPoolId : _config.cognito.userPoolId, // Your user pool id here
-        ClientId : _config.cognito.clientId, // Your client id here
-    };
+  	var poolData = {
+          UserPoolId : _config.cognito.userPoolId, // Your user pool id here
+          ClientId : _config.cognito.clientId, // Your client id here
+      };
 
-    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+      var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-    var userData = {
-        Username : document.getElementById("emailLogin").value,
-        Pool : userPool,
-    };
+      var userData = {
+          Username : document.getElementById("emailLogin").value,
+          Pool : userPool,
+      };
 
-    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+      var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 
-    cognitoUser.authenticateUser(authenticationDetails, {
-            onSuccess: function (result) {
-              elogin = $("#emailLogin").val();
-              $.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
-              var objUser = JSON.stringify(data);
-              var objUser= JSON.parse(objUser);
-              document.getElementById("titleheader").innerHTML = "data" + JSON.stringify(objUser);
-          };
-        },
-            onFailure: function(err) {
-                alert(err.message || JSON.stringify(err));
-            },
+      cognitoUser.authenticateUser(authenticationDetails, {
+              onSuccess: function (result) {
+                elogin = $("#emailLogin").val();
+                $.get('https://4kumv1dji0.execute-api.us-east-1.amazonaws.com/dev/users/'+elogin, function(data, status){
+                var objUser = JSON.stringify(data);
+                objUser= JSON.parse(objUser);
+                document.getElementById("titleheader").innerHTML = "data" + JSON.stringify(objUser);
+            });
+          },
+              onFailure: function(err) {
+                  alert(err.message || JSON.stringify(err));
+              },
+          });
         });
-      });
 
 $(document).on("click",".logOut",function() {
 	location.reload();
