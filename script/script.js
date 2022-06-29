@@ -157,7 +157,7 @@ $(document).on("click",".logOut",function() {
 	}
 	$.ajax({
   type: "POST",
-  url: "https://ej940p5seb.execute-api.us-east-2.amazonaws.com/dev",
+  url: "https://ej940p5seb.execute-api.us-east-2.amazonaws.com/dev/WorkloadAssessment",
   data:JSON.stringify(schemaData),
   success: function(data){
 	  alert("Success"+rValue)
