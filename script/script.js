@@ -147,13 +147,13 @@ $(document).on("click",".logOut",function() {
 	$(document).on("click","#workloadSubmit",function() {
 	var rValue = $('input[name="workloadDatabaseR"]:checked').val();
 	var schemaData = {
-		"id":$("#emailLogin").val(),
-		"Technology":$("#workloadTechnology").val(),
-		"Platform":$("#workloadPlatform").val(),
-		"Allow tool to connect to your instance":rValue,
-		"Host Name":$("#workloadHostname").val(),
-		"User Name":$("#workloadUsername").val(),
-		"Password":$("#workloadPassword").val()		
+		"id":"abc",
+		"Technology":"abc",
+		"Platform":"abc",
+		"Allow tool to connect to your instance":"abc",
+		"Host Name":"abc",
+		"User Name":"abc",
+		"Password":"abc"		
 	}
 	$.ajax({
   type: "POST",
