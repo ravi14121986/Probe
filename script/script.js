@@ -157,7 +157,7 @@ $(document).on("click",".logOut",function() {
 	}
 	$.ajax({
   type: "POST",
-  url: "https://t2k0e5k855.execute-api.us-east-2.amazonaws.com/dynamodb_workloadas",
+  url: "https://ej940p5seb.execute-api.us-east-2.amazonaws.com/dev",
   data:JSON.stringify(schemaData),
   success: function(data){
 	  alert("Success"+rValue)
